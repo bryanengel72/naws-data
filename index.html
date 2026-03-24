@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAWS Annual Impact Report</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --teal: #1abc9c;
+      --blue: #4c9aff;
+      --purple: #a78bfa;
+      --orange: #fb923c;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --green: #4ade80;
+      --cyan: #22d3ee;
+      --pink: #f472b6;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .nav-logo {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .nav-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-subtitle { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
+    .nav-badge {
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* ── TAB NAV ── */
+    .tab-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+    }
+    .tab-btn {
+      padding: 14px 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+    /* ── TAB PAGES ── */
+    .tab-page { display: none; }
+    .tab-page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+      padding: 2.5rem 2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(26,188,156,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-title {
+      font-size: 1.9rem; font-weight: 800; letter-spacing: -0.03em;
+      background: linear-gradient(90deg, var(--text) 0%, var(--teal) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 4px;
+    }
+    .hero-sub { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.75rem; }
+
+    /* ── KPI GRID ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; }
+    .kpi-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .kpi-card:hover { transform: translateY(-2px); border-color: var(--teal); }
+    .kpi-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--accent-color, var(--teal));
+    }
+    .kpi-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .kpi-value { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.03em; }
+    .kpi-footer { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    .kpi-sub { font-size: 0.72rem; color: var(--muted); }
+    .kpi-icon { position: absolute; top: 1rem; right: 1rem; font-size: 1.4rem; opacity: 0.5; }
+
+    /* ── YoY BADGE ── */
+    .yoy-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 2px 7px; border-radius: 20px;
+      font-size: 0.68rem; font-weight: 700; white-space: nowrap;
+    }
+    .yoy-up { background: rgba(74,222,128,0.15); color: var(--green); }
+    .yoy-down { background: rgba(248,113,113,0.15); color: var(--red); }
+    .yoy-flat { background: rgba(139,148,158,0.15); color: var(--muted); }
+
+    /* ── MAIN ── */
+    main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+    .section-header { display: flex; align-items: center; gap: 10px; margin: 2rem 0 1rem; }
+    .section-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+    .section-title { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+    .section-badge {
+      font-size: 0.7rem; color: var(--muted);
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 3px 10px;
+    }
+
+    /* ── CHART CARDS ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    .grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .chart-card:hover { border-color: #3d444d; }
+    .chart-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 3px; }
+    .chart-subtitle { font-size: 0.72rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .chart-container { position: relative; }
+
+    /* ── YoY COMPARISON TABLE ── */
+    .yoy-table { width: 100%; border-collapse: collapse; }
+    .yoy-table th {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em;
+      color: var(--muted); padding: 8px 12px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .yoy-table th:not(:first-child) { text-align: right; }
+    .yoy-table td {
+      font-size: 0.8rem; padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .yoy-table td:not(:first-child) { text-align: right; }
+    .yoy-table tr:last-child td { border-bottom: none; }
+    .yoy-table tr:hover td { background: var(--surface2); }
+    .yoy-table .row-label { font-weight: 600; }
+    .yoy-table .val-2024 { color: var(--muted); }
+    .yoy-table .val-2025 { color: var(--text); font-weight: 600; }
+    .yoy-table .val-change { font-weight: 700; }
+    .change-pos { color: var(--green); }
+    .change-neg { color: var(--red); }
+
+    /* ── PROC LIST ── */
+    .proc-list { margin-top: 4px; }
+    .proc-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .proc-item:last-child { border-bottom: none; }
+    .proc-rank { width: 18px; font-size: 0.68rem; color: var(--muted); text-align: center; flex-shrink: 0; }
+    .proc-name { font-size: 0.76rem; flex: 1; }
+    .proc-bars { display: flex; flex-direction: column; gap: 3px; width: 90px; }
+    .proc-bar-row { display: flex; align-items: center; gap: 4px; }
+    .proc-bar-wrap { flex: 1; height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+    .proc-bar { height: 100%; border-radius: 2px; }
+    .proc-bar-label { font-size: 0.62rem; color: var(--muted); width: 28px; text-align: right; flex-shrink: 0; }
+
+    /* ── SPECIES BOXES ── */
+    .species-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+    .species-box { background: var(--surface2); border-radius: 10px; padding: 14px; text-align: center; }
+    .species-emoji { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+    .species-count { font-size: 1.4rem; font-weight: 800; }
+    .species-label { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+    .species-yoy { font-size: 0.7rem; margin-top: 4px; font-weight: 600; }
+
+    /* ── STAT ROWS ── */
+    .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-name { font-size: 0.8rem; color: var(--muted); }
+    .stat-val { font-size: 0.85rem; font-weight: 600; }
+    .stat-bar-wrap { flex: 1; margin: 0 12px; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .stat-bar { height: 100%; border-radius: 3px; }
+
+    /* ── PEAK BADGES ── */
+    .peak-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(26,188,156,0.12); color: var(--teal);
+      border: 1px solid rgba(26,188,156,0.25);
+      border-radius: 20px; padding: 4px 11px;
+      font-size: 0.7rem; font-weight: 600;
+      margin-right: 6px; margin-bottom: 6px;
+    }
+
+    /* ── MONTH COMPARISON CALLOUT ── */
+    .month-delta-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .month-delta-cell {
+      background: var(--surface2);
+      border-radius: 8px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .month-delta-cell .mdc-month { font-size: 0.65rem; color: var(--muted); margin-bottom: 4px; }
+    .month-delta-cell .mdc-val { font-size: 0.72rem; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 2rem; text-align: center; color: var(--muted);
+      font-size: 0.78rem; margin-top: 4rem;
+    }
+    footer strong { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-1-2 { grid-template-columns: 1fr; }
+      .month-delta-grid { grid-template-columns: repeat(6, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">🐾</div>
+    <div>
+      <div class="nav-title">NAWS</div>
+      <div class="nav-subtitle">New Chapter Animal Welfare Society</div>
+    </div>
+  </div>
+  <div class="nav-badge">Annual Impact Report</div>
+</nav>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('overview')">📊 Overview</button>
+  <button class="tab-btn" onclick="switchTab('yoy')">📈 Year-over-Year</button>
+  <button class="tab-btn" onclick="switchTab('surgeries')">🔪 Surgeries</button>
+  <button class="tab-btn" onclick="switchTab('vaccines')">💉 Vaccines</button>
+</div>
+
+<!-- HERO (always visible) -->
+<div class="hero">
+  <div style="max-width:1400px; margin:0 auto;">
+    <div class="hero-title">NAWS Annual Impact Report</div>
+    <div class="hero-sub">January 1 – December 31, 2025 &nbsp;·&nbsp; Surgeries &amp; Vaccines &nbsp;·&nbsp; vs. 2024</div>
+    <div class="kpi-grid">
+      <div class="kpi-card" style="--accent-color: var(--teal);">
+        <div class="kpi-icon">🐾</div>
+        <div class="kpi-label">Total Procedures</div>
+        <div class="kpi-value" id="kpi-total">0</div>
+        <div class="kpi-footer">
+          <span class="kpi-sub">Surgeries + Vaccines</span>
+        </div>
+      </div>
+      <div class="kpi-card" style="--accent-color: var(--blue);">
+        <div class="kpi-icon">🔪</div>
+        <div class="kpi-label">Surgeries 2025</div>
+        <div class="kpi-value" id="kpi-surg">0</div>
+        <div class="kpi-footer">
+          <span class="kpi-sub">vs 4,109 in 2024</span>
+          <span class="yoy-badge yoy-down">▼ 10.8%</span>
+        </div>
+      </div>
+      <div class="kpi-card" style="--accent-color: var(--purple);">
+        <div class="kpi-icon">💉</div>
+        <div class="kpi-label">Vaccines 2025</div>
+        <div class="kpi-value" id="kpi-vax">0</div>
+        <div class="kpi-footer">
+          <span class="kpi-sub">9 Vaccine Types</span>
+        </div>
+      </div>
+      <div class="kpi-card" style="--accent-color: var(--amber);">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-label">Surgery Revenue</div>
+        <div class="kpi-value" id="kpi-rev">$0</div>
+        <div class="kpi-footer">
+          <span class="kpi-sub">vs $259K in 2024</span>
+          <span class="yoy-badge yoy-down">▼ 10.3%</span>
+        </div>
+      </div>
+      <div class="kpi-card" style="--accent-color: var(--orange);">
+        <div class="kpi-icon">🐱</div>
+        <div class="kpi-label">Feline Surgeries</div>
+        <div class="kpi-value" id="kpi-feline-surg">0</div>
+        <div class="kpi-footer">
+          <span class="kpi-sub">vs 3,089 in 2024</span>
+          <span class="yoy-badge yoy-down">▼ 5.9%</span>
+        </div>
+      </div>
+      <div class="kpi-card" style="--accent-color: var(--cyan);">
+        <div class="kpi-icon">🐶</div>
+        <div class="kpi-label">Canine Surgeries</div>
+        <div class="kpi-value" id="kpi-canine-surg">0</div>
+        <div class="kpi-footer">
+          <span class="kpi-sub">vs 1,017 in 2024</span>
+          <span class="yoy-badge yoy-down">▼ 26.2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ TAB: OVERVIEW ═══════════════ -->
+<div id="tab-overview" class="tab-page active">
+<main>
+
+  <div class="section-header">
+    <div class="section-dot"></div>
+    <div class="section-title">Monthly Activity</div>
+    <div class="section-line"></div>
+    <div class="section-badge">2025 Full Year</div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:1rem;">
+    <div class="chart-title">Monthly Procedure Volume</div>
+    <div class="chart-subtitle">Surgeries vs. Vaccines administered each month, 2025</div>
+    <div class="chart-container" style="height:280px;">
+      <canvas id="monthlyVolume"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Monthly Revenue</div>
+    <div class="chart-subtitle">Surgery and vaccine revenue by month ($)</div>
+    <div class="chart-container" style="height:260px;">
+      <canvas id="monthlyRevenue"></canvas>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--blue);"></div>
+    <div class="section-title">Surgeries</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="chart-card">
+      <div class="chart-title">Procedures by Type</div>
+      <div class="chart-subtitle">All surgery categories, 2025</div>
+      <div class="chart-container" style="height:280px;">
+        <canvas id="surgByType"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Top Procedures Ranked</div>
+      <div class="chart-subtitle">Individual surgery types by volume</div>
+      <div class="proc-list" id="topProcList"></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="chart-card">
+      <div class="chart-title">Client Tier Distribution</div>
+      <div class="chart-subtitle">Standard · Rescue · Low Income (NQ) · SNCKC</div>
+      <div class="chart-container" style="height:240px;">
+        <canvas id="surgByTier"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Surgery by Species</div>
+      <div class="chart-subtitle">Feline vs. Canine patients</div>
+      <div class="species-grid">
+        <div class="species-box">
+          <span class="species-emoji">🐱</span>
+          <div class="species-count" style="color:var(--purple);">2,906</div>
+          <div class="species-label">Feline (79.3%)</div>
+          <div class="species-yoy change-neg">▼ 5.9% vs 2024</div>
+        </div>
+        <div class="species-box">
+          <span class="species-emoji">🐶</span>
+          <div class="species-count" style="color:var(--blue);">751</div>
+          <div class="species-label">Canine (20.5%)</div>
+          <div class="species-yoy change-neg">▼ 26.2% vs 2024</div>
+        </div>
+      </div>
+      <div class="chart-container" style="height:150px;margin-top:12px;">
+        <canvas id="surgSpecies"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--purple);"></div>
+    <div class="section-title">Vaccines</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="chart-card">
+      <div class="chart-title">Vaccines by Type</div>
+      <div class="chart-subtitle">All vaccine categories administered, 2025</div>
+      <div class="chart-container" style="height:280px;">
+        <canvas id="vaxByType"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Vaccine Species Split</div>
+      <div class="chart-subtitle">Feline vs. Canine patients vaccinated</div>
+      <div class="species-grid">
+        <div class="species-box">
+          <span class="species-emoji">🐱</span>
+          <div class="species-count" style="color:var(--purple);">5,151</div>
+          <div class="species-label">Feline (55.6%)</div>
+        </div>
+        <div class="species-box">
+          <span class="species-emoji">🐶</span>
+          <div class="species-count" style="color:var(--cyan);">4,107</div>
+          <div class="species-label">Canine (44.4%)</div>
+        </div>
+      </div>
+      <div class="chart-container" style="height:150px;margin-top:12px;">
+        <canvas id="vaxSpecies"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Vaccine Volume Breakdown</div>
+    <div class="chart-subtitle">Each vaccine type ranked by quantity administered</div>
+    <div id="vaxStatRows"></div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--amber);"></div>
+    <div class="section-title">Combined Overview</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="chart-card">
+      <div class="chart-title">Total Revenue by Category</div>
+      <div class="chart-subtitle">Surgery $232,598 · Vaccine $123,579 · Total $356,177</div>
+      <div class="chart-container" style="height:260px;">
+        <canvas id="revSplit"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Procedures Split</div>
+      <div class="chart-subtitle">Surgeries 28.4% · Vaccines 71.6% of all procedures</div>
+      <div class="chart-container" style="height:260px;">
+        <canvas id="procSplit"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">2025 Highlights</div>
+    <div class="chart-subtitle">Key milestones and peak activity periods</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
+      <span class="peak-badge">📈 May — Peak Surgery Month (356)</span>
+      <span class="peak-badge">💉 July — Peak Vaccine Month (889)</span>
+      <span class="peak-badge">💰 April — Peak Surgery Revenue ($24,245)</span>
+      <span class="peak-badge">🦊 885 Feral Cats with Ear Tip</span>
+      <span class="peak-badge">💊 Rabies Most-Given Vaccine (4,612)</span>
+      <span class="peak-badge">🏥 22% of Surgeries for Rescue Orgs</span>
+      <span class="peak-badge">🐱 79% of All Surgeries Were Feline</span>
+      <span class="peak-badge">📉 Canine Surgeries Down 26% vs 2024</span>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ═══════════════ TAB: YEAR-OVER-YEAR ═══════════════ -->
+<div id="tab-yoy" class="tab-page">
+<main>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--amber);"></div>
+    <div class="section-title">Surgery Volume: 2024 vs 2025</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:1rem;">
+    <div class="chart-title">Monthly Surgery Volume — 2024 vs 2025</div>
+    <div class="chart-subtitle">Side-by-side monthly comparison of total surgeries performed</div>
+    <div class="chart-container" style="height:290px;">
+      <canvas id="yoyVolumeChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Month-by-month delta pills -->
+  <div class="chart-card" style="margin-bottom:1rem;">
+    <div class="chart-title">Month-by-Month Surgery Change</div>
+    <div class="chart-subtitle">2025 vs 2024 — procedures performed each month</div>
+    <div class="month-delta-grid" id="monthDeltaGrid"></div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--amber);"></div>
+    <div class="section-title">Surgery Revenue: 2024 vs 2025</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:1rem;">
+    <div class="chart-title">Monthly Surgery Revenue — 2024 vs 2025</div>
+    <div class="chart-subtitle">Monthly revenue comparison; 2024 total $259,178 · 2025 total $232,598</div>
+    <div class="chart-container" style="height:290px;">
+      <canvas id="yoyRevenueChart"></canvas>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--amber);"></div>
+    <div class="section-title">Category Breakdown: 2024 vs 2025</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:1rem;">
+    <div class="chart-title">Surgeries by Category — 2024 vs 2025</div>
+    <div class="chart-subtitle">Side-by-side comparison of each surgery category</div>
+    <div class="chart-container" style="height:300px;">
+      <canvas id="yoyCategoryChart"></canvas>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--amber);"></div>
+    <div class="section-title">Detailed YoY Summary Table</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:1rem;">
+    <div class="chart-title">Surgery Metrics — Year-over-Year Comparison</div>
+    <div class="chart-subtitle">All key metrics: 2024 actuals vs. 2025 actuals with % change</div>
+    <table class="yoy-table" style="margin-top:8px;">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>2024</th>
+          <th>2025</th>
+          <th>Change</th>
+          <th>% Change</th>
+        </tr>
+      </thead>
+      <tbody id="yoyTableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="chart-card">
+      <div class="chart-title">Client Tier: 2024 vs 2025</div>
+      <div class="chart-subtitle">How the service mix shifted between years</div>
+      <div class="chart-container" style="height:270px;">
+        <canvas id="yoyTierChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Species Mix: 2024 vs 2025</div>
+      <div class="chart-subtitle">Feline and canine surgery volume year-over-year</div>
+      <div class="chart-container" style="height:270px;">
+        <canvas id="yoySpeciesChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ═══════════════ TAB: SURGERIES ═══════════════ -->
+<div id="tab-surgeries" class="tab-page">
+<main>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--blue);"></div>
+    <div class="section-title">Surgery Detail — 2025</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="chart-card">
+      <div class="chart-title">Procedures by Type</div>
+      <div class="chart-subtitle">All surgery categories, full year 2025</div>
+      <div class="chart-container" style="height:290px;">
+        <canvas id="surgByType2"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Top 10 Procedures</div>
+      <div class="chart-subtitle">2024 vs 2025 comparison inline</div>
+      <div class="proc-list" id="topProcList2"></div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="chart-card">
+      <div class="chart-title">Client Tier Distribution</div>
+      <div class="chart-subtitle">Standard · Rescue · Low Income (NQ) · SNCKC</div>
+      <div class="chart-container" style="height:260px;">
+        <canvas id="surgByTier2"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Monthly Surgery Trend</div>
+      <div class="chart-subtitle">Volume of surgeries each month, 2025</div>
+      <div class="chart-container" style="height:260px;">
+        <canvas id="surgMonthly2"></canvas>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ═══════════════ TAB: VACCINES ═══════════════ -->
+<div id="tab-vaccines" class="tab-page">
+<main>
+
+  <div class="section-header">
+    <div class="section-dot" style="background:var(--purple);"></div>
+    <div class="section-title">Vaccine Detail — 2025</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1rem;">
+    <div class="chart-card">
+      <div class="chart-title">Vaccines by Type</div>
+      <div class="chart-subtitle">All vaccine categories administered, 2025</div>
+      <div class="chart-container" style="height:290px;">
+        <canvas id="vaxByType2"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Monthly Vaccine Volume</div>
+      <div class="chart-subtitle">Doses administered per month, 2025</div>
+      <div class="chart-container" style="height:290px;">
+        <canvas id="vaxMonthly2"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="chart-card">
+      <div class="chart-title">Vaccine Species Split</div>
+      <div class="chart-subtitle">Feline vs. Canine patients vaccinated</div>
+      <div class="species-grid">
+        <div class="species-box">
+          <span class="species-emoji">🐱</span>
+          <div class="species-count" style="color:var(--purple);">5,151</div>
+          <div class="species-label">Feline (55.6%)</div>
+        </div>
+        <div class="species-box">
+          <span class="species-emoji">🐶</span>
+          <div class="species-count" style="color:var(--cyan);">4,107</div>
+          <div class="species-label">Canine (44.4%)</div>
+        </div>
+      </div>
+      <div class="chart-container" style="height:150px;margin-top:12px;">
+        <canvas id="vaxSpecies2"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Vaccine Volume Breakdown</div>
+      <div class="chart-subtitle">Each vaccine type ranked by quantity</div>
+      <div id="vaxStatRows2"></div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div><strong>NAWS — New Chapter Animal Welfare Society</strong> &nbsp;·&nbsp; Annual Impact Report &nbsp;·&nbsp; Data: Jan 1 – Dec 31, 2025</div>
+  <div style="margin-top:6px;">Dashboard generated March 2026 &nbsp;·&nbsp; 2024 surgery data included for YoY comparison</div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════
+   DATA
+════════════════════════════════════════════ */
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// 2025 Surgery
+const surg2025Monthly   = [279,274,321,329,356,299,334,305,321,318,289,239];
+const surg2025RevMonthly= [18301,20220,23845,24245,20015,19474,18975,18308,18620,20025,16240,14330];
+
+// 2024 Surgery
+const surg2024Monthly   = [320,349,378,344,356,357,337,375,333,412,265,283];
+const surg2024RevMonthly= [22227,24468,23135,24500,24045,20670,20932,21315,23475,22835,15746,15830];
+
+// Vaccines 2025
+const vaxMonthly        = [672,646,744,873,853,791,889,879,791,855,708,557];
+const vaxRevMonthly     = [9024,9129,10439,12281,10221,10891,12154,11564,10323,11567,8566,7420];
+
+// Surgery types
+const surgTypeLabels    = ['Feline Spay','Feline Neuter','Feral','Canine Spay','Canine Neuter','Cryptorchid','Hernia Repair','Other'];
+const surgType2025      = [1058,930,894,381,320,26,10,45];
+const surgType2024      = [1196,994,873,485,462,37,14,48];
+
+// Tiers
+const tierLabels        = ['Standard','Rescue','Low Income (NQ)','SNCKC'];
+const tier2025          = [1996,816,774,78];
+const tier2024          = [1996,1177,835,101];
+
+// Species
+const species2025Surg   = [2906,751,7];
+const species2024Surg   = [3089,1017,3];
+const species2025Vax    = [5151,4107];
+
+// Vaccine types
+const vaxTypeLabels     = ['Rabies','FVRCP','DA2PP/Distemper','Bordetella','Leptospirosis','Leukemia'];
+const vaxTypeValues     = [4612,1953,1367,1144,93,89];
+
+// Top procedures (2025 vs 2024)
+const topProcs = [
+  { name:'Feral w/ Ear Tip',       v25:885, v24:838 },
+  { name:'Feline Spay',            v25:402, v24:428 },
+  { name:'Feline Spay – Rescue',   v25:381, v24:490 },
+  { name:'Feline Neuter',          v25:371, v24:371 },
+  { name:'Feline Neuter – Rescue', v25:298, v24:359 },
+  { name:'Feline Spay – NQ',       v25:237, v24:243 },
+  { name:'Feline Neuter – NQ',     v25:230, v24:233 },
+  { name:'Canine Spay',            v25:154, v24:141 },
+  { name:'Canine Neuter – NQ',     v25:148, v24:171 },
+  { name:'Canine Spay – NQ',       v25:147, v24:177 },
+];
+
+/* ════════════════════════════════════════════
+   CHART.JS DEFAULTS
+════════════════════════════════════════════ */
+Chart.defaults.color = '#8b949e';
+Chart.defaults.borderColor = '#21262d';
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+const P = {
+  teal:   '#1abc9c',
+  blue:   '#4c9aff',
+  purple: '#a78bfa',
+  orange: '#fb923c',
+  amber:  '#fbbf24',
+  red:    '#f87171',
+  green:  '#4ade80',
+  cyan:   '#22d3ee',
+  pink:   '#f472b6',
+};
+
+const TOOLTIP_STYLE = {
+  backgroundColor: '#1e2933',
+  borderColor: '#30363d',
+  borderWidth: 1,
+  padding: 12,
+  titleFont: { size: 12, weight: '600' },
+  bodyFont: { size: 12 },
+};
+
+/* ════════════════════════════════════════════
+   TAB SWITCHING
+════════════════════════════════════════════ */
+function switchTab(name) {
+  document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+/* ════════════════════════════════════════════
+   COUNTER ANIMATION
+════════════════════════════════════════════ */
+function animateCounter(id, end, prefix='', suffix='') {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const dur = 1400;
+  const t0 = performance.now();
+  function tick(now) {
+    const t = Math.min((now - t0) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const val = Math.floor(end * ease);
+    el.textContent = prefix + val.toLocaleString() + suffix;
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+window.addEventListener('load', () => {
+  animateCounter('kpi-total',      12922);
+  animateCounter('kpi-surg',       3664);
+  animateCounter('kpi-vax',        9258);
+  animateCounter('kpi-rev',        232598, '$');
+  animateCounter('kpi-feline-surg',2906);
+  animateCounter('kpi-canine-surg',751);
+});
+
+/* ════════════════════════════════════════════
+   HELPER: make chart
+════════════════════════════════════════════ */
+function mkLineChart(id, datasets, opts={}) {
+  return new Chart(document.getElementById(id), {
+    type: 'line',
+    data: { labels: MONTHS, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: true, position: 'top', labels: { boxWidth: 10, padding: 16, font: { size: 11 } } },
+        tooltip: TOOLTIP_STYLE,
+      },
+      scales: {
+        x: { grid: { color: '#21262d' }, ticks: { font: { size: 11 } } },
+        y: { grid: { color: '#21262d' }, ticks: { font: { size: 11 }, ...opts.yTicks } },
+      },
+      ...opts.extra,
+    },
+  });
+}
+
+function mkBarChart(id, datasets, opts={}) {
+  return new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: { labels: opts.labels || MONTHS, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: opts.legend !== false, position: 'top', labels: { boxWidth: 10, padding: 14, font: { size: 11 } } },
+        tooltip: { ...TOOLTIP_STYLE, ...opts.tooltipExtra },
+      },
+      scales: {
+        x: { stacked: opts.stacked, grid: { color: opts.horizontal ? '#21262d' : 'transparent' }, ticks: { font: { size: 11 } } },
+        y: { stacked: opts.stacked, grid: { color: '#21262d' }, ticks: { font: { size: 11 }, ...opts.yTicks } },
+      },
+      indexAxis: opts.horizontal ? 'y' : 'x',
+    },
+  });
+}
+
+/* ════════════════════════════════════════════
+   ── OVERVIEW TAB CHARTS ──
+════════════════════════════════════════════ */
+
+// Monthly volume
+mkLineChart('monthlyVolume', [
+  { label:'Surgeries', data: surg2025Monthly, borderColor: P.blue, backgroundColor:'rgba(76,154,255,0.12)', borderWidth:2.5, pointRadius:4, pointBackgroundColor:P.blue, tension:0.4, fill:true },
+  { label:'Vaccines',  data: vaxMonthly,      borderColor: P.purple, backgroundColor:'rgba(167,139,250,0.1)', borderWidth:2.5, pointRadius:4, pointBackgroundColor:P.purple, tension:0.4, fill:true },
+]);
+
+// Monthly revenue (stacked bar)
+mkBarChart('monthlyRevenue', [
+  { label:'Surgery Revenue', data: surg2025RevMonthly, backgroundColor:'rgba(76,154,255,0.75)', borderRadius:4 },
+  { label:'Vaccine Revenue', data: vaxRevMonthly,      backgroundColor:'rgba(167,139,250,0.75)', borderRadius:4 },
+], { stacked: true, yTicks: { callback: v => '$' + (v/1000).toFixed(0)+'k' }, tooltipExtra: { callbacks: { label: c => ` ${c.dataset.label}: $${c.parsed.y.toLocaleString()}` } } });
+
+// Surgery by type donut
+new Chart(document.getElementById('surgByType'), {
+  type: 'doughnut',
+  data: {
+    labels: surgTypeLabels,
+    datasets: [{ data: surgType2025, backgroundColor:[P.purple,P.blue,P.orange,P.teal,P.cyan,P.amber,P.red,P.pink], borderWidth:0, hoverOffset:8 }],
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false, cutout:'62%',
+    plugins: {
+      legend:{ position:'right', labels:{ boxWidth:10, padding:12, font:{size:10.5} } },
+      tooltip:{ ...TOOLTIP_STYLE, callbacks:{ label: c => ` ${c.label}: ${c.parsed.toLocaleString()} (${((c.parsed/3664)*100).toFixed(1)}%)` } },
+    },
+  },
+});
+
+// Top procedures list (overview)
+(function(){
+  const el = document.getElementById('topProcList');
+  const max25 = topProcs[0].v25, max24 = Math.max(...topProcs.map(p=>p.v24));
+  topProcs.forEach((p,i) => {
+    const pct25 = (p.v25/max25*100).toFixed(0);
+    const pct24 = (p.v24/max24*100).toFixed(0);
+    const col = i < 3 ? P.teal : P.blue;
+    el.innerHTML += `
+      <div class="proc-item">
+        <div class="proc-rank">${i+1}</div>
+        <div class="proc-name">${p.name}</div>
+        <div class="proc-bars">
+          <div class="proc-bar-row">
+            <div class="proc-bar-wrap"><div class="proc-bar" style="width:${pct25}%;background:${col}"></div></div>
+            <div class="proc-bar-label" style="color:${col}">${p.v25}</div>
+          </div>
+          <div class="proc-bar-row">
+            <div class="proc-bar-wrap"><div class="proc-bar" style="width:${pct24}%;background:#3d444d"></div></div>
+            <div class="proc-bar-label" style="color:var(--muted)">${p.v24}</div>
+          </div>
+        </div>
+      </div>`;
+  });
+  el.innerHTML += `<div style="display:flex;gap:12px;margin-top:8px;">
+    <span style="font-size:0.65rem;color:${P.teal}">■ 2025</span>
+    <span style="font-size:0.65rem;color:var(--muted)">■ 2024</span>
+  </div>`;
+})();
+
+// Surgery tier donut
+new Chart(document.getElementById('surgByTier'), {
+  type: 'doughnut',
+  data: {
+    labels: tierLabels,
+    datasets: [{ data: tier2025, backgroundColor:[P.teal,P.orange,P.amber,P.pink], borderWidth:0, hoverOffset:8 }],
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false, cutout:'62%',
+    plugins: {
+      legend:{ position:'right', labels:{ boxWidth:10, padding:12, font:{size:11} } },
+      tooltip:{ ...TOOLTIP_STYLE, callbacks:{ label: c => ` ${c.label}: ${c.parsed.toLocaleString()} (${((c.parsed/3664)*100).toFixed(1)}%)` } },
+    },
+  },
+});
+
+// Surgery species bar
+mkBarChart('surgSpecies', [
+  { data:[2906,751,7], backgroundColor:[P.purple,P.blue,P.muted], borderRadius:6 }
+], { labels:['Feline','Canine','Other'], legend:false });
+
+// Vaccines by type (horizontal)
+mkBarChart('vaxByType', [
+  { label:'Doses', data: vaxTypeValues, backgroundColor:[P.teal,P.purple,P.blue,P.orange,P.amber,P.pink], borderRadius:6 }
+], { labels: vaxTypeLabels, horizontal:true, legend:false, tooltipExtra:{ callbacks:{ label: c => ` ${c.parsed.x.toLocaleString()} doses` } } });
+
+// Vaccine species bar
+mkBarChart('vaxSpecies', [
+  { data:[5151,4107], backgroundColor:[P.purple,P.cyan], borderRadius:6 }
+], { labels:['Feline','Canine'], legend:false });
+
+// Vaccine stat rows
+(function(){
+  const el = document.getElementById('vaxStatRows');
+  const total = vaxTypeValues.reduce((a,b)=>a+b,0);
+  const maxV  = Math.max(...vaxTypeValues);
+  const cols  = [P.teal,P.purple,P.blue,P.orange,P.amber,P.pink];
+  vaxTypeLabels.forEach((label,i) => {
+    const val = vaxTypeValues[i];
+    const pct = (val/total*100).toFixed(1);
+    const bW  = (val/maxV*100).toFixed(0);
+    el.innerHTML += `
+      <div class="stat-row">
+        <div class="stat-name" style="width:160px;flex-shrink:0;">${label}</div>
+        <div class="stat-bar-wrap"><div class="stat-bar" style="width:${bW}%;background:${cols[i]};"></div></div>
+        <div class="stat-val" style="color:${cols[i]};width:55px;text-align:right;">${val.toLocaleString()}</div>
+        <div class="stat-val" style="color:var(--muted);width:45px;text-align:right;font-size:0.72rem;">${pct}%</div>
+      </div>`;
+  });
+})();
+
+// Revenue split donut
+new Chart(document.getElementById('revSplit'), {
+  type:'doughnut',
+  data:{ labels:['Surgery Revenue','Vaccine Revenue'], datasets:[{ data:[232598,123579], backgroundColor:[P.blue,P.purple], borderWidth:0, hoverOffset:8 }] },
+  options:{ responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, padding:16, font:{size:11} } }, tooltip:{ ...TOOLTIP_STYLE, callbacks:{ label: c => ` ${c.label}: $${c.parsed.toLocaleString()} (${((c.parsed/356177)*100).toFixed(1)}%)` } } } },
+});
+
+// Procedure split donut
+new Chart(document.getElementById('procSplit'), {
+  type:'doughnut',
+  data:{ labels:['Surgeries','Vaccines'], datasets:[{ data:[3664,9258], backgroundColor:[P.blue,P.purple], borderWidth:0, hoverOffset:8 }] },
+  options:{ responsive:true, maintainAspectRatio:false, cutout:'65%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, padding:16, font:{size:11} } }, tooltip:{ ...TOOLTIP_STYLE, callbacks:{ label: c => ` ${c.label}: ${c.parsed.toLocaleString()} (${((c.parsed/12922)*100).toFixed(1)}%)` } } } },
+});
+
+/* ════════════════════════════════════════════
+   ── YoY TAB CHARTS ──
+════════════════════════════════════════════ */
+
+// YoY Volume line
+mkLineChart('yoyVolumeChart', [
+  { label:'2024', data: surg2024Monthly, borderColor:'#3d444d', backgroundColor:'rgba(61,68,77,0.1)', borderWidth:2, pointRadius:4, pointBackgroundColor:'#3d444d', tension:0.4, fill:true, borderDash:[5,3] },
+  { label:'2025', data: surg2025Monthly, borderColor: P.blue,   backgroundColor:'rgba(76,154,255,0.12)', borderWidth:2.5, pointRadius:4, pointBackgroundColor:P.blue, tension:0.4, fill:true },
+]);
+
+// YoY Revenue bar
+mkBarChart('yoyRevenueChart', [
+  { label:'2024', data: surg2024RevMonthly, backgroundColor:'rgba(61,68,77,0.7)', borderRadius:4 },
+  { label:'2025', data: surg2025RevMonthly, backgroundColor:'rgba(76,154,255,0.75)', borderRadius:4 },
+], { yTicks:{ callback: v => '$'+(v/1000).toFixed(0)+'k' }, tooltipExtra:{ callbacks:{ label: c => ` ${c.dataset.label}: $${c.parsed.y.toLocaleString()}` } } });
+
+// Month delta pills
+(function(){
+  const el = document.getElementById('monthDeltaGrid');
+  MONTHS.forEach((m,i) => {
+    const delta = surg2025Monthly[i] - surg2024Monthly[i];
+    const pct   = ((delta / surg2024Monthly[i]) * 100).toFixed(1);
+    const isUp  = delta >= 0;
+    const color = isUp ? P.green : P.red;
+    const bg    = isUp ? 'rgba(74,222,128,0.1)' : 'rgba(248,113,113,0.1)';
+    el.innerHTML += `
+      <div class="month-delta-cell" style="background:${bg};border:1px solid ${isUp ? 'rgba(74,222,128,0.2)':'rgba(248,113,113,0.2)'};">
+        <div class="mdc-month">${m}</div>
+        <div class="mdc-val" style="color:${color}">${isUp?'+':''}${delta}</div>
+        <div style="font-size:0.6rem;color:${color};margin-top:2px;">${isUp?'▲':'▼'}${Math.abs(pct)}%</div>
+      </div>`;
+  });
+})();
+
+// YoY Category grouped bar
+mkBarChart('yoyCategoryChart', [
+  { label:'2024', data: surgType2024, backgroundColor:'rgba(61,68,77,0.8)', borderRadius:4 },
+  { label:'2025', data: surgType2025, backgroundColor:'rgba(76,154,255,0.8)', borderRadius:4 },
+], { labels: surgTypeLabels });
+
+// YoY Table
+(function(){
+  const tbody = document.getElementById('yoyTableBody');
+  const rows = [
+    { label:'Total Surgeries',     v24:4109,    v25:3664,    fmt: v => v.toLocaleString() },
+    { label:'Total Revenue',       v24:259178,  v25:232598,  fmt: v => '$' + v.toLocaleString() },
+    { label:'Feline Surgeries',    v24:3089,    v25:2906,    fmt: v => v.toLocaleString() },
+    { label:'Canine Surgeries',    v24:1017,    v25:751,     fmt: v => v.toLocaleString() },
+    { label:'Feral (Ear Tip)',     v24:873,     v25:885,     fmt: v => v.toLocaleString() },
+    { label:'Feline Spay',        v24:1196,    v25:1058,    fmt: v => v.toLocaleString() },
+    { label:'Feline Neuter',      v24:994,     v25:930,     fmt: v => v.toLocaleString() },
+    { label:'Canine Spay',        v24:485,     v25:381,     fmt: v => v.toLocaleString() },
+    { label:'Canine Neuter',      v24:462,     v25:320,     fmt: v => v.toLocaleString() },
+    { label:'Standard Tier',      v24:1996,    v25:1996,    fmt: v => v.toLocaleString() },
+    { label:'Rescue Tier',        v24:1177,    v25:816,     fmt: v => v.toLocaleString() },
+    { label:'Low Income (NQ)',    v24:835,     v25:774,     fmt: v => v.toLocaleString() },
+    { label:'SNCKC',              v24:101,     v25:78,      fmt: v => v.toLocaleString() },
+    { label:'Avg Revenue / Procedure', v24:63.07, v25:63.49, fmt: v => '$' + v.toFixed(2) },
+  ];
+  rows.forEach(r => {
+    const delta = r.v25 - r.v24;
+    const pct   = ((delta / r.v24) * 100).toFixed(1);
+    const isUp  = delta >= 0;
+    const cls   = isUp ? 'change-pos' : 'change-neg';
+    const arrow = isUp ? '▲' : '▼';
+    tbody.innerHTML += `
+      <tr>
+        <td class="row-label">${r.label}</td>
+        <td class="val-2024">${r.fmt(r.v24)}</td>
+        <td class="val-2025">${r.fmt(r.v25)}</td>
+        <td class="val-change ${cls}">${isUp?'+':''}${r.fmt ? (typeof r.v24==='number' && !Number.isInteger(r.v24) ? (delta>0?'+':'')+delta.toFixed(2) : (delta>0?'+':'')+delta.toLocaleString()) : delta}</td>
+        <td class="val-change ${cls}">${arrow} ${Math.abs(pct)}%</td>
+      </tr>`;
+  });
+})();
+
+// YoY Tier grouped bar
+mkBarChart('yoyTierChart', [
+  { label:'2024', data: tier2024, backgroundColor:'rgba(61,68,77,0.8)', borderRadius:4 },
+  { label:'2025', data: tier2025, backgroundColor:[P.teal,P.orange,P.amber,P.pink].map(c=>c+'CC'), borderRadius:4 },
+], { labels: tierLabels });
+
+// YoY Species grouped bar
+mkBarChart('yoySpeciesChart', [
+  { label:'2024 Feline', data:[3089,0], backgroundColor:'rgba(167,139,250,0.5)', borderRadius:4 },
+  { label:'2025 Feline', data:[2906,0], backgroundColor:P.purple+'CC', borderRadius:4 },
+  { label:'2024 Canine', data:[0,1017], backgroundColor:'rgba(76,154,255,0.5)', borderRadius:4 },
+  { label:'2025 Canine', data:[0,751],  backgroundColor:P.blue+'CC', borderRadius:4 },
+], { labels:['Feline','Canine'], tooltipExtra:{ callbacks:{ label: c => ` ${c.dataset.label}: ${c.parsed.y.toLocaleString()}` } } });
+
+/* ════════════════════════════════════════════
+   ── SURGERIES TAB CHARTS ──
+════════════════════════════════════════════ */
+
+new Chart(document.getElementById('surgByType2'), {
+  type:'doughnut',
+  data:{ labels: surgTypeLabels, datasets:[{ data: surgType2025, backgroundColor:[P.purple,P.blue,P.orange,P.teal,P.cyan,P.amber,P.red,P.pink], borderWidth:0, hoverOffset:8 }] },
+  options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'right', labels:{ boxWidth:10, padding:12, font:{size:10.5} } }, tooltip:{ ...TOOLTIP_STYLE, callbacks:{ label: c => ` ${c.label}: ${c.parsed.toLocaleString()}` } } } },
+});
+
+(function(){
+  const el = document.getElementById('topProcList2');
+  const max = topProcs[0].v25;
+  topProcs.forEach((p,i) => {
+    const p25 = (p.v25/max*100).toFixed(0);
+    const p24 = (p.v24/max*100).toFixed(0);
+    const delta = p.v25 - p.v24;
+    const cls = delta >= 0 ? 'change-pos' : 'change-neg';
+    const col = i < 3 ? P.teal : P.blue;
+    el.innerHTML += `
+      <div class="proc-item">
+        <div class="proc-rank">${i+1}</div>
+        <div class="proc-name">${p.name}</div>
+        <div class="proc-bars">
+          <div class="proc-bar-row">
+            <div class="proc-bar-wrap"><div class="proc-bar" style="width:${p25}%;background:${col}"></div></div>
+            <div class="proc-bar-label" style="color:${col}">${p.v25}</div>
+          </div>
+          <div class="proc-bar-row">
+            <div class="proc-bar-wrap"><div class="proc-bar" style="width:${p24}%;background:#3d444d"></div></div>
+            <div class="proc-bar-label" style="color:var(--muted)">${p.v24}</div>
+          </div>
+        </div>
+        <div class="${cls}" style="font-size:0.7rem;font-weight:700;width:35px;text-align:right;">${delta>0?'+':''}${delta}</div>
+      </div>`;
+  });
+  el.innerHTML += `<div style="display:flex;gap:12px;margin-top:8px;">
+    <span style="font-size:0.65rem;color:${P.teal}">■ 2025</span>
+    <span style="font-size:0.65rem;color:var(--muted)">■ 2024</span>
+  </div>`;
+})();
+
+new Chart(document.getElementById('surgByTier2'), {
+  type:'doughnut',
+  data:{ labels: tierLabels, datasets:[{ data: tier2025, backgroundColor:[P.teal,P.orange,P.amber,P.pink], borderWidth:0, hoverOffset:8 }] },
+  options:{ responsive:true, maintainAspectRatio:false, cutout:'62%', plugins:{ legend:{ position:'right', labels:{ boxWidth:10, padding:12, font:{size:11} } }, tooltip:{ ...TOOLTIP_STYLE, callbacks:{ label: c => ` ${c.label}: ${c.parsed.toLocaleString()} (${((c.parsed/3664)*100).toFixed(1)}%)` } } } },
+});
+
+mkLineChart('surgMonthly2', [
+  { label:'Surgeries 2025', data: surg2025Monthly, borderColor: P.blue, backgroundColor:'rgba(76,154,255,0.15)', borderWidth:2.5, pointRadius:5, pointBackgroundColor:P.blue, tension:0.4, fill:true },
+]);
+
+/* ════════════════════════════════════════════
+   ── VACCINES TAB CHARTS ──
+════════════════════════════════════════════ */
+
+mkBarChart('vaxByType2', [
+  { label:'Doses', data: vaxTypeValues, backgroundColor:[P.teal,P.purple,P.blue,P.orange,P.amber,P.pink], borderRadius:6 }
+], { labels: vaxTypeLabels, horizontal:true, legend:false, tooltipExtra:{ callbacks:{ label: c => ` ${c.parsed.x.toLocaleString()} doses` } } });
+
+mkLineChart('vaxMonthly2', [
+  { label:'Vaccines 2025', data: vaxMonthly, borderColor: P.purple, backgroundColor:'rgba(167,139,250,0.15)', borderWidth:2.5, pointRadius:5, pointBackgroundColor:P.purple, tension:0.4, fill:true },
+]);
+
+mkBarChart('vaxSpecies2', [
+  { data:[5151,4107], backgroundColor:[P.purple,P.cyan], borderRadius:6 }
+], { labels:['Feline','Canine'], legend:false });
+
+(function(){
+  const el = document.getElementById('vaxStatRows2');
+  const total = vaxTypeValues.reduce((a,b)=>a+b,0);
+  const maxV  = Math.max(...vaxTypeValues);
+  const cols  = [P.teal,P.purple,P.blue,P.orange,P.amber,P.pink];
+  vaxTypeLabels.forEach((label,i) => {
+    const val = vaxTypeValues[i];
+    const pct = (val/total*100).toFixed(1);
+    const bW  = (val/maxV*100).toFixed(0);
+    el.innerHTML += `
+      <div class="stat-row">
+        <div class="stat-name" style="width:160px;flex-shrink:0;">${label}</div>
+        <div class="stat-bar-wrap"><div class="stat-bar" style="width:${bW}%;background:${cols[i]};"></div></div>
+        <div class="stat-val" style="color:${cols[i]};width:55px;text-align:right;">${val.toLocaleString()}</div>
+        <div class="stat-val" style="color:var(--muted);width:45px;text-align:right;font-size:0.72rem;">${pct}%</div>
+      </div>`;
+  });
+})();
+
+</script>
+</body>
+</html>
