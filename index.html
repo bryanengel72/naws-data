@@ -175,12 +175,62 @@ main{padding:2rem;max-width:1440px;margin:0 auto}
 .hi-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .hi-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(29,233,182,.07);color:rgba(29,233,182,.9);border:1px solid rgba(29,233,182,.18);border-radius:20px;padding:5px 12px;font-size:.7rem;font-weight:500}
 
+/* ── AI INSIGHTS ── */
+.ai-header{display:flex;align-items:center;justify-content:space-between;gap:2rem;background:linear-gradient(135deg,rgba(76,154,255,.06) 0%,rgba(167,139,250,.06) 100%);border:1px solid rgba(76,154,255,.16);border-radius:20px;padding:2rem 2.2rem;margin-bottom:1.5rem}
+.ai-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(76,154,255,.14),rgba(167,139,250,.14));border:1px solid rgba(76,154,255,.28);border-radius:20px;padding:5px 14px;font-size:.68rem;font-weight:700;color:var(--blue);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.ai-title{font-size:1.6rem;font-weight:800;letter-spacing:-.045em;background:linear-gradient(120deg,#fff 0%,var(--blue) 55%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:7px}
+.ai-desc{font-size:.8rem;color:var(--muted2);line-height:1.65;max-width:540px}
+.ai-score-block{text-align:center;flex-shrink:0}
+.health-label{font-size:.65rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.health-sub{font-size:.68rem;color:var(--muted2);margin-top:3px}
+.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.ic{border-radius:16px;padding:1.3rem;border:1px solid;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.ic:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.ic::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;border-radius:2px 2px 0 0}
+.ic-crit{background:rgba(248,113,113,.05);border-color:rgba(248,113,113,.22)}.ic-crit::before{background:linear-gradient(90deg,var(--red),rgba(248,113,113,.2))}
+.ic-warn{background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.22)}.ic-warn::before{background:linear-gradient(90deg,var(--amber),rgba(251,191,36,.2))}
+.ic-str{background:rgba(74,222,128,.05);border-color:rgba(74,222,128,.22)}.ic-str::before{background:linear-gradient(90deg,var(--green),rgba(74,222,128,.2))}
+.ic-opp{background:rgba(76,154,255,.05);border-color:rgba(76,154,255,.22)}.ic-opp::before{background:linear-gradient(90deg,var(--blue),rgba(76,154,255,.2))}
+.ic-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ic-icon{font-size:1.1rem}
+.ic-type{font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;padding:2px 7px;border-radius:10px}
+.crit-badge{background:rgba(248,113,113,.14);color:var(--red)}.warn-badge{background:rgba(251,191,36,.14);color:var(--amber)}.str-badge{background:rgba(74,222,128,.14);color:var(--green)}.opp-badge{background:rgba(76,154,255,.14);color:var(--blue)}
+.ic-title{font-size:.84rem;font-weight:700;margin-bottom:6px}
+.ic-body{font-size:.76rem;color:var(--muted2);line-height:1.62}
+.ic-body strong{color:var(--text);font-weight:600}
+.ic-metric{font-size:1.45rem;font-weight:800;letter-spacing:-.03em;margin:8px 0 6px;line-height:1}
+.rec-list{display:flex;flex-direction:column;gap:10px}
+.rec-item{display:flex;align-items:flex-start;gap:13px;background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:1.1rem 1.25rem;transition:border-color .2s,transform .2s}
+.rec-item:hover{border-color:rgba(255,255,255,.1);transform:translateX(3px)}
+.rec-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:800;flex-shrink:0;margin-top:2px}
+.rec-body{flex:1}
+.rec-title{font-size:.84rem;font-weight:700;margin-bottom:5px}
+.rec-desc{font-size:.76rem;color:var(--muted2);line-height:1.58}
+.rec-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.tag{font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:10px}
+.tag-hi{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.tag-med{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
+.tag-low{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+.tag-rev{background:rgba(76,154,255,.1);color:var(--blue);border:1px solid rgba(76,154,255,.2)}
+.tag-ops{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+.risk-tbl{width:100%;border-collapse:collapse;font-size:.78rem}
+.risk-tbl th{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:600}
+.risk-tbl td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+.risk-tbl tr:last-child td{border-bottom:none}
+.risk-tbl tr:hover td{background:rgba(255,255,255,.02)}
+.rsev{display:inline-flex;align-items:center;padding:2px 8px;border-radius:9px;font-size:.63rem;font-weight:700;white-space:nowrap}
+.rsev-hi{background:rgba(248,113,113,.12);color:var(--red)}.rsev-md{background:rgba(251,191,36,.12);color:var(--amber)}.rsev-lo{background:rgba(74,222,128,.12);color:var(--green)}
+.fcst-card{border-radius:14px;padding:1.4rem;text-align:center;border:1px solid var(--card-border);background:var(--card)}
+.fcst-card-label{font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.fcst-card-val{font-size:1.8rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+.fcst-card-sub{font-size:.73rem;color:var(--muted2);margin-top:5px;line-height:1.4}
+
 /* ── FOOTER ── */
 footer{background:rgba(6,8,15,.8);border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:.75rem;margin-top:4rem}
 footer strong{color:var(--muted2)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:920px){.g2,.g3,.gloss-grid{grid-template-columns:1fr}.mdg{grid-template-columns:repeat(6,1fr)}.kpi-grid{grid-template-columns:1fr 1fr}.hero-title{font-size:1.55rem}}
+@media(max-width:920px){.g2,.g3,.gloss-grid,.insight-grid{grid-template-columns:1fr}.mdg{grid-template-columns:repeat(6,1fr)}.kpi-grid{grid-template-columns:1fr 1fr}.hero-title{font-size:1.55rem}.ai-header{flex-direction:column;align-items:flex-start}}
 @media(max-width:500px){.kpi-grid{grid-template-columns:1fr}.tab-btn{padding:12px 10px;font-size:.72rem}}
 </style>
 </head>
@@ -203,6 +253,7 @@ footer strong{color:var(--muted2)}
   <button class="tab-btn" onclick="switchTab('yoy',this)">📈 Year-over-Year</button>
   <button class="tab-btn" onclick="switchTab('surgeries',this)">✂️ Surgeries</button>
   <button class="tab-btn" onclick="switchTab('vaccines',this)">💉 Vaccines</button>
+  <button class="tab-btn" onclick="switchTab('ai',this)">✨ AI Insights</button>
 </div>
 
 <!-- HERO + KPI -->
@@ -543,6 +594,193 @@ footer strong{color:var(--muted2)}
 </main>
 </div>
 
+<!-- ══════════════════════════════════════════ AI INSIGHTS -->
+<div id="tab-ai" class="tab-page">
+<main>
+
+  <!-- Header banner -->
+  <div class="ai-header">
+    <div>
+      <div class="ai-badge">✨ AI Analysis &nbsp;·&nbsp; March 2026</div>
+      <div class="ai-title">Intelligence Report</div>
+      <div class="ai-desc">Data-driven insights, strategic recommendations, and risk assessment synthesized from 2025 surgery &amp; vaccine records vs. 2024 baseline. Identifies root causes, priorities, and projected 2026 outcomes across 13,000+ annual procedures.</div>
+    </div>
+    <div class="ai-score-block">
+      <div id="ch-ai-health" style="height:200px;width:200px"></div>
+      <div class="health-label">Program Health Score</div>
+      <div class="health-sub">Strong foundations · one structural risk</div>
+    </div>
+  </div>
+
+  <!-- Key Findings -->
+  <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--purple)"></div><div class="sec-title">Key Findings</div><div class="sec-line"></div><div class="sec-badge">6 Signals Detected</div></div>
+  <div class="insight-grid">
+
+    <div class="ic ic-crit">
+      <div class="ic-head"><div class="ic-icon">🚨</div><span class="ic-type crit-badge">Critical Risk</span></div>
+      <div class="ic-title">Rescue Partnership Collapse</div>
+      <div class="ic-metric" style="color:var(--red)">−30.6%</div>
+      <div class="ic-body">Rescue org surgeries fell from <strong>1,177 → 816</strong>, accounting for <strong>81% of the entire 2025 volume decline</strong>. In 2024, rescue orgs represented 28.6% of all surgeries. This is a structural dependency risk — without intervention, it threatens long-term program revenue stability.</div>
+    </div>
+
+    <div class="ic ic-crit">
+      <div class="ic-head"><div class="ic-icon">🐕</div><span class="ic-type crit-badge">Critical Risk</span></div>
+      <div class="ic-title">Canine Surgery Collapse</div>
+      <div class="ic-metric" style="color:var(--red)">−26.2%</div>
+      <div class="ic-body">Canine surgeries dropped from <strong>1,017 → 751</strong> — directly tied to rescue partner decline since rescue orgs disproportionately serve dogs. Feline surgeries fell only <strong>5.0%</strong>, confirming canines are the concentrated risk area requiring targeted outreach.</div>
+    </div>
+
+    <div class="ic ic-warn">
+      <div class="ic-head"><div class="ic-icon">📉</div><span class="ic-type warn-badge">Warning</span></div>
+      <div class="ic-title">Q4 Seasonal Weakness</div>
+      <div class="ic-metric" style="color:var(--amber)">846 in Q4</div>
+      <div class="ic-body">Q4 2025 was the weakest quarter, with December bottoming at <strong>239 surgeries</strong> — the year's lowest. No October surge materialized (2024 peak: 412 → 2025: 318). A targeted year-end campaign could recover <strong>80–110 procedures</strong> and ~$6,000 in revenue.</div>
+    </div>
+
+    <div class="ic ic-warn">
+      <div class="ic-head"><div class="ic-icon">🤝</div><span class="ic-type warn-badge">Warning</span></div>
+      <div class="ic-title">SNCKC Volume Erosion</div>
+      <div class="ic-metric" style="color:var(--amber)">−22.8%</div>
+      <div class="ic-body">SNCKC partnership declined from <strong>101 → 78 surgeries</strong> — a secondary warning signal. While small in absolute terms, a continued decline could mirror the larger rescue org pattern. Proactive relationship management is recommended now, before further slippage.</div>
+    </div>
+
+    <div class="ic ic-str">
+      <div class="ic-head"><div class="ic-icon">💪</div><span class="ic-type str-badge">Strength</span></div>
+      <div class="ic-title">Community Demand Unchanged</div>
+      <div class="ic-metric" style="color:var(--green)">1,996 = 1,996</div>
+      <div class="ic-body">The Standard tier held <strong>perfectly flat at 1,996 surgeries</strong>, proving community demand is entirely healthy. The NAWS brand has not weakened in the community. All volume losses are on the institutional/partnership side — a solvable, targeted problem.</div>
+    </div>
+
+    <div class="ic ic-str">
+      <div class="ic-head"><div class="ic-icon">💰</div><span class="ic-type str-badge">Strength</span></div>
+      <div class="ic-title">Revenue Efficiency Preserved</div>
+      <div class="ic-metric" style="color:var(--green)">$63.48 / surgery</div>
+      <div class="ic-body">Revenue per procedure <strong>rose 0.6%</strong> ($63.07 → $63.48), confirming zero margin erosion. The revenue shortfall is <strong>100% volume-driven</strong> — not a pricing or operational efficiency problem. This gives NAWS full pricing flexibility to pursue optimizations.</div>
+    </div>
+
+  </div>
+
+  <!-- 2-col layout: Recommendations + Risk side -->
+  <div class="g2" style="align-items:start;gap:1.5rem">
+
+    <!-- Recommendations -->
+    <div>
+      <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--teal)"></div><div class="sec-title">Strategic Recommendations</div><div class="sec-line"></div><div class="sec-badge">Ranked by Impact</div></div>
+      <div class="rec-list">
+
+        <div class="rec-item">
+          <div class="rec-num" style="background:rgba(248,113,113,.15);color:var(--red)">1</div>
+          <div class="rec-body">
+            <div class="rec-title">Launch Rescue Partnership Reactivation Campaign</div>
+            <div class="rec-desc">Personally contact every rescue org that reduced or stopped using NAWS in 2025. Identify the top 5 by 2024 surgery volume and schedule relationship calls. Goal: reactivate 2–3 partners to recover 150–200 surgeries. Consider a loyalty pricing incentive for multi-year commitments or volume guarantees.</div>
+            <div class="rec-tags"><span class="tag tag-hi">🔴 High Priority</span><span class="tag tag-rev">💰 High Revenue Impact</span><span class="tag tag-ops">Target: Q1–Q2 2026</span></div>
+          </div>
+        </div>
+
+        <div class="rec-item">
+          <div class="rec-num" style="background:rgba(248,113,113,.15);color:var(--red)">2</div>
+          <div class="rec-body">
+            <div class="rec-title">Canine-Focused Rescue Outreach</div>
+            <div class="rec-desc">Canine rescue surgeries are down 26.2% — the sharpest drop in the data. Target dog-specific rescue organizations, shelters, and foster networks. Offering dedicated canine surgery blocks or scheduling priority could differentiate NAWS and attract partners that serve primarily dogs.</div>
+            <div class="rec-tags"><span class="tag tag-hi">🔴 High Priority</span><span class="tag tag-ops">Target: Q1 2026</span></div>
+          </div>
+        </div>
+
+        <div class="rec-item">
+          <div class="rec-num" style="background:rgba(251,191,36,.15);color:var(--amber)">3</div>
+          <div class="rec-body">
+            <div class="rec-title">Design a Q4 Surge Campaign</div>
+            <div class="rec-desc">October–December is structurally the weakest quarter. A "Fall & Winter Care" promotion for community clients and rescue partners — with advance-booking incentives — could close the Q4 gap. A 15% Q4 boost adds ~127 surgeries and ~$8,000 in revenue with minimal operating cost increase.</div>
+            <div class="rec-tags"><span class="tag tag-med">🟡 Medium Priority</span><span class="tag tag-rev">💰 Revenue Impact</span><span class="tag tag-ops">Plan in Q3</span></div>
+          </div>
+        </div>
+
+        <div class="rec-item">
+          <div class="rec-num" style="background:rgba(251,191,36,.15);color:var(--amber)">4</div>
+          <div class="rec-body">
+            <div class="rec-title">Cross-Sell Vaccines at Every Surgery Visit</div>
+            <div class="rec-desc">Vaccine revenue ($123,579) is already 34.7% of total revenue. Surgery clients who haven't received vaccines are a zero-cost upsell. Implement a checkout bundle prompt or standardized staff talking point to offer vaccines at drop-off. Even a 5% conversion rate adds ~$6,000 annually.</div>
+            <div class="rec-tags"><span class="tag tag-med">🟡 Medium Priority</span><span class="tag tag-rev">💰 Quick Win</span><span class="tag tag-ops">Immediate</span></div>
+          </div>
+        </div>
+
+        <div class="rec-item">
+          <div class="rec-num" style="background:rgba(74,222,128,.15);color:var(--green)">5</div>
+          <div class="rec-body">
+            <div class="rec-title">Expand the TNR (Trap-Neuter-Return) Program</div>
+            <div class="rec-desc">Feral cat TNR grew 2.4% (873 → 894) against the overall decline, demonstrating organic community momentum. Investing in TNR capacity, community partnerships with municipalities, and pursuing grant funding could accelerate growth and enhance NAWS's mission differentiation.</div>
+            <div class="rec-tags"><span class="tag tag-low">🟢 Growth Lever</span><span class="tag tag-ops">Mission Impact</span></div>
+          </div>
+        </div>
+
+        <div class="rec-item">
+          <div class="rec-num" style="background:rgba(74,222,128,.15);color:var(--green)">6</div>
+          <div class="rec-body">
+            <div class="rec-title">Implement Annual Pricing Optimization</div>
+            <div class="rec-desc">Revenue per procedure has held at ~$63 for two years. With Standard tier demand perfectly stable, there is room for a modest price optimization (+5–8%) on Standard services. A $3.50 increase would add ~$7,000 annually with no expected volume impact from the price-inelastic community segment.</div>
+            <div class="rec-tags"><span class="tag tag-low">🟢 Revenue Growth</span><span class="tag tag-rev">💰 Low Effort</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right column: Risk + Priority Matrix -->
+    <div>
+      <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--red)"></div><div class="sec-title">Risk Register</div><div class="sec-line"></div></div>
+      <div class="cc" style="padding:0;overflow:hidden;margin-bottom:1.5rem">
+        <table class="risk-tbl">
+          <thead><tr><th>Risk Factor</th><th>Severity</th><th>Likelihood</th><th>Mitigation</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:600">Rescue org dependency (29% of 2024 volume)</td><td><span class="rsev rsev-hi">High</span></td><td><span class="rsev rsev-hi">High</span></td><td style="font-size:.72rem;color:var(--muted2)">Diversify to 3+ active partners; create partner SLAs</td></tr>
+            <tr><td style="font-weight:600">Canine volume concentration in rescue tier</td><td><span class="rsev rsev-hi">High</span></td><td><span class="rsev rsev-md">Med</span></td><td style="font-size:.72rem;color:var(--muted2)">Target canine-specific rescues; dedicated surgery blocks</td></tr>
+            <tr><td style="font-weight:600">SNCKC partnership further erosion</td><td><span class="rsev rsev-md">Med</span></td><td><span class="rsev rsev-md">Med</span></td><td style="font-size:.72rem;color:var(--muted2)">Quarterly relationship check-ins; identify friction</td></tr>
+            <tr><td style="font-weight:600">Q4 seasonal revenue trough deepening</td><td><span class="rsev rsev-md">Med</span></td><td><span class="rsev rsev-hi">High</span></td><td style="font-size:.72rem;color:var(--muted2)">Proactive Q4 campaign; advance-booking incentives</td></tr>
+            <tr><td style="font-weight:600">Revenue plateau without pricing updates</td><td><span class="rsev rsev-lo">Low</span></td><td><span class="rsev rsev-md">Med</span></td><td style="font-size:.72rem;color:var(--muted2)">Annual pricing review; monitor competitive landscape</td></tr>
+            <tr><td style="font-weight:600">Single-year vaccine data limits trend analysis</td><td><span class="rsev rsev-lo">Low</span></td><td><span class="rsev rsev-lo">Low</span></td><td style="font-size:.72rem;color:var(--muted2)">Add 2023 data when available; track 2026 vaccine YoY</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--blue)"></div><div class="sec-title">Action Priority Matrix</div><div class="sec-line"></div></div>
+      <div class="cc">
+        <div class="cc-sub">Effort (x) vs. Impact (y) — bubble size = urgency — top-left quadrant = do first</div>
+        <div id="ch-ai-matrix" style="height:290px"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 2026 Forecast (full width) -->
+  <div class="sec-hdr" style="margin-top:1.5rem"><div class="sec-dot" style="--sd:var(--cyan)"></div><div class="sec-title">2026 Trajectory Forecast</div><div class="sec-line"></div><div class="sec-badge">3 Scenarios</div></div>
+  <div class="cc" style="margin-bottom:1.5rem">
+    <div class="cc-title">Projected Monthly Surgery Volume — 2026</div>
+    <div class="cc-sub">Based on 2025 seasonal distribution · Gray = 2025 actual baseline · Dashed = 2026 scenario projections</div>
+    <div id="ch-ai-forecast" style="height:310px"></div>
+  </div>
+
+  <!-- Scenario Summary Cards -->
+  <div class="g3">
+    <div class="fcst-card" style="border-color:rgba(248,113,113,.2)">
+      <div class="fcst-card-label" style="color:var(--red)">Pessimistic 2026</div>
+      <div class="fcst-card-val" style="color:var(--red)">~3,400</div>
+      <div class="fcst-card-sub">No rescue recovery · Est. surgery revenue <strong>$215k</strong> · Requires cost control measures</div>
+    </div>
+    <div class="fcst-card" style="border-color:rgba(76,154,255,.25)">
+      <div class="fcst-card-label" style="color:var(--blue)">Baseline 2026</div>
+      <div class="fcst-card-val" style="color:var(--blue)">~3,800</div>
+      <div class="fcst-card-sub">Partial recovery (+2 rescue partners) · Est. surgery revenue <strong>$241k</strong> · Most likely scenario</div>
+    </div>
+    <div class="fcst-card" style="border-color:rgba(74,222,128,.25)">
+      <div class="fcst-card-label" style="color:var(--green)">Optimistic 2026</div>
+      <div class="fcst-card-val" style="color:var(--green)">~4,300</div>
+      <div class="fcst-card-sub">Full rescue recovery + Q4 campaign · Est. surgery revenue <strong>$273k</strong> · Exceeds 2024 levels</div>
+    </div>
+  </div>
+
+</main>
+</div>
+
 <footer>
   <div><strong>NAWS — New Chapter Animal Welfare Society</strong> &nbsp;·&nbsp; Annual Impact Report &nbsp;·&nbsp; January 1 – December 31, 2025</div>
   <div style="margin-top:5px">Dashboard generated March 2026</div>
@@ -588,7 +826,7 @@ function ttD(l,r,c='#1de9b6'){return`<div style="border-top:1px solid rgba(255,2
 
 /* ═══ CHART REGISTRY ═══ */
 const charts={};
-const inited={overview:false,yoy:false,surgeries:false,vaccines:false};
+const inited={overview:false,yoy:false,surgeries:false,vaccines:false,ai:false};
 function mkC(id){if(charts[id])charts[id].dispose();const el=document.getElementById(id);if(!el)return null;const c=echarts.init(el,null,{renderer:'canvas'});charts[id]=c;return c;}
 function switchTab(name,btn){
   document.querySelectorAll('.tab-page').forEach(p=>p.classList.remove('active'));
@@ -596,7 +834,7 @@ function switchTab(name,btn){
   document.getElementById('tab-'+name).classList.add('active');
   if(btn)btn.classList.add('active');
   setTimeout(()=>{
-    if(!inited[name]){({overview:initOverview,yoy:initYoY,surgeries:initSurgeries,vaccines:initVaccines}[name])();inited[name]=true;}
+    if(!inited[name]){({overview:initOverview,yoy:initYoY,surgeries:initSurgeries,vaccines:initVaccines,ai:initAI}[name])();inited[name]=true;}
     else Object.values(charts).forEach(c=>{try{c.resize()}catch(e){}});
   },50);
 }
@@ -841,6 +1079,82 @@ function initVaccines(){
 }
 
 function buildVaxRows(id){const el=document.getElementById(id);if(!el||el.innerHTML)return;const tot=VVALS.reduce((a,b)=>a+b,0),mx=Math.max(...VVALS);VTYPES.forEach((lbl,i)=>{const v=VVALS[i],pct=((v/tot)*100).toFixed(1),bar=(v/mx*100).toFixed(0);el.innerHTML+=`<div class="sr"><div class="sr-name">${lbl}</div><div class="sr-track"><div class="sr-fill" style="width:${bar}%;background:${PAL[i]}"></div></div><div class="sr-val" style="color:${PAL[i]}">${v.toLocaleString()}</div><div class="sr-pct">${pct}%</div></div>`;});}
+
+/* ═══════════════ AI INSIGHTS ═══════════════ */
+function initAI(){
+
+  // ── Health Score Gauge ──
+  mkC('ch-ai-health').setOption({
+    backgroundColor:'transparent',
+    series:[{
+      type:'gauge',
+      radius:'92%',
+      startAngle:210,endAngle:-30,
+      min:0,max:100,
+      pointer:{show:false},
+      progress:{show:true,width:15,roundCap:true,itemStyle:{color:new echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:'#f87171'},{offset:.45,color:'#fbbf24'},{offset:1,color:'#4ade80'}])}},
+      axisLine:{lineStyle:{width:15,color:[[1,'rgba(255,255,255,.04)']]}},
+      axisTick:{show:false},
+      splitLine:{show:false},
+      axisLabel:{show:false},
+      detail:{valueAnimation:true,offsetCenter:[0,'6%'],formatter:'{value}',color:'#e2e8f0',fontSize:38,fontWeight:'800',fontFamily:"'Inter',sans-serif"},
+      title:{offsetCenter:[0,'36%'],color:'#94a3b8',fontSize:11,fontFamily:"'Inter',sans-serif"},
+      data:[{value:72,name:'/ 100'}],
+      animationDuration:1600,animationEasing:'cubicOut'
+    }]
+  });
+
+  // ── Priority Matrix Scatter ──
+  const mat=[
+    ['Rescue Reactivation',3,9,22,'#f87171'],
+    ['Canine Rescue Outreach',5,8,18,'#fb923c'],
+    ['Pricing Optimization',5,7,12,'#fbbf24'],
+    ['Q4 Surge Campaign',2,6,15,'#fbbf24'],
+    ['Cross-sell Vaccines',1,5,11,'#4ade80'],
+    ['TNR Expansion',3,5,10,'#22d3ee'],
+    ['SNCKC Review',2,4,9,'#a78bfa'],
+    ['Peak Staffing Plan',5,4,8,'#64748b'],
+  ];
+  mkC('ch-ai-matrix').setOption({
+    backgroundColor:'transparent',
+    tooltip:{...TT,formatter:p=>`<div style="font-weight:700;color:#e2e8f0;margin-bottom:6px">${p.data[2]}</div><div style="color:#94a3b8;font-size:.72rem">Effort: <b style="color:#e2e8f0">${p.data[0]}/10</b></div><div style="color:#94a3b8;font-size:.72rem">Impact: <b style="color:#e2e8f0">${p.data[1]}/10</b></div>`},
+    grid:{left:38,right:20,top:20,bottom:30,containLabel:true},
+    xAxis:{type:'value',name:'Effort →',nameLocation:'end',nameTextStyle:{color:'#4a5e7a',fontSize:10},min:0,max:10,axisLine:{lineStyle:{color:'rgba(255,255,255,.05)'}},axisTick:{show:false},axisLabel:{color:'#4a5e7a',fontSize:10},splitLine:{lineStyle:{color:'#111b2c',type:'dashed'}}},
+    yAxis:{type:'value',name:'Impact ↑',nameLocation:'end',nameTextStyle:{color:'#4a5e7a',fontSize:10},min:0,max:10,axisLine:{show:false},axisTick:{show:false},axisLabel:{color:'#4a5e7a',fontSize:10},splitLine:{lineStyle:{color:'#111b2c',type:'dashed'}}},
+    graphic:[
+      {type:'text',left:'8%',top:'6%',style:{text:'DO FIRST',fill:'rgba(74,222,128,.18)',fontSize:9,fontWeight:'700',letterSpacing:2}},
+      {type:'text',right:'4%',top:'6%',style:{text:'PLAN CAREFULLY',fill:'rgba(251,191,36,.18)',fontSize:9,fontWeight:'700',letterSpacing:2}},
+      {type:'text',left:'8%',bottom:'6%',style:{text:'QUICK WINS',fill:'rgba(76,154,255,.18)',fontSize:9,fontWeight:'700',letterSpacing:2}},
+      {type:'text',right:'4%',bottom:'6%',style:{text:'DEPRIORITIZE',fill:'rgba(100,116,139,.2)',fontSize:9,fontWeight:'700',letterSpacing:2}},
+      {type:'line',shape:{x1:'50%',y1:'2%',x2:'50%',y2:'98%'},style:{stroke:'rgba(255,255,255,.05)',lineWidth:1}},
+      {type:'line',shape:{x1:'2%',y1:'50%',x2:'98%',y2:'50%'},style:{stroke:'rgba(255,255,255,.05)',lineWidth:1}},
+    ],
+    series:[{
+      type:'scatter',
+      data:mat.map(d=>({value:[d[0],d[1]],name:d[2],symbolSize:d[3],itemStyle:{color:d[4],opacity:.88,borderColor:'rgba(255,255,255,.2)',borderWidth:1}})),
+      label:{show:true,position:'top',formatter:p=>p.name,color:'#94a3b8',fontSize:9.5,fontFamily:"'Inter',sans-serif"},
+      animationDuration:900,animationEasing:'elasticOut'
+    }]
+  });
+
+  // ── 2026 Forecast ──
+  const pess =[259,254,298,305,330,277,310,283,298,295,268,222]; // ~3,400
+  const base =[289,284,333,341,369,310,346,316,333,330,300,248]; // ~3,800
+  const opti =[327,322,377,386,418,351,393,358,377,374,339,281]; // ~4,300
+  mkC('ch-ai-forecast').setOption({
+    backgroundColor:'transparent',
+    tooltip:{...TT,trigger:'axis',formatter:ps=>{let h=ttH(ps[0].axisValue);ps.forEach(p=>h+=ttRow(p.color,p.seriesName,fN(p.value)));return h;}},
+    legend:{top:0,right:0,textStyle:{color:'#64748b',fontSize:11,fontFamily:"'Inter',sans-serif"},icon:'circle',itemWidth:8,itemHeight:8,itemGap:14},
+    grid:{left:40,right:20,top:38,bottom:28,containLabel:true},
+    xAxis:xA(MO),yAxis:yA(),
+    series:[
+      {name:'2025 Actual',type:'line',data:s25m,smooth:true,symbolSize:4,lineStyle:{width:2,color:'rgba(100,116,139,.45)',type:'solid'},itemStyle:{color:'rgba(100,116,139,.45)'},areaStyle:{color:'rgba(100,116,139,.04)'}},
+      {name:'2026 Pessimistic',type:'line',data:pess,smooth:true,symbolSize:4,lineStyle:{width:1.8,color:'#f87171',type:'dashed'},itemStyle:{color:'#f87171'},areaStyle:{color:'rgba(248,113,113,.04)'}},
+      {name:'2026 Baseline',type:'line',data:base,smooth:true,symbolSize:5,lineStyle:{width:2.5,color:'#4c9aff',type:'dashed'},itemStyle:{color:'#4c9aff'},areaStyle:{color:'rgba(76,154,255,.06)'}},
+      {name:'2026 Optimistic',type:'line',data:opti,smooth:true,symbolSize:4,lineStyle:{width:1.8,color:'#4ade80',type:'dashed'},itemStyle:{color:'#4ade80'},areaStyle:{color:'rgba(74,222,128,.05)'}},
+    ],animation:true,animationDuration:1100,animationEasing:'cubicOut'
+  });
+}
 
 /* ═══ BOOT ═══ */
 initOverview(); inited.overview=true;
