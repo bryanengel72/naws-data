@@ -742,11 +742,6 @@ footer strong{color:var(--muted2)}
         </table>
       </div>
 
-      <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--blue)"></div><div class="sec-title">Action Priority Matrix</div><div class="sec-line"></div></div>
-      <div class="cc">
-        <div class="cc-sub">Effort (x) vs. Impact (y) — bubble size = urgency — top-left quadrant = do first</div>
-        <div id="ch-ai-matrix" style="height:290px"></div>
-      </div>
     </div>
 
   </div>
@@ -1103,39 +1098,6 @@ function initAI(){
       title:{offsetCenter:[0,'36%'],color:'#94a3b8',fontSize:11,fontFamily:"'Inter',sans-serif"},
       data:[{value:72,name:'/ 100'}],
       animationDuration:1600,animationEasing:'cubicOut'
-    }]
-  });
-
-  // ── Priority Matrix Scatter ──
-  const mat=[
-    ['Rescue Reactivation',3,9,22,'#f87171'],
-    ['Canine Rescue Outreach',5,8,18,'#fb923c'],
-    ['Pricing Optimization',5,7,12,'#fbbf24'],
-    ['Q4 Surge Campaign',2,6,15,'#fbbf24'],
-    ['Cross-sell Vaccines',1,5,11,'#4ade80'],
-    ['TNR Expansion',3,5,10,'#22d3ee'],
-    ['SNCKC Review',2,4,9,'#a78bfa'],
-    ['Peak Staffing Plan',5,4,8,'#64748b'],
-  ];
-  mkC('ch-ai-matrix').setOption({
-    backgroundColor:'transparent',
-    tooltip:{...TT,formatter:p=>`<div style="font-weight:700;color:#e2e8f0;margin-bottom:6px">${p.data[2]}</div><div style="color:#94a3b8;font-size:.72rem">Effort: <b style="color:#e2e8f0">${p.data[0]}/10</b></div><div style="color:#94a3b8;font-size:.72rem">Impact: <b style="color:#e2e8f0">${p.data[1]}/10</b></div>`},
-    grid:{left:38,right:20,top:20,bottom:30,containLabel:true},
-    xAxis:{type:'value',name:'Effort →',nameLocation:'end',nameTextStyle:{color:'#4a5e7a',fontSize:10},min:0,max:10,axisLine:{lineStyle:{color:'rgba(255,255,255,.05)'}},axisTick:{show:false},axisLabel:{color:'#4a5e7a',fontSize:10},splitLine:{lineStyle:{color:'#111b2c',type:'dashed'}}},
-    yAxis:{type:'value',name:'Impact ↑',nameLocation:'end',nameTextStyle:{color:'#4a5e7a',fontSize:10},min:0,max:10,axisLine:{show:false},axisTick:{show:false},axisLabel:{color:'#4a5e7a',fontSize:10},splitLine:{lineStyle:{color:'#111b2c',type:'dashed'}}},
-    graphic:[
-      {type:'text',left:'8%',top:'6%',style:{text:'DO FIRST',fill:'rgba(74,222,128,.18)',fontSize:9,fontWeight:'700',letterSpacing:2}},
-      {type:'text',right:'4%',top:'6%',style:{text:'PLAN CAREFULLY',fill:'rgba(251,191,36,.18)',fontSize:9,fontWeight:'700',letterSpacing:2}},
-      {type:'text',left:'8%',bottom:'6%',style:{text:'QUICK WINS',fill:'rgba(76,154,255,.18)',fontSize:9,fontWeight:'700',letterSpacing:2}},
-      {type:'text',right:'4%',bottom:'6%',style:{text:'DEPRIORITIZE',fill:'rgba(100,116,139,.2)',fontSize:9,fontWeight:'700',letterSpacing:2}},
-      {type:'line',shape:{x1:'50%',y1:'2%',x2:'50%',y2:'98%'},style:{stroke:'rgba(255,255,255,.05)',lineWidth:1}},
-      {type:'line',shape:{x1:'2%',y1:'50%',x2:'98%',y2:'50%'},style:{stroke:'rgba(255,255,255,.05)',lineWidth:1}},
-    ],
-    series:[{
-      type:'scatter',
-      data:mat.map(d=>({value:[d[0],d[1]],name:d[2],symbolSize:d[3],itemStyle:{color:d[4],opacity:.88,borderColor:'rgba(255,255,255,.2)',borderWidth:1}})),
-      label:{show:true,position:'top',formatter:p=>p.name,color:'#94a3b8',fontSize:9.5,fontFamily:"'Inter',sans-serif"},
-      animationDuration:900,animationEasing:'elasticOut'
     }]
   });
 
