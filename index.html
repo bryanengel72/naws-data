@@ -850,9 +850,11 @@ setTimeout(()=>{
   count('kv6',894);        count('kv7',751);
   // After counter, fix rev/proc to show decimal
   setTimeout(()=>{document.getElementById('kv4').textContent='$63.48';},1350);
-  ringAnim('r0','rp0',1,'#1de9b6');
+  // Total Revenue — no combined 2024 baseline, show N/A
+  (function(){const r=document.getElementById('r0'),p=document.getElementById('rp0');if(r){r.style.stroke='rgba(29,233,182,.18)';r.style.strokeDashoffset='175.9';}if(p){p.textContent='N/A';p.style.color='#475569';p.style.fontSize='.62rem';}})();
   ringAnim('r1','rp1',3664/4109,'#fbbf24');
-  ringAnim('r2','rp2',1,'#a78bfa');
+  // Vaccines — no 2024 vaccine data available, show N/A
+  (function(){const r=document.getElementById('r2'),p=document.getElementById('rp2');if(r){r.style.stroke='rgba(167,139,250,.18)';r.style.strokeDashoffset='175.9';}if(p){p.textContent='N/A';p.style.color='#475569';p.style.fontSize='.62rem';}})();
   ringAnim('r3','rp3',232598/259178,'#fbbf24');
   ringAnim('r4','rp4',1,'#4ade80');   // Rev/proc slightly above baseline → full green ring
   ringAnim('r5','rp5',816/1177,'#f87171');
