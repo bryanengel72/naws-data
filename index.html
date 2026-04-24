@@ -225,6 +225,20 @@ main{padding:2rem;max-width:1440px;margin:0 auto}
 .fcst-card-val{font-size:1.8rem;font-weight:800;letter-spacing:-.04em;line-height:1}
 .fcst-card-sub{font-size:.73rem;color:var(--muted2);margin-top:5px;line-height:1.4}
 
+/* ── AUTH GATE ── */
+#auth-overlay{position:fixed;inset:0;background:#06080f;z-index:9999;display:none;align-items:center;justify-content:center}
+.auth-box{background:rgba(10,15,28,.92);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:2.8rem 2.2rem;width:360px;text-align:center;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 40px 80px rgba(0,0,0,.6)}
+.auth-logo{font-size:2.8rem;margin-bottom:1rem}
+.auth-brand{font-size:1.25rem;font-weight:800;letter-spacing:-.035em;background:linear-gradient(120deg,#fff,var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:3px}
+.auth-sub{font-size:.76rem;color:var(--muted);margin-bottom:1.8rem;letter-spacing:.01em}
+.auth-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:11px 14px;color:var(--text);font-family:var(--font);font-size:.9rem;outline:none;text-align:center;letter-spacing:.15em;margin-bottom:.8rem;transition:border-color .2s}
+.auth-input:focus{border-color:rgba(29,233,182,.45);background:rgba(255,255,255,.07)}
+.auth-btn{width:100%;background:linear-gradient(135deg,var(--teal),#0891b2);color:#fff;border:none;border-radius:11px;padding:11px;font-family:var(--font);font-size:.88rem;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:opacity .2s,transform .15s;box-shadow:0 4px 18px rgba(29,233,182,.25)}
+.auth-btn:hover{opacity:.88;transform:translateY(-1px)}
+.auth-err{font-size:.73rem;color:var(--red);margin-top:.6rem;min-height:1rem;transition:opacity .2s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.shake{animation:shake .38s ease}
+
 /* ── CLIENTS ── */
 .search-box{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-family:var(--font);font-size:.84rem;outline:none;transition:border-color .2s}
 .search-box:focus{border-color:rgba(29,233,182,.4);background:rgba(255,255,255,.06)}
@@ -244,6 +258,18 @@ footer strong{color:var(--muted2)}
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="auth-overlay">
+  <div class="auth-box">
+    <div class="auth-logo">🐾</div>
+    <div class="auth-brand">NAWS Dashboard</div>
+    <div class="auth-sub">Staff access only · New Chapter Animal Welfare Society</div>
+    <input type="password" id="auth-input" class="auth-input" placeholder="Enter password" autocomplete="current-password"/>
+    <button class="auth-btn" onclick="checkAuth()">Access Dashboard →</button>
+    <div id="auth-err" class="auth-err"></div>
+  </div>
+</div>
 
 <div class="orbs"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div></div>
 
@@ -1250,6 +1276,30 @@ function initAI(){
     ],animation:true,animationDuration:1100,animationEasing:'cubicOut'
   });
 }
+
+/* ═══ AUTH ═══ */
+const AUTH_PASS='naws2025'; // ← change this to your own password
+function checkAuth(){
+  const val=document.getElementById('auth-input').value;
+  if(val===AUTH_PASS){
+    sessionStorage.setItem('naws_auth','1');
+    const ov=document.getElementById('auth-overlay');
+    ov.style.transition='opacity .35s';ov.style.opacity='0';
+    setTimeout(()=>ov.remove(),370);
+  } else {
+    const box=document.querySelector('.auth-box');
+    document.getElementById('auth-err').textContent='Incorrect password — please try again.';
+    box.classList.remove('shake');void box.offsetWidth;box.classList.add('shake');
+    document.getElementById('auth-input').value='';
+    document.getElementById('auth-input').focus();
+  }
+}
+document.getElementById('auth-input').addEventListener('keydown',e=>{if(e.key==='Enter')checkAuth();});
+(function(){
+  const ov=document.getElementById('auth-overlay');
+  if(sessionStorage.getItem('naws_auth')==='1'){ov.remove();}
+  else{ov.style.display='flex';}
+})();
 
 /* ═══ BOOT ═══ */
 initOverview(); inited.overview=true;
