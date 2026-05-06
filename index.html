@@ -463,6 +463,39 @@ footer strong{color:var(--muted2)}
       <span class="hi-pill">📦 Total combined revenue: $356,177</span>
     </div>
   </div>
+
+  <!-- 2026 Live Data -->
+  <div class="sec-hdr" style="margin-top:2rem"><div class="sec-dot" style="--sd:var(--cyan)"></div><div class="sec-title">2026 Live Data</div><div class="sec-line"></div><div class="sec-badge" style="color:var(--cyan);border-color:rgba(34,211,238,.25);background:rgba(34,211,238,.06)">April 2026 · First Month Actual</div></div>
+  <div class="g3" style="margin-bottom:1rem">
+    <div class="cc" style="text-align:center;padding:1.35rem 1rem;border-color:rgba(34,211,238,.2)">
+      <div style="font-size:.6rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px">Apr '26 Surgeries</div>
+      <div style="font-size:2.3rem;font-weight:800;color:var(--cyan);letter-spacing:-.04em">331</div>
+      <div style="font-size:.72rem;color:var(--muted2);margin-top:5px">vs 329 in Apr 2025 &nbsp;<span style="color:var(--green);font-weight:700">▲ +0.6%</span></div>
+    </div>
+    <div class="cc" style="text-align:center;padding:1.35rem 1rem;border-color:rgba(251,191,36,.2)">
+      <div style="font-size:.6rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px">Apr '26 Revenue</div>
+      <div style="font-size:2.3rem;font-weight:800;color:var(--amber);letter-spacing:-.04em">$21,390</div>
+      <div style="font-size:.72rem;color:var(--muted2);margin-top:5px">vs $24,245 in Apr 2025 &nbsp;<span style="color:var(--red);font-weight:700">▼ −11.8%</span></div>
+    </div>
+    <div class="cc" style="text-align:center;padding:1.35rem 1rem;border-color:rgba(76,154,255,.2)">
+      <div style="font-size:.6rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px">Apr '26 Clients</div>
+      <div style="font-size:2.3rem;font-weight:800;color:var(--blue);letter-spacing:-.04em">193</div>
+      <div style="font-size:.72rem;color:var(--muted2);margin-top:5px">270 feline &nbsp;·&nbsp; 61 canine</div>
+    </div>
+  </div>
+  <div class="g2" style="margin-bottom:1rem">
+    <div class="alert alert-amber">
+      <div class="alert-head"><div class="alert-icon">💰</div><div class="alert-title" style="color:var(--amber)">Revenue Below Prior Year</div></div>
+      <div class="alert-stat" style="color:var(--amber)">−$2,855 vs Apr 2025</div>
+      <div class="alert-body">April 2026 surgery revenue is <strong>$21,390 vs $24,245 in April 2025</strong> — down 11.8% despite volume being up +0.6% (331 vs 329 surgeries). The gap is entirely price-driven: April 2026 averages <strong>$64.62/surgery vs $73.69 in April 2025</strong>, suggesting a shift toward lower-margin client tiers. All April 2026 invoices show "None" discount — likely NQ or walk-in clients rather than rescue orgs.</div>
+    </div>
+    <div class="alert alert-blue">
+      <div class="alert-head"><div class="alert-icon">📊</div><div class="alert-title" style="color:var(--blue)">April vs 2026 Forecast Scenarios</div></div>
+      <div class="alert-stat" style="color:var(--blue)">331 actual · Baseline was 341</div>
+      <div class="alert-body">April actual (331) vs. projected scenarios — <strong>Pessimistic: 305 · Baseline: 341 · Optimistic: 386</strong>. Volume is tracking between Pessimistic and Baseline. At this pace, 2026 full-year is on track for ~3,600–3,700 surgeries. Reactivating 1–2 rescue partnerships in Q2 would push toward baseline. Revenue recovery requires a pricing-tier improvement, not just volume.</div>
+    </div>
+  </div>
+
 </main>
 </div>
 
@@ -715,7 +748,7 @@ footer strong{color:var(--muted2)}
   <!-- Header banner -->
   <div class="ai-header">
     <div>
-      <div class="ai-badge">✨ AI Analysis &nbsp;·&nbsp; March 2026</div>
+      <div class="ai-badge">✨ AI Analysis &nbsp;·&nbsp; May 2026</div>
       <div class="ai-title">Intelligence Report</div>
       <div class="ai-desc">Data-driven insights, strategic recommendations, and risk assessment synthesized from 2025 surgery &amp; vaccine records vs. 2024 baseline. Identifies root causes, priorities, and projected 2026 outcomes across 13,000+ annual procedures.</div>
     </div>
@@ -892,7 +925,7 @@ footer strong{color:var(--muted2)}
 
 <footer>
   <div><strong>NAWS — New Chapter Animal Welfare Society</strong> &nbsp;·&nbsp; Annual Impact Report &nbsp;·&nbsp; January 1 – December 31, 2025</div>
-  <div style="margin-top:5px">Dashboard generated March 2026</div>
+  <div style="margin-top:5px">Dashboard updated May 2026 · April 2026 actuals incorporated</div>
 </footer>
 
 <script>
@@ -904,6 +937,9 @@ const v25m=[672,646,744,873,853,791,889,879,791,855,708,557];
 const sr25m=[18301,20220,23845,24245,20015,19474,18975,18308,18620,20025,16240,14330];
 const sr24m=[22227,24468,23135,24500,24045,20670,20932,21315,23475,22835,15746,15830];
 const vr25m=[9024,9129,10439,12281,10221,10891,12154,11564,10323,11567,8566,7420];
+/* ── 2026 YTD Actuals ── */
+const apr26_surg=331,apr26_rev=21390,apr26_clients=193,apr26_feline=270,apr26_canine=61;
+const apr25_surg=329,apr25_rev=24245;  // April 2025 for comparison
 const CATS=['Feline Spay','Feline Neuter','Feral / Ear Tip','Canine Spay','Canine Neuter','Other'];
 const c25=[1058,930,894,381,320,81];
 const c24=[1196,994,873,485,462,99];
@@ -1273,6 +1309,8 @@ function initAI(){
       {name:'2026 Pessimistic',type:'line',data:pess,smooth:true,symbolSize:4,lineStyle:{width:1.8,color:'#f87171',type:'dashed'},itemStyle:{color:'#f87171'},areaStyle:{color:'rgba(248,113,113,.04)'}},
       {name:'2026 Baseline',type:'line',data:base,smooth:true,symbolSize:5,lineStyle:{width:2.5,color:'#4c9aff',type:'dashed'},itemStyle:{color:'#4c9aff'},areaStyle:{color:'rgba(76,154,255,.06)'}},
       {name:'2026 Optimistic',type:'line',data:opti,smooth:true,symbolSize:4,lineStyle:{width:1.8,color:'#4ade80',type:'dashed'},itemStyle:{color:'#4ade80'},areaStyle:{color:'rgba(74,222,128,.05)'}},
+      {name:'Apr '26 Actual',type:'scatter',data:[null,null,null,apr26_surg,null,null,null,null,null,null,null,null],symbolSize:12,itemStyle:{color:'#22d3ee',borderColor:'#fff',borderWidth:2},z:20,label:{show:true,formatter:'331
+(Actual)',position:'top',color:'#22d3ee',fontSize:9.5,fontWeight:'700',fontFamily:"'Inter',sans-serif",lineHeight:13},tooltip:{formatter:p=>`${ttH('April 2026 Actual')}<div style="color:#94a3b8">Surgeries: <b style="color:#22d3ee">331</b></div><div style="color:#94a3b8">Revenue: <b style="color:#fbbf24">$21,390</b></div><div style="color:#94a3b8">vs Apr 2025: <b style="color:#f87171">−11.8% rev</b></div>`}},
     ],animation:true,animationDuration:1100,animationEasing:'cubicOut'
   });
 }
