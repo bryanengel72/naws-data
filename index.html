@@ -273,7 +273,7 @@ footer strong{color:var(--muted2)}
   <div class="auth-box">
     <div class="auth-logo">🐾</div>
     <div class="auth-brand">NAWS Dashboard</div>
-    <div class="auth-sub">Staff access only · New Chapter Animal Welfare Society</div>
+    <div class="auth-sub">Staff access only · Northland Animal Welfare Society</div>
     <input type="password" id="auth-input" class="auth-input" placeholder="Enter password" autocomplete="current-password"/>
     <button class="auth-btn" onclick="checkAuth()">Access Dashboard →</button>
     <div id="auth-err" class="auth-err"></div>
@@ -286,7 +286,7 @@ footer strong{color:var(--muted2)}
 <nav>
   <div class="nav-brand">
     <div class="nav-logo">🐾</div>
-    <div><div class="nav-title">NAWS</div><div class="nav-sub">New Chapter Animal Welfare Society</div></div>
+    <div><div class="nav-title">NAWS</div><div class="nav-sub">Northland Animal Welfare Society</div></div>
   </div>
   <div class="nav-pill">ANNUAL IMPACT REPORT</div>
 </nav>
@@ -410,7 +410,7 @@ footer strong{color:var(--muted2)}
     <div class="alert alert-red">
       <div class="alert-head"><div class="alert-icon">🚨</div><div class="alert-title" style="color:var(--red)">Rescue Partnership Decline</div></div>
       <div class="alert-stat" style="color:var(--red)">−361 surgeries</div>
-      <div class="alert-body">Rescue org volume dropped <strong>30.6%</strong> (1,177 → 816) — the single biggest driver of the 2025 overall decline. Standard and Low Income tiers held steady. Canine rescue surgeries were hit hardest.</div>
+      <div class="alert-body">Rescue org volume dropped <strong>30.6%</strong> (1,177 → 816) — the single biggest driver of the 2025 overall decline. Standard and NQ tiers held steady. Canine rescue surgeries were hit hardest.</div>
     </div>
     <div class="alert alert-green">
       <div class="alert-head"><div class="alert-icon">✅</div><div class="alert-title" style="color:var(--green)">Pricing Efficiency Held</div></div>
@@ -578,7 +578,7 @@ footer strong{color:var(--muted2)}
   <div class="g2" style="margin-bottom:1rem">
     <div class="cc">
       <div class="cc-title">Client Tier — 2024–2026 YTD</div>
-      <div class="cc-sub"><span class="gloss" data-tip="Standard = full-price community members">Standard</span> · <span class="gloss" data-tip="Rescue = licensed rescue organizations receiving discounted rates">Rescue</span> · <span class="gloss" data-tip="NQ = Not Qualifying — low-income community members">NQ</span> · <span class="gloss" data-tip="SNCKC = Spay Neuter Kansas City partnership program">SNCKC</span></div>
+      <div class="cc-sub"><span class="gloss" data-tip="Standard = community clinic rate (Q — qualifying households)">Standard</span> · <span class="gloss" data-tip="Rescue = licensed rescue organizations receiving discounted rates">Rescue</span> · <span class="gloss" data-tip="NQ = Non-Qualifying — households over $30K; pay full price">NQ</span> · <span class="gloss" data-tip="SNCKC = Spay Neuter Kansas City partnership program">SNCKC</span> · <span style="font-size:.7rem;color:var(--muted);font-style:italic">Surgeries only</span></div>
       <div id="ch-yoy-tier" style="height:260px"></div>
     </div>
     <div class="cc">
@@ -588,9 +588,12 @@ footer strong{color:var(--muted2)}
     </div>
   </div>
   <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--amber)"></div><div class="sec-title">Month-by-Month Scorecard</div><div class="sec-line"></div></div>
+  <div style="margin:0 0 .75rem;padding:.6rem 1rem;background:rgba(248,113,113,.07);border-left:3px solid #f87171;border-radius:6px;font-size:.85rem;color:#94a3b8">
+    NAWS performed <strong style="color:#f87171">445 fewer surgeries</strong> in 2025 than in 2024 — a gap spread across 11 of 12 months. November was the lone exception.
+  </div>
   <div class="cc" style="margin-bottom:1rem">
-    <div class="cc-title">Monthly Delta Summary</div>
-    <div class="cc-sub">Green = more than same month in 2024 · Red = fewer · Nov is the only winning month</div>
+    <div class="cc-title">Monthly Delta Summary — Surgery Count</div>
+    <div class="cc-sub">Surgeries only · count, not revenue · Green = more than same month in 2024 · Red = fewer · Nov is the only winning month</div>
     <div class="mdg" id="mdg-container"></div>
   </div>
   <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--cyan)"></div><div class="sec-title">Full YoY Summary</div><div class="sec-line"></div></div>
@@ -610,8 +613,8 @@ footer strong{color:var(--muted2)}
         <div class="gloss-def">Licensed animal rescue organizations that receive discounted surgical pricing. The biggest driver of 2025's decline — down 30.6%.</div>
       </div>
       <div class="gloss-item">
-        <div class="gloss-term">NQ — Not Qualifying</div>
-        <div class="gloss-def">Low-income community members who receive reduced-cost services based on financial need. Relatively stable year-over-year (−7.3%).</div>
+        <div class="gloss-term">NQ — Non-Qualifying</div>
+        <div class="gloss-def">Households earning over $30K per year who do not qualify for income-based discounts — they pay full price for services. Relatively stable year-over-year (−7.3%).</div>
       </div>
       <div class="gloss-item">
         <div class="gloss-term">SNCKC</div>
@@ -623,7 +626,7 @@ footer strong{color:var(--muted2)}
       </div>
       <div class="gloss-item">
         <div class="gloss-term">NQ vs. Rescue</div>
-        <div class="gloss-def">NQ serves individual low-income people. Rescue serves organizations. Both receive discounts, but through different eligibility criteria.</div>
+        <div class="gloss-def">NQ (Non-Qualifying) serves households over $30K who pay full price — no discount. Rescue serves licensed rescue organizations who receive a discounted rate. Completely different eligibility and pricing.</div>
       </div>
     </div>
   </div>
@@ -649,7 +652,7 @@ footer strong{color:var(--muted2)}
   <div class="g2" style="margin-bottom:1rem">
     <div class="cc">
       <div class="cc-title">Client Tier Distribution (2026 YTD)</div>
-      <div class="cc-sub"><span class="gloss" data-tip="Full-price community members">Standard</span> · <span class="gloss" data-tip="Licensed rescue orgs — down 30.6% in 2025">Rescue ⚠️</span> · <span class="gloss" data-tip="Not Qualifying — low-income reduced rate">Low Income (NQ)</span> · <span class="gloss" data-tip="Spay Neuter Kansas City partnership">SNCKC</span></div>
+      <div class="cc-sub"><span class="gloss" data-tip="Community clinic rate (Q — qualifying households)">Standard</span> · <span class="gloss" data-tip="Licensed rescue orgs — down 30.6% in 2025">Rescue ⚠️</span> · <span class="gloss" data-tip="Non-Qualifying — households over $30K; full price">NQ (Non-Qualifying)</span> · <span class="gloss" data-tip="Spay Neuter Kansas City partnership">SNCKC</span></div>
       <div id="ch-surg-tier" style="height:270px"></div>
     </div>
     <div class="cc">
@@ -681,17 +684,10 @@ footer strong{color:var(--muted2)}
 <div id="tab-vaccines" class="tab-page">
 <main>
   <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--purple)"></div><div class="sec-title">Vaccine Overview</div><div class="sec-line"></div><div class="sec-badge">9,258 Total · $123,579 Revenue · 2025</div></div>
-  <div class="g2" style="margin-bottom:1rem">
-    <div class="cc">
-      <div class="cc-title">Vaccines by Type</div>
-      <div class="cc-sub">All 6 vaccine categories — doses administered in 2025</div>
-      <div id="ch-vax-type" style="height:300px"></div>
-    </div>
-    <div class="cc">
-      <div class="cc-title">Monthly Vaccine Volume</div>
-      <div class="cc-sub">Total doses per month with average mark line</div>
-      <div id="ch-vax-trend" style="height:300px"></div>
-    </div>
+  <div class="cc" style="margin-bottom:1rem">
+    <div class="cc-title">Monthly Vaccine Volume</div>
+    <div class="cc-sub">Total doses per month with average mark line — 2025</div>
+    <div id="ch-vax-trend" style="height:300px"></div>
   </div>
   <!-- Pricing -->
   <div class="sec-hdr" style="margin-top:1.5rem"><div class="sec-dot" style="--sd:var(--teal)"></div><div class="sec-title">Vaccine Pricing by Tier</div><div class="sec-line"></div><div class="sec-badge">3 Tiers · 2025 Rates</div></div>
@@ -741,7 +737,7 @@ footer strong{color:var(--muted2)}
       <div id="ch-vax-species" style="height:155px"></div>
     </div>
     <div class="cc">
-      <div class="cc-title">Vaccine Volume Breakdown</div>
+      <div class="cc-title">Vaccine Volume Breakdown — 2025</div>
       <div class="cc-sub">Each type ranked by total doses — Rabies is 50% of all vaccines</div>
       <div id="vax-stat-rows2"></div>
     </div>
@@ -771,7 +767,7 @@ footer strong{color:var(--muted2)}
     </div>
   </div>
 
-  <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--blue)"></div><div class="sec-title">Top 15 Clients by Total Spend</div><div class="sec-line"></div><div class="sec-badge">Surgery + Vaccine · 2025</div></div>
+  <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--blue)"></div><div class="sec-title">Top 15 Clients by Total Spend — 2025</div><div class="sec-line"></div><div class="sec-badge">Surgery + Vaccine · 2025 Only</div></div>
   <div class="cc" style="margin-bottom:1.5rem">
     <div id="ch-clients-top" style="height:400px"></div>
   </div>
@@ -973,7 +969,7 @@ footer strong{color:var(--muted2)}
 </div>
 
 <footer>
-  <div><strong>NAWS — New Chapter Animal Welfare Society</strong> &nbsp;·&nbsp; Annual Impact Report &nbsp;·&nbsp; January 1 – December 31, 2025</div>
+  <div><strong>NAWS — Northland Animal Welfare Society</strong> &nbsp;·&nbsp; Annual Impact Report &nbsp;·&nbsp; January 1 – December 31, 2025</div>
   <div style="margin-top:5px">Dashboard updated May 2026 · April 2026 actuals incorporated</div>
 </footer>
 
@@ -997,7 +993,7 @@ const CATS=['Feline Spay','Feline Neuter','Feral / Ear Tip','Canine Spay','Canin
 const c26=[429, 317, 301, 113, 98, 22]; // YTD 2026
 const c25=[1058,930,894,381,320,81];
 const c24=[1196,994,873,485,462,99];
-const TIERS=['Standard','Rescue','Low Income (NQ)','SNCKC'];
+const TIERS=['Standard','Rescue','NQ (Non-Qualifying)','SNCKC'];
 const t26=[667, 248, 331, 34]; // YTD 2026
 const t25=[1996,816,774,78]; const t24=[1996,1177,835,101];
 const sp26=[1050, 223]; // YTD 2026
@@ -1225,7 +1221,7 @@ function initYoY(){
     legend:{top:0,right:0,textStyle:{color:'#64748b',fontSize:11,fontFamily:"'Inter',sans-serif"},icon:'circle',itemWidth:8,itemHeight:8,itemGap:16},
     grid:{left:20,right:20,top:38,bottom:10,containLabel:true},
     xAxis:{type:'value',axisLine:{show:false},axisTick:{show:false},axisLabel:{color:'#4a5e7a',fontSize:10,fontFamily:"'Inter',sans-serif"},splitLine:{lineStyle:{color:'#111b2c',type:'dashed'}}},
-    yAxis:{type:'category',data:CATS,axisLine:{show:false},axisTick:{show:false},axisLabel:{color:'#94a3b8',fontSize:11,fontFamily:"'Inter',sans-serif"}},
+    yAxis:{type:'category',data:CATS,inverse:true,axisLine:{show:false},axisTick:{show:false},axisLabel:{color:'#94a3b8',fontSize:11,fontFamily:"'Inter',sans-serif"}},
     series:[
       {name:'2026 (YTD)',type:'bar',data:c26,barGap:'14%',barMaxWidth:18,itemStyle:{color:bg('#22d3ee'),borderRadius:[0,4,4,0]}},
       {name:'2025',type:'bar',data:c25,barMaxWidth:18,itemStyle:{color:bg('#4c9aff'),borderRadius:[0,4,4,0]}},
@@ -1242,7 +1238,7 @@ function initYoY(){
     xAxis:xA(TIERS),yAxis:yA(),
     series:[
       {name:'2026 (YTD)',type:'bar',data:t26,barGap:'15%',barMaxWidth:24,itemStyle:{color:bg('#22d3ee'),borderRadius:[4,4,0,0]}},
-      {name:'2025',type:'bar',data:t25,barMaxWidth:24,itemStyle:{color:bg('#1de9b6'),borderRadius:[4,4,0,0]}},
+      {name:'2025',type:'bar',data:t25,barMaxWidth:24,itemStyle:{color:bg('#4c9aff'),borderRadius:[4,4,0,0]}},
       {name:'2024',type:'bar',data:t24,barMaxWidth:24,itemStyle:{color:bg('#475569'),borderRadius:[4,4,0,0]}},
     ],animation:true,animationDuration:900,animationEasing:'cubicOut'
   });
@@ -1256,7 +1252,7 @@ function initYoY(){
     xAxis:xA(['Feline','Canine']),yAxis:yA(),
     series:[
       {name:'2026 (YTD)',type:'bar',data:sp26,barGap:'15%',barMaxWidth:50,itemStyle:{color:bg('#22d3ee'),borderRadius:[4,4,0,0]}},
-      {name:'2025',type:'bar',data:[2906,751],barMaxWidth:50,itemStyle:{color:bg('#a78bfa'),borderRadius:[4,4,0,0]}},
+      {name:'2025',type:'bar',data:[2906,751],barMaxWidth:50,itemStyle:{color:bg('#4c9aff'),borderRadius:[4,4,0,0]}},
       {name:'2024',type:'bar',data:[3089,1017],barMaxWidth:50,itemStyle:{color:bg('#475569'),borderRadius:[4,4,0,0]}},
     ],animation:true,animationDuration:900,animationEasing:'cubicOut'
   });
@@ -1303,7 +1299,7 @@ function initSurgeries(){
   if(pl&&!pl.innerHTML){procs.forEach((p,i)=>{const d=p.v25-p.v24,up=d>=0,sign=d>=0?'+':'',col=up?'#4ade80':'#f87171';pl.innerHTML+=`<div class="proc-item"><div class="proc-rank">${i+1}</div><div class="proc-name">${p.n}</div><div class="proc-track"><div class="proc-bar-wrap"><div class="proc-bar-fill" style="width:${(p.v25/885*100).toFixed(0)}%;background:#4c9aff"></div></div><div class="proc-bar-wrap"><div class="proc-bar-fill" style="width:${(p.v24/885*100).toFixed(0)}%;background:#475569"></div></div><div class="proc-yr"><span style="color:#4c9aff">2025</span><span style="color:#475569">2024</span></div></div><div class="proc-val">${p.v25}</div><div class="proc-delta" style="color:${col}">${sign+d}</div></div>`;});}
 
   const tc=mkC('ch-surg-tier');
-  tc.setOption({backgroundColor:'transparent',tooltip:{...TT,trigger:'item',formatter:p=>`${ttH(p.name)}<div style="color:#94a3b8">Count: <b style="color:#e2e8f0">${fN(p.value)}</b></div><div style="color:#94a3b8">Share: <b style="color:#e2e8f0">${p.percent}%</b></div>`},legend:{bottom:0,textStyle:{color:'#64748b',fontSize:10.5,fontFamily:"'Inter',sans-serif"},icon:'circle',itemWidth:8,itemGap:12},graphic:[{type:'group',left:'center',top:'38%',children:[{type:'text',style:{text:'1,280',textAlign:'center',fill:'#e2e8f0',fontSize:22,fontWeight:'800',fontFamily:"'Inter',sans-serif"}},{type:'text',top:30,style:{text:'procedures (2026)',textAlign:'center',fill:'#64748b',fontSize:11,fontFamily:"'Inter',sans-serif"}}]}],series:[{type:'pie',radius:['50%','72%'],center:['50%','46%'],itemStyle:{borderRadius:8,borderColor:'rgba(4,9,20,.8)',borderWidth:3},emphasis:{scale:true,scaleSize:4,itemStyle:{shadowBlur:20}},label:{show:false},data:[{value:t26[0],name:'Standard',itemStyle:{color:pg('#1de9b6','#059669')}},{value:t26[1],name:'Rescue',itemStyle:{color:pg('#fb923c','#c2410c')}},{value:t26[2],name:'Low Income (NQ)',itemStyle:{color:pg('#fbbf24','#b45309')}},{value:t26[3],name:'SNCKC',itemStyle:{color:pg('#f472b6','#9d174d')}}],animationType:'expansion',animationDuration:1000,animationEasing:'cubicOut'}]});
+  tc.setOption({backgroundColor:'transparent',tooltip:{...TT,trigger:'item',formatter:p=>`${ttH(p.name)}<div style="color:#94a3b8">Count: <b style="color:#e2e8f0">${fN(p.value)}</b></div><div style="color:#94a3b8">Share: <b style="color:#e2e8f0">${p.percent}%</b></div>`},legend:{bottom:0,textStyle:{color:'#64748b',fontSize:10.5,fontFamily:"'Inter',sans-serif"},icon:'circle',itemWidth:8,itemGap:12},graphic:[{type:'group',left:'center',top:'38%',children:[{type:'text',style:{text:'1,280',textAlign:'center',fill:'#e2e8f0',fontSize:22,fontWeight:'800',fontFamily:"'Inter',sans-serif"}},{type:'text',top:30,style:{text:'procedures (2026)',textAlign:'center',fill:'#64748b',fontSize:11,fontFamily:"'Inter',sans-serif"}}]}],series:[{type:'pie',radius:['50%','72%'],center:['50%','46%'],itemStyle:{borderRadius:8,borderColor:'rgba(4,9,20,.8)',borderWidth:3},emphasis:{scale:true,scaleSize:4,itemStyle:{shadowBlur:20}},label:{show:false},data:[{value:t26[0],name:'Standard',itemStyle:{color:pg('#1de9b6','#059669')}},{value:t26[1],name:'Rescue',itemStyle:{color:pg('#fb923c','#c2410c')}},{value:t26[2],name:'NQ (Non-Qualifying)',itemStyle:{color:pg('#fbbf24','#b45309')}},{value:t26[3],name:'SNCKC',itemStyle:{color:pg('#f472b6','#9d174d')}}],animationType:'expansion',animationDuration:1000,animationEasing:'cubicOut'}]});
 
   mkC('ch-surg-trend').setOption({backgroundColor:'transparent',tooltip:{...TT,trigger:'axis',formatter:ps=>{let h=ttH(ps[0].axisValue);ps.forEach(p=>h+=ttRow(p.color,p.seriesName,fN(p.value)));return h;}},grid:{left:40,right:20,top:18,bottom:28,containLabel:true},xAxis:xA(MO),yAxis:yA(),series:[{name:'2026 (YTD)',type:'line',data:s26m_full,smooth:false,symbolSize:6,symbol:'circle',z:20,lineStyle:{width:3.5,color:'#22d3ee'},itemStyle:{color:'#22d3ee',borderColor:'#fff',borderWidth:2}},{name:'2025',type:'line',data:s25m,smooth:true,symbolSize:5,lineStyle:{width:2.5,color:'#4c9aff'},itemStyle:{color:'#4c9aff'},areaStyle:{color:grad('#4c9aff')},markLine:{silent:true,lineStyle:{color:'rgba(76,154,255,.3)',type:'dashed'},label:{formatter:p=>`Avg ${Math.round(p.value)}`,color:'rgba(76,154,255,.5)',fontSize:10},data:[{type:'average'}]}}],animation:true,animationDuration:1000,animationEasing:'cubicOut'});
 
