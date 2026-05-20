@@ -1,0 +1,597 @@
+{
+  "period": "Q1 2026 (Jan 1 \u2013 Mar 31)",
+  "summary": {
+    "totalRows": 1344,
+    "totalNet": 139474.99,
+    "grantNet": 840.0,
+    "donationNet": 1547.0,
+    "subsidizedNet": 2387.0,
+    "subsidizedPct": 1.71,
+    "creditCard": {
+      "gross_count": 868,
+      "gross_amount": 93865.5,
+      "net_count": 853,
+      "net_amount": 92480.5,
+      "canceled_count": 6,
+      "canceled_amount": 1385.0,
+      "refund_count": 9,
+      "refund_amount": 0.0
+    }
+  },
+  "paymentTypes": [
+    {
+      "name": "Visa",
+      "grossCount": 617,
+      "grossAmount": 62946.0,
+      "netCount": 606,
+      "netAmount": 62026.0,
+      "canceledCount": 4,
+      "canceledAmount": 920.0,
+      "refundCount": 7,
+      "refundAmount": 0.0,
+      "category": "Credit Card"
+    },
+    {
+      "name": "Cash",
+      "grossCount": 352,
+      "grossAmount": 30108.5,
+      "netCount": 348,
+      "netAmount": 29743.5,
+      "canceledCount": 3,
+      "canceledAmount": 365.0,
+      "refundCount": 1,
+      "refundAmount": 0.0,
+      "category": "Cash"
+    },
+    {
+      "name": "MasterCard",
+      "grossCount": 223,
+      "grossAmount": 27259.0,
+      "netCount": 219,
+      "netAmount": 26794.0,
+      "canceledCount": 2,
+      "canceledAmount": 465.0,
+      "refundCount": 2,
+      "refundAmount": 0.0,
+      "category": "Credit Card"
+    },
+    {
+      "name": "Check",
+      "grossCount": 33,
+      "grossAmount": 5720.99,
+      "netCount": 33,
+      "netAmount": 5720.99,
+      "canceledCount": 0,
+      "canceledAmount": 0.0,
+      "refundCount": 0,
+      "refundAmount": 0.0,
+      "category": "Check"
+    },
+    {
+      "name": "Other",
+      "grossCount": 22,
+      "grossAmount": 5358.0,
+      "netCount": 6,
+      "netAmount": 5358.0,
+      "canceledCount": 2,
+      "canceledAmount": 0.0,
+      "refundCount": 14,
+      "refundAmount": 0.0,
+      "category": "Other"
+    },
+    {
+      "name": "Credit Balance",
+      "grossCount": 39,
+      "grossAmount": 4007.0,
+      "netCount": 38,
+      "netAmount": 3785.0,
+      "canceledCount": 1,
+      "canceledAmount": 222.0,
+      "refundCount": 0,
+      "refundAmount": 0.0,
+      "category": "Other"
+    },
+    {
+      "name": "Discover",
+      "grossCount": 19,
+      "grossAmount": 2158.0,
+      "netCount": 19,
+      "netAmount": 2158.0,
+      "canceledCount": 0,
+      "canceledAmount": 0.0,
+      "refundCount": 0,
+      "refundAmount": 0.0,
+      "category": "Credit Card"
+    },
+    {
+      "name": "Mr. Donation",
+      "grossCount": 16,
+      "grossAmount": 1805.0,
+      "netCount": 15,
+      "netAmount": 1547.0,
+      "canceledCount": 1,
+      "canceledAmount": 258.0,
+      "refundCount": 0,
+      "refundAmount": 0.0,
+      "category": "Donation"
+    },
+    {
+      "name": "American Express",
+      "grossCount": 9,
+      "grossAmount": 1502.5,
+      "netCount": 9,
+      "netAmount": 1502.5,
+      "canceledCount": 0,
+      "canceledAmount": 0.0,
+      "refundCount": 0,
+      "refundAmount": 0.0,
+      "category": "Credit Card"
+    },
+    {
+      "name": "MO.DEPT AG GRANT 2026",
+      "grossCount": 14,
+      "grossAmount": 1015.0,
+      "netCount": 12,
+      "netAmount": 840.0,
+      "canceledCount": 2,
+      "canceledAmount": 175.0,
+      "refundCount": 0,
+      "refundAmount": 0.0,
+      "category": "Grant"
+    }
+  ],
+  "monthly": {
+    "Mr. Donation": [
+      888.0,
+      323.0,
+      336.0
+    ],
+    "MO.DEPT AG GRANT 2026": [
+      140.0,
+      280.0,
+      420.0
+    ]
+  },
+  "cancelPairs": [
+    {
+      "paymentType": "Visa",
+      "invoiceId": "16282",
+      "client": "Atchison Alley Cat Alliance",
+      "canceled": [
+        {
+          "date": "2/21/26",
+          "amount": 150.0
+        }
+      ],
+      "kept": [
+        {
+          "date": "2/21/26",
+          "amount": 150.0
+        }
+      ]
+    },
+    {
+      "paymentType": "MasterCard",
+      "invoiceId": "16482",
+      "client": "Jill Volpi",
+      "canceled": [
+        {
+          "date": "3/5/26",
+          "amount": 340.0
+        }
+      ],
+      "kept": [
+        {
+          "date": "3/5/26",
+          "amount": 180.0
+        },
+        {
+          "date": "3/5/26",
+          "amount": 160.0
+        }
+      ]
+    },
+    {
+      "paymentType": "Mr. Donation",
+      "invoiceId": "16609",
+      "client": "Rose Runyan",
+      "canceled": [
+        {
+          "date": "3/12/26",
+          "amount": 258.0
+        }
+      ],
+      "kept": [
+        {
+          "date": "3/12/26",
+          "amount": 36.0
+        }
+      ]
+    },
+    {
+      "paymentType": "Visa",
+      "invoiceId": "16747",
+      "client": "Susan Mansfield",
+      "canceled": [
+        {
+          "date": "3/22/26",
+          "amount": 106.0
+        }
+      ],
+      "kept": [
+        {
+          "date": "3/22/26",
+          "amount": 106.0
+        }
+      ]
+    },
+    {
+      "paymentType": "Cash",
+      "invoiceId": "16808",
+      "client": "Susan Weisz",
+      "canceled": [
+        {
+          "date": "3/26/26",
+          "amount": 140.0
+        }
+      ],
+      "kept": [
+        {
+          "date": "3/26/26",
+          "amount": 70.0
+        }
+      ]
+    },
+    {
+      "paymentType": "MO.DEPT AG GRANT 2026",
+      "invoiceId": "16846",
+      "client": "Debbie Caudill",
+      "canceled": [
+        {
+          "date": "3/28/26",
+          "amount": 105.0
+        }
+      ],
+      "kept": [
+        {
+          "date": "3/31/26",
+          "amount": 70.0
+        }
+      ]
+    }
+  ],
+  "mrDonation": [
+    {
+      "date": "1/10/26",
+      "clientId": "N99PJF8",
+      "client": "Gail Leathers",
+      "patients": "Bill, Dollar",
+      "invoice": "15670",
+      "amount": 37.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "1/10/26",
+      "clientId": "J988WNC",
+      "client": "Debbie Kincaid",
+      "patients": "Sox",
+      "invoice": "15675",
+      "amount": 7.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "1/13/26",
+      "clientId": "RG8WYGB",
+      "client": "Christopher Macan",
+      "patients": "Dolce",
+      "invoice": "15697",
+      "amount": 129.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "1/21/26",
+      "clientId": "SOWT0LW",
+      "client": "Melana Beaty",
+      "patients": "Bubba",
+      "invoice": "15805",
+      "amount": 37.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "1/22/26",
+      "clientId": "E0RJFAK",
+      "client": "Rebecca Gonzalez",
+      "patients": "Callie, Dasher, Marley, Toto",
+      "invoice": "15842",
+      "amount": 438.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "1/26/26",
+      "clientId": "CBBLIMV",
+      "client": "Sara Sawyer",
+      "patients": "-",
+      "invoice": "-",
+      "amount": 240.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Crystal Henderson"
+    },
+    {
+      "date": "2/5/26",
+      "clientId": "O85U589",
+      "client": "Dawn Burnell",
+      "patients": "Cash, Mojo",
+      "invoice": "16019",
+      "amount": 98.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "2/12/26",
+      "clientId": "L8TX0MR",
+      "client": "Jerry McCleery",
+      "patients": "-",
+      "invoice": "-",
+      "amount": 98.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "2/13/26",
+      "clientId": "EOPFIA4",
+      "client": "Cari Walker",
+      "patients": "Enid, Mitts",
+      "invoice": "16158",
+      "amount": 59.0,
+      "type": "Payment",
+      "note": "Paid for female 2.13.26 Cari Walker. Abusive situation and in a shelter. Enid was the pg female,",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "2/17/26",
+      "clientId": "E4P0OYK",
+      "client": "Randall Arnold",
+      "patients": "Max, Sammy",
+      "invoice": "16204",
+      "amount": 48.0,
+      "type": "Payment",
+      "note": "Neuter for Sammy & Max",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "2/23/26",
+      "clientId": "9SSFX6T",
+      "client": "Angel Sanchez",
+      "patients": "-",
+      "invoice": "16305",
+      "amount": 20.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Crystal Henderson"
+    },
+    {
+      "date": "3/3/26",
+      "clientId": "ZVW1GAO",
+      "client": "Michael Fay",
+      "patients": "Shadow",
+      "invoice": "16433",
+      "amount": 171.0,
+      "type": "Payment",
+      "note": "Michael Fay - Dog Shadow 3/3/26",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "3/12/26",
+      "clientId": "EMYMBBW",
+      "client": "Rose Runyan",
+      "patients": "Momma Cat, Precious, Saturn",
+      "invoice": "16609",
+      "amount": 258.0,
+      "type": "Canceled",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "3/12/26",
+      "clientId": "EMYMBBW",
+      "client": "Rose Runyan",
+      "patients": "Momma Cat, Precious, Saturn",
+      "invoice": "16609",
+      "amount": 36.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "3/16/26",
+      "clientId": "EE8Q8R7",
+      "client": "Bailey Sontag",
+      "patients": "Petunia, Porky",
+      "invoice": "16637",
+      "amount": 21.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Maria Wulff"
+    },
+    {
+      "date": "3/30/26",
+      "clientId": "L8TX0MR",
+      "client": "Jerry McCleery",
+      "patients": "Mama, Snoopy",
+      "invoice": "16859",
+      "amount": 108.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Maria Wulff"
+    }
+  ],
+  "moGrant2026": [
+    {
+      "date": "1/21/26",
+      "clientId": "XUEQI5B",
+      "client": "Becky Webster",
+      "patients": "Feral 1, Feral 2, Feral 3, Feral 4",
+      "invoice": "15807",
+      "amount": 140.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "2/2/26",
+      "clientId": "RZETCIK",
+      "client": "Crystal Leaman",
+      "patients": "Feral 1-26",
+      "invoice": "15971",
+      "amount": 35.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Crystal Henderson"
+    },
+    {
+      "date": "2/20/26",
+      "clientId": "BV35RAO",
+      "client": "Mardell Barber",
+      "patients": "Feral 13-26, Feral 14-26, Feral 15-26, Feral 16-26",
+      "invoice": "16267",
+      "amount": 140.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Crystal Henderson"
+    },
+    {
+      "date": "2/25/26",
+      "clientId": "22XR2KL",
+      "client": "Corrie Cox",
+      "patients": "Feral Cox 1-26, Feral Cox 2-26",
+      "invoice": "16332",
+      "amount": 70.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Crystal Henderson"
+    },
+    {
+      "date": "2/28/26",
+      "clientId": "5IR0AMP",
+      "client": "Amanda Payton",
+      "patients": "Feral Payton 2-26",
+      "invoice": "16410",
+      "amount": 35.0,
+      "type": "Payment",
+      "note": "Feral Payton 2-26",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "3/2/26",
+      "clientId": "05I655J",
+      "client": "Melissa Smith",
+      "patients": "Feral Smith 1-26",
+      "invoice": "16426",
+      "amount": 35.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Crystal Henderson"
+    },
+    {
+      "date": "3/5/26",
+      "clientId": "05I655J",
+      "client": "Melissa Smith",
+      "patients": "Feral Smith 2-26, Feral Smith 3-26, Feral Smith 4-26",
+      "invoice": "16487",
+      "amount": 105.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "3/10/26",
+      "clientId": "05I655J",
+      "client": "Melissa Smith",
+      "patients": "Feral Smith 5-26, Feral Smith 6-26",
+      "invoice": "16574",
+      "amount": 35.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Debra Stark"
+    },
+    {
+      "date": "3/19/26",
+      "clientId": "JKF0QUX",
+      "client": "Debbie Caudill",
+      "patients": "Feral Caudill 3-26, Feral Caudill 4-26",
+      "invoice": "16702",
+      "amount": 70.0,
+      "type": "Payment",
+      "note": "",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "3/26/26",
+      "clientId": "QHVNKM4",
+      "client": "Susan Weisz",
+      "patients": "-",
+      "invoice": "-",
+      "amount": 70.0,
+      "type": "Canceled",
+      "note": "Susan Weisz -2 ferals 3.26.26",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "3/26/26",
+      "clientId": "GX6YX1Z",
+      "client": "Janet Hatch",
+      "patients": "Feral Hatch 1_26",
+      "invoice": "16810",
+      "amount": 35.0,
+      "type": "Payment",
+      "note": "Janet Hatch 1 feral 3/26/26",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "3/26/26",
+      "clientId": "QHVNKM4",
+      "client": "Susan Weisz",
+      "patients": "F Weisz 1_26, F Weisz 2-26, F Weisz 3-26, F Weisz 4-26",
+      "invoice": "16808",
+      "amount": 70.0,
+      "type": "Payment",
+      "note": "Weisz 2 ferals  3/26/26",
+      "user": "Goldie Arnold"
+    },
+    {
+      "date": "3/28/26",
+      "clientId": "JKF0QUX",
+      "client": "Debbie Caudill",
+      "patients": "Feral Caudill 5-26, Feral Caudill 6-26",
+      "invoice": "16846",
+      "amount": 105.0,
+      "type": "Canceled",
+      "note": "",
+      "user": "Crystal Henderson"
+    },
+    {
+      "date": "3/31/26",
+      "clientId": "JKF0QUX",
+      "client": "Debbie Caudill",
+      "patients": "Feral Caudill 5-26, Feral Caudill 6-26",
+      "invoice": "16846",
+      "amount": 70.0,
+      "type": "Payment",
+      "note": "For 2 ferals from 3/28/26",
+      "user": "Debra Stark"
+    }
+  ]
+}
