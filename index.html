@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" data-extras-auto></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -264,6 +265,148 @@ footer strong{color:var(--muted2)}
 .kpi-section-title { font-size: 0.72rem; font-weight: 700; color: var(--muted2); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
 .kpi-section-title::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--kc, var(--blue)); box-shadow: 0 0 10px var(--kc, var(--blue)); }
 .kpi-grid{grid-template-columns:1fr}.tab-btn{padding:12px 10px;font-size:.72rem}}
+/* ═══ EXTRAS CSS (auto) ═══ */
+.x-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.x-kpi {
+  background: var(--surface, var(--card, #161b22));
+  border: 1px solid var(--border, #30363d);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+.x-kpi::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent-color, var(--teal));
+}
+.x-kpi-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+.x-kpi-value { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 4px; color: var(--text); }
+.x-kpi-sub { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+
+.x-section-header { display:flex; align-items:center; gap:10px; margin: 2rem 0 1rem; }
+.x-section-dot { width:8px; height:8px; border-radius:50%; background: var(--teal); }
+.x-section-title { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.x-section-line { flex: 1; height: 1px; background: var(--border, #30363d); }
+.x-section-badge {
+  font-size: 0.7rem; color: var(--muted);
+  background: var(--surface2, #21262d); border: 1px solid var(--border, #30363d);
+  border-radius: 12px; padding: 3px 10px;
+}
+
+.x-card {
+  background: var(--surface, #161b22);
+  border: 1px solid var(--border, #30363d);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.x-card .x-card-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+.x-card .x-card-sub { font-size: 0.72rem; color: var(--muted); margin-bottom: 1.25rem; }
+
+.x-grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; }
+.x-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 900px) {
+  .x-grid-1-2, .x-grid-2 { grid-template-columns: 1fr; }
+}
+
+.x-table { width: 100%; border-collapse: collapse; }
+.x-table th {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--muted); padding: 8px 12px; text-align: left;
+  border-bottom: 1px solid var(--border, #30363d);
+  position: sticky; top: 0; background: var(--surface, #161b22);
+}
+.x-table th.num, .x-table td.num { text-align: right; }
+.x-table td {
+  font-size: 0.8rem; padding: 9px 12px;
+  border-bottom: 1px solid var(--border, #30363d);
+  color: var(--text);
+}
+.x-table tr:last-child td { border-bottom: none; }
+.x-table tbody tr:hover td { background: var(--surface2, #21262d); cursor: pointer; }
+.x-table tbody tr.selected td { background: rgba(26,188,156,0.12); }
+.x-table .zip-cell { font-family: 'Menlo','Monaco',monospace; font-size: 0.78rem; color: var(--teal); }
+.x-table .muted { color: var(--muted); font-size: 0.72rem; }
+.x-table .mono { font-family: 'Menlo','Monaco',monospace; font-size: 0.74rem; }
+.x-table .canceled-row td { opacity: 0.55; }
+.x-table .note { color: var(--muted); font-size: 0.72rem; font-style: italic; max-width: 320px; }
+
+.x-scroll { max-height: 480px; overflow-y: auto; }
+
+.x-bar-wrap {
+  display: inline-block; width: 80px; height: 6px;
+  background: var(--surface2, #21262d); border-radius: 3px; overflow: hidden;
+  vertical-align: middle; margin-right: 6px;
+}
+.x-bar { height: 100%; background: var(--teal); border-radius: 3px; }
+
+.x-svc-list { list-style: none; padding: 0; margin: 0; }
+.x-svc-list li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid var(--border, #30363d); font-size: 0.78rem;
+  color: var(--text);
+}
+.x-svc-list li:last-child { border-bottom: none; }
+.x-svc-name { flex: 1; }
+.x-svc-count { width: 60px; text-align: right; color: var(--muted); font-size: 0.72rem; }
+.x-svc-rev { width: 90px; text-align: right; font-weight: 600; }
+
+.x-dup-card {
+  background: var(--surface2, #21262d);
+  border: 1px solid var(--border, #30363d);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.x-dup-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 6px; color: var(--amber, #fbbf24); }
+.x-dup-row { font-size: 0.74rem; color: var(--muted); padding: 3px 0; font-family: 'Menlo','Monaco',monospace; }
+.x-dup-row .cid { color: var(--cyan, #22d3ee); }
+.x-dup-row .active-flag { color: var(--green, #4ade80); font-weight: 700; }
+
+.x-search {
+  width: 100%; padding: 8px 12px; font-size: 0.8rem;
+  background: var(--surface2, #21262d); color: var(--text);
+  border: 1px solid var(--border, #30363d); border-radius: 8px;
+  margin-bottom: 10px;
+}
+.x-search:focus { outline: none; border-color: var(--teal); }
+
+.x-detail-empty { color: var(--muted); font-size: 0.78rem; padding: 20px; text-align: center; }
+
+.x-pill {
+  display: inline-block; padding: 2px 8px; border-radius: 10px;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.x-pill.grant { background: rgba(74,222,128,0.15); color: var(--green, #4ade80); }
+.x-pill.donation { background: rgba(167,139,250,0.15); color: var(--purple, #a78bfa); }
+.x-pill.cc { background: rgba(76,154,255,0.15); color: var(--blue, #4c9aff); }
+.x-pill.cash { background: rgba(251,191,36,0.15); color: var(--amber, #fbbf24); }
+.x-pill.check { background: rgba(34,211,238,0.15); color: var(--cyan, #22d3ee); }
+.x-pill.other { background: rgba(139,148,158,0.15); color: var(--muted); }
+.x-pill.canceled { background: rgba(248,113,113,0.15); color: var(--red, #f87171); }
+.x-pill.payment { background: rgba(74,222,128,0.15); color: var(--green, #4ade80); }
+.x-pill.refund { background: rgba(251,146,60,0.15); color: var(--orange, #fb923c); }
+
+.x-pair {
+  background: var(--surface2, #21262d);
+  border: 1px solid var(--border, #30363d);
+  border-left: 3px solid var(--orange, #fb923c);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+  color: var(--text);
+}
+.x-pair-header { font-weight: 700; margin-bottom: 6px; }
+.x-pair-detail { color: var(--muted); font-size: 0.74rem; }
+
+.x-main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+/* ═══ /EXTRAS CSS (auto) ═══ */
 </style>
 </head>
 <body>
@@ -299,6 +442,7 @@ footer strong{color:var(--muted2)}
   <button class="tab-btn" onclick="switchTab('vaccines',this)">💉 Vaccines</button>
   <button class="tab-btn" onclick="switchTab('clients',this)">👥 Clients</button>
   <button class="tab-btn" onclick="switchTab('ai',this)">✨ AI Insights</button>
+  <!-- EXTRAS NAV (auto) --><button class="tab-btn" onclick="switchTab('geography',this)">🗺️ Geography</button><button class="tab-btn" onclick="switchTab('funding',this)">💵 Funding</button><!-- /EXTRAS NAV (auto) -->
 </div>
 
 <!-- HERO + KPI -->
@@ -572,8 +716,13 @@ footer strong{color:var(--muted2)}
   <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--purple)"></div><div class="sec-title">Category Comparison</div><div class="sec-line"></div></div>
   <div class="cc" style="margin-bottom:1rem">
     <div class="cc-title">Surgery Type — 2024–2026 YTD</div>
-    <div class="cc-sub">Volume change across all procedure categories</div>
+    <div class="cc-sub">Volume change across all procedure categories · Sorted high→low by 2025 volume</div>
     <div id="ch-yoy-cat" style="height:290px"></div>
+    <div style="margin-top:8px;padding:8px 12px;background:rgba(139,148,158,.08);border-left:3px solid #64748b;border-radius:6px;font-size:.72rem;color:#94a3b8;line-height:1.55">
+      <strong style="color:#cbd5e1">"Other" includes:</strong> Misc Surgery Fee, Cryptorchid (Feline &amp; Canine, all tiers), Hernia Repair, Amputation, Dew Claw with Spay/Neuter.
+      Currently shown for 2025: <strong>81</strong>. A raw recount from line-items totals <strong>105</strong> (driven by 67 "Misc Surgery Fee" entries).
+      The 24-procedure gap is a pending reconciliation item from Deb's May 13 review — depends on whether Misc Surgery Fee counts as an "Other" procedure or is excluded as a fee.
+    </div>
   </div>
   <div class="g2" style="margin-bottom:1rem">
     <div class="cc">
@@ -985,6 +1134,266 @@ footer strong{color:var(--muted2)}
 
 </main>
 </div>
+
+<!-- ═══ EXTRAS TABS (auto) ═══ -->
+<!-- ══════════════════════════════════════════ GEOGRAPHY -->
+<div id="tab-geography" class="tab-page">
+<main class="x-main">
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--pink,#f472b6);"></div>
+    <div class="x-section-title">Geographic Footprint</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge" id="xGeoBadge">2025 + 2026 YTD</div>
+  </div>
+
+  <div class="x-kpi-grid">
+    <div class="x-kpi" style="--accent-color: var(--teal);">
+      <div class="x-kpi-label">Total Clients</div>
+      <div class="x-kpi-value" id="xGeoTotalClients">0</div>
+      <div class="x-kpi-sub" id="xGeoActiveDormant">Active vs dormant</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--green,#4ade80);">
+      <div class="x-kpi-label">Active Clients</div>
+      <div class="x-kpi-value" id="xGeoActiveClients">0</div>
+      <div class="x-kpi-sub">With 2025 or 2026 activity</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--red,#f87171);">
+      <div class="x-kpi-label">Dormant Clients</div>
+      <div class="x-kpi-value" id="xGeoDormantClients">0</div>
+      <div class="x-kpi-sub">No activity 2025–2026</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--blue,#4c9aff);">
+      <div class="x-kpi-label">Zip Codes Served</div>
+      <div class="x-kpi-value" id="xGeoZipsServed">0</div>
+      <div class="x-kpi-sub" id="xGeoMatchRate"></div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--amber,#fbbf24);">
+      <div class="x-kpi-label">Duplicate Groups</div>
+      <div class="x-kpi-value" id="xGeoDupGroups">0</div>
+      <div class="x-kpi-sub" id="xGeoDupRecords"></div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--purple,#a78bfa);">
+      <div class="x-kpi-label">Linked Revenue</div>
+      <div class="x-kpi-value" id="xGeoLinkedRev">$0</div>
+      <div class="x-kpi-sub" id="xGeoLinkedSub"></div>
+    </div>
+  </div>
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--teal);"></div>
+    <div class="x-section-title">Revenue & Volume by Zip Code</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge">Click a row to see service mix</div>
+  </div>
+
+  <div class="x-grid-1-2" style="margin-bottom:1rem;">
+    <div class="x-card">
+      <div class="x-card-title">By State</div>
+      <div class="x-card-sub">Aggregate revenue and procedure count</div>
+      <table class="x-table">
+        <thead><tr><th>State</th><th class="num">Procedures</th><th class="num">Revenue</th></tr></thead>
+        <tbody id="xGeoStateBody"></tbody>
+      </table>
+    </div>
+    <div class="x-card">
+      <div class="x-card-title">Top 20 Zip Codes by Revenue</div>
+      <div class="x-card-sub">Procedures performed for clients in each zip</div>
+      <div style="position:relative;height:360px;">
+        <canvas id="xGeoZipChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="x-grid-2" style="margin-bottom:1rem;">
+    <div class="x-card">
+      <div class="x-card-title">All Zips (sortable)</div>
+      <div class="x-card-sub">Click a row to load service breakdown →</div>
+      <input id="xGeoZipSearch" class="x-search" placeholder="Filter by zip or city…" />
+      <div class="x-scroll">
+        <table class="x-table">
+          <thead><tr><th>Zip</th><th>City</th><th>State</th><th class="num">Count</th><th class="num">Revenue</th></tr></thead>
+          <tbody id="xGeoZipBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="x-card">
+      <div class="x-card-title" id="xGeoDetailTitle">Service Mix</div>
+      <div class="x-card-sub" id="xGeoDetailSub">Select a zip on the left</div>
+      <div id="xGeoDetailBox" class="x-detail-empty">No zip selected.</div>
+    </div>
+  </div>
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--orange,#fb923c);"></div>
+    <div class="x-section-title">Top Cities by Revenue</div>
+    <div class="x-section-line"></div>
+  </div>
+
+  <div class="x-card" style="margin-bottom:1rem;">
+    <div class="x-scroll">
+      <table class="x-table">
+        <thead><tr><th>City</th><th>State</th><th class="num">Procedures</th><th class="num">Revenue</th></tr></thead>
+        <tbody id="xGeoCityBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--amber,#fbbf24);"></div>
+    <div class="x-section-title">Data Quality — Duplicate Client Names</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge" id="xGeoDupBadge">Top 30 by group size</div>
+  </div>
+
+  <div class="x-card">
+    <div class="x-card-sub" style="margin-bottom:1rem;">
+      Same name across multiple Client IDs. Active = had 2025/2026 activity.
+      A green active flag on multiple records in one group likely means a true duplicate worth merging.
+    </div>
+    <div class="x-scroll" id="xGeoDupBox"></div>
+  </div>
+
+</main>
+</div>
+
+<!-- ══════════════════════════════════════════ FUNDING -->
+<div id="tab-funding" class="tab-page">
+<main class="x-main">
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--green,#4ade80);"></div>
+    <div class="x-section-title">Funding &amp; Payment Mix</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge" id="xFundPeriod">Q1 2026</div>
+  </div>
+
+  <div class="x-kpi-grid">
+    <div class="x-kpi" style="--accent-color: var(--teal);">
+      <div class="x-kpi-label">Total Collected (Net)</div>
+      <div class="x-kpi-value" id="xFundTotalNet">$0</div>
+      <div class="x-kpi-sub" id="xFundRowCount">0 transactions</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--green,#4ade80);">
+      <div class="x-kpi-label">Grant Revenue</div>
+      <div class="x-kpi-value" id="xFundGrantNet">$0</div>
+      <div class="x-kpi-sub">MO Dept Ag Grant 2026</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--purple,#a78bfa);">
+      <div class="x-kpi-label">Donation Revenue</div>
+      <div class="x-kpi-value" id="xFundDonationNet">$0</div>
+      <div class="x-kpi-sub">Mr. Donation fund</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--amber,#fbbf24);">
+      <div class="x-kpi-label">Subsidized %</div>
+      <div class="x-kpi-value" id="xFundSubsidPct">0%</div>
+      <div class="x-kpi-sub">Grant + Donation share of total</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--blue,#4c9aff);">
+      <div class="x-kpi-label">Credit Card</div>
+      <div class="x-kpi-value" id="xFundCCNet">$0</div>
+      <div class="x-kpi-sub" id="xFundCCSub">Visa + MC + Amex + Discover</div>
+    </div>
+    <div class="x-kpi" style="--accent-color: var(--red,#f87171);">
+      <div class="x-kpi-label">Cancel / Re-entry Pairs</div>
+      <div class="x-kpi-value" id="xFundPairs">0</div>
+      <div class="x-kpi-sub">Adjustments handled (net excludes these)</div>
+    </div>
+  </div>
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--teal);"></div>
+    <div class="x-section-title">Net Revenue by Payment Type</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge">Canceled rows excluded</div>
+  </div>
+
+  <div class="x-grid-1-2" style="margin-bottom:1rem;">
+    <div class="x-card">
+      <div class="x-card-title">Payment Type Mix</div>
+      <div class="x-card-sub">Share of net revenue</div>
+      <div style="position:relative;height:300px;">
+        <canvas id="xFundMixChart"></canvas>
+      </div>
+    </div>
+    <div class="x-card">
+      <div class="x-card-title">All Payment Types</div>
+      <div class="x-card-sub">Sorted by net revenue. Gross = before any cancels/refunds.</div>
+      <div class="x-scroll">
+        <table class="x-table">
+          <thead><tr>
+            <th>Type</th><th>Category</th>
+            <th class="num">Net $</th><th class="num">Net #</th>
+            <th class="num">Canceled</th><th class="num">Refunds</th>
+          </tr></thead>
+          <tbody id="xFundTypeBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--green,#4ade80);"></div>
+    <div class="x-section-title">MO Dept Ag Grant 2026 — Transactions</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge" id="xFundGrantBadge">0 transactions</div>
+  </div>
+
+  <div class="x-card" style="margin-bottom:1rem;">
+    <div class="x-card-sub" style="margin-bottom:1rem;">
+      Net Jan / Feb / Mar: <span id="xFundGrantMonthly" style="font-weight:600;color:var(--text);">—</span>
+    </div>
+    <div class="x-scroll">
+      <table class="x-table">
+        <thead><tr>
+          <th>Date</th><th>Client</th><th>Patients</th><th>Invoice</th>
+          <th class="num">Amount</th><th>Status</th><th>Note</th><th>Staff</th>
+        </tr></thead>
+        <tbody id="xFundGrantBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--purple,#a78bfa);"></div>
+    <div class="x-section-title">Mr. Donation Fund — Transactions</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge" id="xFundDonationBadge">0 transactions</div>
+  </div>
+
+  <div class="x-card" style="margin-bottom:1rem;">
+    <div class="x-card-sub" style="margin-bottom:1rem;">
+      Net Jan / Feb / Mar: <span id="xFundDonationMonthly" style="font-weight:600;color:var(--text);">—</span>
+    </div>
+    <div class="x-scroll">
+      <table class="x-table">
+        <thead><tr>
+          <th>Date</th><th>Client</th><th>Patients</th><th>Invoice</th>
+          <th class="num">Amount</th><th>Status</th><th>Note</th><th>Staff</th>
+        </tr></thead>
+        <tbody id="xFundDonationBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="x-section-header">
+    <div class="x-section-dot" style="background:var(--orange,#fb923c);"></div>
+    <div class="x-section-title">Cancel / Re-entry Pairs</div>
+    <div class="x-section-line"></div>
+    <div class="x-section-badge">Adjustments collapsed in net</div>
+  </div>
+
+  <div class="x-card">
+    <div class="x-card-sub" style="margin-bottom:1rem;">
+      Same invoice + same payment type with a Canceled row and one (or more) kept Payment rows.
+      The "Net" KPIs and the totals above already exclude the canceled amounts — these are listed for audit trail.
+    </div>
+    <div id="xFundPairBox"></div>
+  </div>
+
+</main>
+</div>
+<!-- ═══ /EXTRAS TABS (auto) ═══ -->
 
 <footer>
   <div><strong>NAWS — Northland Animal Welfare Society</strong> &nbsp;·&nbsp; Annual Impact Report &nbsp;·&nbsp; January 1 – December 31, 2025</div>
@@ -1459,6 +1868,282 @@ document.getElementById('auth-input').addEventListener('keydown',e=>{if(e.key===
 
 /* ═══ BOOT ═══ */
 initOverview(); inited.overview=true;
+
+/* ═══ EXTRAS JS (auto) ═══ */
+const GEO_DATA = {"summary":{"totalClients":19226,"unparsedAddresses":258,"activeClients":2139,"dormantClients":17088,"duplicateGroups":460,"duplicateRecords":964,"totalLineItems":4944,"totalRevenue":313480.72,"unknownClientItems":1,"unknownClientRevenue":50.0,"noZipItems":30,"noZipRevenue":1570.0,"byYear":{"2025":{"count":3688,"revenue":231369.22},"2026":{"count":1281,"revenue":82111.5}},"distinctZipsServed":181},"zips":[{"zip":"64118","city":"Kansas City","state":"MO","revenue":46377.0,"count":663,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":38,"revenue":6560.0},{"name":"Surgery - Canine - Neuter - NQ","count":37,"revenue":6460.0},{"name":"Surgery - Feline - Spay - NQ","count":52,"revenue":4935.0},{"name":"Surgery - Feral with Ear tip","count":128,"revenue":4480.0},{"name":"Surgery - Feline - Spay","count":74,"revenue":4365.0}]},{"zip":"64119","city":"Kansas City","state":"MO","revenue":18685.0,"count":248,"topServices":[{"name":"Surgery - Feline - Spay","count":45,"revenue":2700.0},{"name":"Surgery - Canine - Neuter - NQ","count":15,"revenue":2625.0},{"name":"Surgery - Feline - Neuter - NQ","count":31,"revenue":2315.0},{"name":"Surgery - Canine - Spay - NQ","count":13,"revenue":2275.0},{"name":"Surgery - Feline - Spay - NQ","count":24,"revenue":2275.0}]},{"zip":"64155","city":"Kansas City","state":"MO","revenue":17785.0,"count":220,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":24,"revenue":4200.0},{"name":"Surgery - Canine - Spay - NQ","count":11,"revenue":1925.0},{"name":"Surgery - Canine - Spay","count":16,"revenue":1920.0},{"name":"Surgery - Feline - Spay","count":31,"revenue":1835.0},{"name":"Surgery - Canine - Neuter","count":15,"revenue":1800.0}]},{"zip":"64151","city":"Kansas City","state":"MO","revenue":17040.0,"count":200,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":19,"revenue":3295.0},{"name":"Surgery - Feline - Spay - NQ","count":28,"revenue":2645.0},{"name":"Surgery - Canine - Neuter - NQ","count":13,"revenue":2245.0},{"name":"Surgery - Feline - Neuter - NQ","count":25,"revenue":1865.0},{"name":"Surgery - Feline - Spay","count":30,"revenue":1800.0}]},{"zip":"64152","city":"Kansas City","state":"MO","revenue":15435.0,"count":180,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":22,"revenue":3835.0},{"name":"Surgery - Canine - Spay - NQ","count":16,"revenue":2755.0},{"name":"Surgery - Feline - Spay - NQ","count":23,"revenue":2185.0},{"name":"Surgery - Feline - Neuter - NQ","count":17,"revenue":1270.0},{"name":"Surgery - Feline - Spay","count":21,"revenue":1260.0}]},{"zip":"64068","city":"Liberty","state":"MO","revenue":13335.0,"count":178,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":17,"revenue":2960.0},{"name":"Surgery - Feline - Spay - NQ","count":29,"revenue":2750.0},{"name":"Surgery - Feline - Spay","count":28,"revenue":1680.0},{"name":"Surgery - Feline - Neuter","count":24,"revenue":1175.0},{"name":"Surgery - Canine - Neuter - NQ","count":6,"revenue":1050.0}]},{"zip":"64085","city":"Richmond","state":"MO","revenue":13045.0,"count":296,"topServices":[{"name":"Surgery - Feral with Ear tip","count":174,"revenue":6080.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":34,"revenue":3230.0},{"name":"Surgery - Feline - Spay - Rescue","count":45,"revenue":1575.0},{"name":"Surgery - Feline - Neuter - Rescue","count":22,"revenue":550.0},{"name":"Surgery - Canine -  Spay (50-75 lbs) - Rescue","count":4,"revenue":460.0}]},{"zip":"64117","city":"Kansas City","state":"MO","revenue":12575.0,"count":148,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":27,"revenue":2555.0},{"name":"Surgery - Canine - Spay","count":15,"revenue":1800.0},{"name":"Surgery - Canine - Neuter","count":14,"revenue":1680.0},{"name":"Surgery - Feline - Spay","count":27,"revenue":1620.0},{"name":"Surgery - Canine - Spay - NQ","count":8,"revenue":1385.0}]},{"zip":"64089","city":"Smithville","state":"MO","revenue":10245.0,"count":153,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":18,"revenue":1705.0},{"name":"Surgery - Feral with Ear tip","count":48,"revenue":1645.0},{"name":"Surgery - Canine - Spay - NQ","count":9,"revenue":1560.0},{"name":"Surgery - Feline - Spay","count":22,"revenue":1295.0},{"name":"Surgery - Feline - Neuter","count":24,"revenue":1175.0}]},{"zip":"64116","city":"Kansas City","state":"MO","revenue":7890.0,"count":111,"topServices":[{"name":"Surgery - Feline - Spay","count":30,"revenue":1815.0},{"name":"Surgery - Canine - Neuter - NQ","count":5,"revenue":875.0},{"name":"Surgery - Canine - Spay - NQ","count":5,"revenue":875.0},{"name":"Surgery - Feline - Spay - NQ","count":9,"revenue":855.0},{"name":"Surgery - Feline - Neuter","count":16,"revenue":800.0}]},{"zip":"66214","city":"Overland Park","state":"KS","revenue":7145.0,"count":191,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":91,"revenue":3185.0},{"name":"Surgery - Feline - Neuter - Rescue","count":73,"revenue":1825.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":10,"revenue":950.0},{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":12,"revenue":900.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0}]},{"zip":"64157","city":"Kansas City","state":"MO","revenue":5755.0,"count":64,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":9,"revenue":1575.0},{"name":"Surgery - Canine - Spay - NQ","count":7,"revenue":1210.0},{"name":"Surgery - Feline - Spay - NQ","count":8,"revenue":655.0},{"name":"Surgery - Canine - Neuter","count":5,"revenue":600.0},{"name":"Surgery - Feline - Neuter","count":12,"revenue":600.0}]},{"zip":"64156","city":"Kansas City","state":"MO","revenue":4760.0,"count":51,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":13,"revenue":1220.0},{"name":"Surgery - Canine - Neuter - NQ","count":6,"revenue":1050.0},{"name":"Surgery - Canine - Spay - NQ","count":5,"revenue":875.0},{"name":"Surgery - Feline - Spay","count":10,"revenue":600.0},{"name":"Surgery - Feline - Neuter","count":7,"revenue":350.0}]},{"zip":"66225","city":"Overland Park","state":"KS","revenue":4256.0,"count":102,"topServices":[{"name":"Surgery - Feral with Ear tip","count":33,"revenue":1155.0},{"name":"Surgery - Feline - Spay - Rescue","count":31,"revenue":1085.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":11,"revenue":1045.0},{"name":"Surgery - Feline - Neuter - Rescue","count":20,"revenue":500.0},{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":6,"revenue":450.0}]},{"zip":"64084","city":"Rayville","state":"MO","revenue":4100.0,"count":120,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":69,"revenue":2415.0},{"name":"Surgery - Feline - Neuter - Rescue","count":33,"revenue":825.0},{"name":"Surgery - Feline - Spay","count":6,"revenue":360.0},{"name":"Surgery - Feline - Neuter","count":6,"revenue":300.0},{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0}]},{"zip":"64024","city":"Excelsior Springs","state":"MO","revenue":4040.0,"count":52,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":8,"revenue":760.0},{"name":"Surgery - Canine - Spay","count":5,"revenue":600.0},{"name":"Surgery - Feline - Spay","count":9,"revenue":540.0},{"name":"Surgery - Feline - Neuter - NQ","count":7,"revenue":525.0},{"name":"Surgery - Feline - Neuter","count":9,"revenue":450.0}]},{"zip":"64060","city":"Kearney","state":"MO","revenue":3960.0,"count":46,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":7,"revenue":1195.0},{"name":"Surgery - Feline - Spay - NQ","count":7,"revenue":660.0},{"name":"Surgery - Canine - Spay","count":4,"revenue":480.0},{"name":"Surgery - Feline - Neuter","count":8,"revenue":400.0},{"name":"Surgery - Feline - Spay","count":6,"revenue":360.0}]},{"zip":"64153","city":"Kansas City","state":"MO","revenue":3795.0,"count":36,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":7,"revenue":1225.0},{"name":"Surgery - Canine - Spay - NQ","count":4,"revenue":670.0},{"name":"Surgery - Feline - Neuter - NQ","count":8,"revenue":600.0},{"name":"Surgery - Feline - Spay","count":5,"revenue":300.0},{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":285.0}]},{"zip":"64079","city":"Platte City","state":"MO","revenue":3730.0,"count":63,"topServices":[{"name":"Surgery - Feral with Ear tip","count":30,"revenue":1050.0},{"name":"Surgery - Feline - Neuter - NQ","count":6,"revenue":450.0},{"name":"Surgery - Feline - Spay","count":7,"revenue":420.0},{"name":"Surgery - Feline - Neuter","count":8,"revenue":400.0},{"name":"Surgery - Canine - Neuter","count":3,"revenue":360.0}]},{"zip":"64154","city":"Kansas City","state":"MO","revenue":3440.0,"count":37,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":5,"revenue":860.0},{"name":"Surgery - Canine - Spay - NQ","count":4,"revenue":700.0},{"name":"Surgery - Feline - Neuter - NQ","count":8,"revenue":600.0},{"name":"Surgery - Feline - Spay - NQ","count":6,"revenue":570.0},{"name":"Surgery - Canine - Neuter","count":2,"revenue":240.0}]},{"zip":"64150","city":"Riverside","state":"MO","revenue":3120.0,"count":51,"topServices":[{"name":"Surgery - Feral with Ear tip","count":23,"revenue":805.0},{"name":"Surgery - Canine - Spay","count":5,"revenue":600.0},{"name":"Surgery - Feline - Neuter","count":8,"revenue":400.0},{"name":"Surgery - Canine - Spay - NQ","count":2,"revenue":350.0},{"name":"Surgery - Feline - Neuter - NQ","count":4,"revenue":295.0}]},{"zip":"64074","city":"Napoleon","state":"MO","revenue":3035.0,"count":91,"topServices":[{"name":"Surgery - Feral with Ear tip","count":63,"revenue":2205.0},{"name":"Surgery - Feline - Neuter - Rescue","count":12,"revenue":300.0},{"name":"Surgery - Feline - Spay - Rescue","count":7,"revenue":245.0},{"name":"Surgery - Feline - Neuter","count":4,"revenue":200.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"62507","city":"St. Joseph","state":"MO","revenue":2885.0,"count":88,"topServices":[{"name":"Surgery - Feral with Ear tip","count":57,"revenue":1995.0},{"name":"Surgery - Feline - Spay - Rescue","count":17,"revenue":595.0},{"name":"Surgery - Feline - Neuter - Rescue","count":8,"revenue":200.0},{"name":"Surgery - Amputation","count":1,"revenue":50.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":45.0}]},{"zip":"66101","city":"Kansas City","state":"KS","revenue":2695.0,"count":70,"topServices":[{"name":"Surgery - Feral with Ear tip","count":26,"revenue":875.0},{"name":"Surgery - Feline - Spay - Rescue","count":16,"revenue":560.0},{"name":"Surgery - Feline - Neuter - Rescue","count":17,"revenue":425.0},{"name":"Surgery - Feline - Neuter","count":5,"revenue":250.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":160.0}]},{"zip":"64477","city":"Plattsburg","state":"MO","revenue":2255.0,"count":26,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":6,"revenue":570.0},{"name":"Surgery - Canine - Neuter - NQ","count":2,"revenue":350.0},{"name":"Surgery - Feline - Neuter - NQ","count":4,"revenue":300.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":3,"revenue":285.0},{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0}]},{"zip":"64052","city":"Independence","state":"MO","revenue":2020.0,"count":32,"topServices":[{"name":"Surgery - Feline - Neuter","count":9,"revenue":450.0},{"name":"Surgery - Feline - Spay","count":7,"revenue":420.0},{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":280.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0}]},{"zip":"66104","city":"Kansas City","state":"KS","revenue":2005.0,"count":37,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":10,"revenue":340.0},{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":285.0},{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0},{"name":"Surgery - Feline - Spay","count":4,"revenue":240.0},{"name":"Surgery - Feral with Ear tip","count":6,"revenue":210.0}]},{"zip":"66282","city":"Overland Park","state":"KS","revenue":1995.0,"count":57,"topServices":[{"name":"Surgery - Feral with Ear tip","count":57,"revenue":1995.0}]},{"zip":"64158","city":"Kansas City","state":"MO","revenue":1970.0,"count":28,"topServices":[{"name":"Surgery - Feline - Spay","count":10,"revenue":600.0},{"name":"Surgery - Feline - Neuter - NQ","count":7,"revenue":500.0},{"name":"Surgery - Canine - Spay - NQ","count":2,"revenue":350.0},{"name":"Surgery - Feline - Neuter","count":5,"revenue":250.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"66002","city":"Atchison","state":"KS","revenue":1960.0,"count":46,"topServices":[{"name":"Surgery - Feral with Ear tip","count":38,"revenue":1330.0},{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":2,"revenue":150.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Canine - Neuter (50-75 lbs) - Rescue","count":1,"revenue":105.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0}]},{"zip":"64133","city":"Raytown","state":"MO","revenue":1955.0,"count":47,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":17,"revenue":560.0},{"name":"Surgery - Feline - Spay","count":4,"revenue":240.0},{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":3,"revenue":225.0},{"name":"Surgery - Feline - Neuter - Rescue","count":10,"revenue":225.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0}]},{"zip":"64050","city":"Independence","state":"MO","revenue":1955.0,"count":28,"topServices":[{"name":"Surgery - Canine - Neuter","count":4,"revenue":480.0},{"name":"Surgery - Feline - Spay","count":7,"revenue":420.0},{"name":"Surgery - Feline - Neuter","count":7,"revenue":350.0},{"name":"Surgery - Feline - Neuter - NQ","count":4,"revenue":300.0},{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0}]},{"zip":"66012","city":"Bonner Springs","state":"KS","revenue":1870.0,"count":39,"topServices":[{"name":"Surgery - Feral with Ear tip","count":14,"revenue":490.0},{"name":"Surgery - Canine -  Spay (50-75 lbs) - Rescue","count":2,"revenue":230.0},{"name":"Surgery - Feline - Neuter - Rescue","count":9,"revenue":225.0},{"name":"Surgery - Feline - Spay - Rescue","count":6,"revenue":210.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":2,"revenue":190.0}]},{"zip":"64048","city":"Holt","state":"MO","revenue":1835.0,"count":29,"topServices":[{"name":"Surgery - Feline - Spay","count":7,"revenue":410.0},{"name":"Surgery - Canine - Neuter - NQ","count":2,"revenue":350.0},{"name":"Surgery - Feral with Ear tip","count":9,"revenue":315.0},{"name":"Surgery - Feline - Neuter","count":6,"revenue":300.0},{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0}]},{"zip":"64093","city":"Warrensburg","state":"MO","revenue":1820.0,"count":52,"topServices":[{"name":"Surgery - Feral with Ear tip","count":52,"revenue":1820.0}]},{"zip":"66109","city":"Kansas City","state":"KS","revenue":1765.0,"count":40,"topServices":[{"name":"Surgery - Feral with Ear tip","count":15,"revenue":525.0},{"name":"Surgery - Feline - Spay - Rescue","count":9,"revenue":315.0},{"name":"Surgery - Feline - Neuter - Rescue","count":9,"revenue":225.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0}]},{"zip":"64064","city":"Lees Summit","state":"MO","revenue":1760.0,"count":46,"topServices":[{"name":"Surgery - Feral with Ear tip","count":42,"revenue":1470.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":2,"revenue":190.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0},{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":25.0}]},{"zip":"64129","city":"Kansas City","state":"MO","revenue":1755.0,"count":46,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":20,"revenue":700.0},{"name":"Surgery - Feline - Neuter - Rescue","count":16,"revenue":400.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feral with Ear tip","count":4,"revenue":140.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0}]},{"zip":"64465","city":"Lathrop","state":"MO","revenue":1625.0,"count":33,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":5,"revenue":475.0},{"name":"Surgery - Feral with Ear tip","count":11,"revenue":385.0},{"name":"Surgery - Canine - Spay","count":3,"revenue":360.0},{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Feline - Neuter","count":3,"revenue":150.0}]},{"zip":"64123","city":"Kansas City","state":"MO","revenue":1590.0,"count":22,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":4,"revenue":380.0},{"name":"Surgery - Feline - Neuter","count":5,"revenue":250.0},{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0},{"name":"Surgery - Feline - Spay","count":4,"revenue":240.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0}]},{"zip":"64058","city":"Independence","state":"MO","revenue":1535.0,"count":15,"topServices":[{"name":"Surgery - Canine - Spay","count":5,"revenue":600.0},{"name":"Surgery - Canine - Neuter","count":2,"revenue":240.0},{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0}]},{"zip":"64114","city":"Kansas City","state":"MO","revenue":1530.0,"count":46,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":19,"revenue":665.0},{"name":"Surgery - Feline - Neuter - Rescue","count":20,"revenue":500.0},{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Feline - Neuter","count":3,"revenue":150.0},{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0}]},{"zip":"64053","city":"Independence","state":"MO","revenue":1405.0,"count":26,"topServices":[{"name":"Surgery - Feline - Spay","count":7,"revenue":420.0},{"name":"Surgery - Feline - Neuter","count":7,"revenue":350.0},{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"64055","city":"Independence","state":"MO","revenue":1345.0,"count":19,"topServices":[{"name":"Surgery - Feline - Spay","count":5,"revenue":300.0},{"name":"Surgery - Canine - Neuter","count":2,"revenue":240.0},{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0},{"name":"Surgery - Feline - Neuter","count":4,"revenue":200.0},{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0}]},{"zip":"64444","city":"Edgerton","state":"MO","revenue":1260.0,"count":20,"topServices":[{"name":"Surgery - Feline - Spay","count":7,"revenue":420.0},{"name":"Surgery - Feline - Neuter","count":4,"revenue":200.0},{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"64163","city":"Kansas City","state":"MO","revenue":1235.0,"count":18,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":5,"revenue":370.0},{"name":"Surgery - Canine - Neuter","count":2,"revenue":240.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":95.0}]},{"zip":"64029","city":"Grain Valley","state":"MO","revenue":1180.0,"count":23,"topServices":[{"name":"Surgery - Feral with Ear tip","count":14,"revenue":490.0},{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"64128","city":"Kansas City","state":"MO","revenue":1130.0,"count":27,"topServices":[{"name":"Surgery - Feline - Spay","count":11,"revenue":660.0},{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0},{"name":"Surgery - Feline - Neuter","count":3,"revenue":100.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Misc Surgery Fee","count":1,"revenue":50.0}]},{"zip":"66106","city":"Kansas City","state":"KS","revenue":1116.22,"count":27,"topServices":[{"name":"Surgery - Feral with Ear tip","count":8,"revenue":280.0},{"name":"Surgery - Feline - Neuter","count":4,"revenue":200.0},{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Canine -  Spay (50-75 lbs) - Rescue","count":1,"revenue":115.0},{"name":"Surgery - Canine - Neuter (50-75 lbs) - Rescue","count":1,"revenue":105.0}]},{"zip":"64492","city":"Trimble","state":"MO","revenue":1115.0,"count":11,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":2,"revenue":350.0},{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0},{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0}]},{"zip":"66102","city":"Kansas City","state":"KS","revenue":1085.0,"count":18,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":2,"revenue":350.0},{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":285.0},{"name":"Surgery - Feral with Ear tip","count":8,"revenue":280.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64062","city":"Lawson","state":"MO","revenue":1085.0,"count":21,"topServices":[{"name":"Surgery - Feline - Spay","count":5,"revenue":300.0},{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":285.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64056","city":"Independence","state":"MO","revenue":1010.0,"count":14,"topServices":[{"name":"Surgery - Feral with Ear tip","count":6,"revenue":210.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"64124","city":"Kansas City","state":"MO","revenue":1005.0,"count":20,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":5,"revenue":375.0},{"name":"Surgery - Feline - Spay","count":4,"revenue":240.0},{"name":"Surgery - Feline - Neuter","count":3,"revenue":150.0},{"name":"Surgery - Feral with Ear tip","count":4,"revenue":140.0},{"name":"Surgery - Feline - Neuter - Rescue","count":4,"revenue":100.0}]},{"zip":"66112","city":"Kansas City","state":"KS","revenue":950.0,"count":21,"topServices":[{"name":"Surgery - Feral with Ear tip","count":10,"revenue":350.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Spay - Rescue","count":4,"revenue":140.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64054","city":"Sugar Creek","state":"MO","revenue":925.0,"count":12,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":2,"revenue":335.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter","count":3,"revenue":150.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"66215","city":"Lenexa","state":"KS","revenue":905.0,"count":21,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":8,"revenue":280.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter - Rescue","count":5,"revenue":125.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":3,"revenue":75.0}]},{"zip":"64106","city":"Kansas City","state":"MO","revenue":885.0,"count":12,"topServices":[{"name":"Surgery - Canine - Neuter","count":2,"revenue":240.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0}]},{"zip":"64014","city":"Blue Springs","state":"MO","revenue":870.0,"count":6,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":2,"revenue":350.0},{"name":"Surgery - Canine - Spay - NQ","count":2,"revenue":350.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"66103","city":"Kansas City","state":"KS","revenue":795.0,"count":20,"topServices":[{"name":"Surgery - Feral with Ear tip","count":15,"revenue":525.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":1,"revenue":75.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0},{"name":"Surgery - Feline Cryptorchid - Rescue","count":1,"revenue":25.0}]},{"zip":"66203","city":"Shawnee","state":"KS","revenue":775.0,"count":11,"topServices":[{"name":"Surgery - Feline - Neuter","count":5,"revenue":250.0},{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"66227","city":"Lenexa","state":"KS","revenue":685.0,"count":9,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":4,"revenue":300.0},{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":285.0},{"name":"Surgery - Feline Cryptorchid - Single","count":2,"revenue":100.0}]},{"zip":"64134","city":"Kansas City","state":"MO","revenue":655.0,"count":7,"topServices":[{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"72704","city":"Fayetteville","state":"AR","revenue":610.0,"count":6,"topServices":[{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":4,"revenue":380.0},{"name":"Surgery - Canine -  Spay (50-75 lbs) - Rescue","count":2,"revenue":230.0}]},{"zip":"64138","city":"Kansas City","state":"MO","revenue":605.0,"count":7,"topServices":[{"name":"Surgery - Canine - Neuter","count":2,"revenue":240.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":160.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0},{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64112","city":"Kansas City","state":"MO","revenue":590.0,"count":6,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64111","city":"Kansas City","state":"MO","revenue":585.0,"count":8,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":285.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0},{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0},{"name":"Surgery - Feline - Spay - Rescue","count":1,"revenue":35.0}]},{"zip":"64671","city":"Polo","state":"MO","revenue":580.0,"count":9,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine Cryptorchid - Double - NQ","count":1,"revenue":130.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Feral with Ear tip","count":4,"revenue":105.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"66064","city":"Osawatomie","state":"KS","revenue":575.0,"count":18,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":10,"revenue":350.0},{"name":"Surgery - Feline - Neuter - Rescue","count":7,"revenue":175.0},{"name":"Surgery - Feline Cryptorchid - Single","count":1,"revenue":50.0}]},{"zip":"66086","city":"Tonganoxie","state":"KS","revenue":560.0,"count":8,"topServices":[{"name":"Surgery - Feline - Spay","count":5,"revenue":300.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0},{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0}]},{"zip":"64126","city":"Kansas City","state":"MO","revenue":555.0,"count":9,"topServices":[{"name":"Surgery - Feline - Spay","count":5,"revenue":300.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0}]},{"zip":"66212","city":"Overland Park","state":"KS","revenue":545.0,"count":12,"topServices":[{"name":"Surgery - Feral with Ear tip","count":7,"revenue":245.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay - Rescue","count":2,"revenue":70.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64125","city":"Kansas City","state":"MO","revenue":540.0,"count":5,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":2,"revenue":335.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"Misc Surgery Fee","count":1,"revenue":25.0}]},{"zip":"64030","city":"Grandview","state":"MO","revenue":520.0,"count":10,"topServices":[{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Feline - Neuter","count":3,"revenue":150.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Spay - Rescue","count":2,"revenue":70.0},{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":25.0}]},{"zip":"64012","city":"Belton","state":"MO","revenue":515.0,"count":5,"topServices":[{"name":"Misc Surgery Fee","count":1,"revenue":150.0},{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"64075","city":"Oak Grove","state":"MO","revenue":490.0,"count":6,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0},{"name":"SNCKC Surgery - Feline - Neuter","count":1,"revenue":0.0}]},{"zip":"64130","city":"Kansas City","state":"MO","revenue":490.0,"count":12,"topServices":[{"name":"Surgery - Feline - Neuter","count":3,"revenue":150.0},{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0},{"name":"SNCKC Surgery - Canine - Spay","count":1,"revenue":0.0}]},{"zip":"64131","city":"Kansas City","state":"MO","revenue":485.0,"count":5,"topServices":[{"name":"Surgery - Canine - Spay","count":2,"revenue":240.0},{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0}]},{"zip":"64098","city":"Weston","state":"MO","revenue":485.0,"count":6,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":3,"revenue":285.0},{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64127","city":"Kansas City","state":"MO","revenue":470.0,"count":6,"topServices":[{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64081","city":"Lees Summit","state":"MO","revenue":465.0,"count":4,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64078","city":"Peculiar","state":"MO","revenue":465.0,"count":7,"topServices":[{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":4,"revenue":300.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":1,"revenue":95.0},{"name":"Surgery - Canine Cryptorchid - Rescue","count":1,"revenue":35.0},{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0}]},{"zip":"64439","city":"Dearborn","state":"MO","revenue":460.0,"count":6,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0}]},{"zip":"64161","city":"Kansas City","state":"MO","revenue":445.0,"count":6,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"Surgery - Feline - Spay - Rescue","count":1,"revenue":35.0}]},{"zip":"64110","city":"Kansas City","state":"MO","revenue":441.5,"count":5,"topServices":[{"name":"Misc Surgery Fee","count":1,"revenue":276.5},{"name":"Surgery - Feline - Spay - Rescue","count":3,"revenue":105.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"10008","city":"","state":"","revenue":420.0,"count":4,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"66085","city":"Stillwell","state":"KS","revenue":415.0,"count":9,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0},{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":25.0},{"name":"Surgery - Feline - Spay - Rescue","count":1,"revenue":25.0}]},{"zip":"66111","city":"Kansas City","state":"KS","revenue":400.0,"count":7,"topServices":[{"name":"Surgery - Canine - Neuter","count":2,"revenue":240.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"SNCKC Surgery - Feline - Spay","count":2,"revenue":0.0}]},{"zip":"64063","city":"Lees Summit","state":"MO","revenue":400.0,"count":5,"topServices":[{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64429","city":"Cameron","state":"MO","revenue":385.0,"count":6,"topServices":[{"name":"Surgery - Feline - Spay","count":4,"revenue":240.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"66204","city":"Overland Park","state":"KS","revenue":375.0,"count":5,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":1,"revenue":0.0}]},{"zip":"64082","city":"Lees Summit","state":"MO","revenue":365.0,"count":3,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0}]},{"zip":"65742","city":"Rogersville","state":"MO","revenue":360.0,"count":4,"topServices":[{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":3,"revenue":285.0},{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":1,"revenue":75.0}]},{"zip":"66061","city":"Olathe","state":"KS","revenue":350.0,"count":5,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"66216","city":"Shawnee","state":"KS","revenue":350.0,"count":2,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0}]},{"zip":"64105","city":"Kansas City","state":"MO","revenue":340.0,"count":5,"topServices":[{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64443","city":"Easton","state":"MO","revenue":330.0,"count":10,"topServices":[{"name":"Surgery - Feral with Ear tip","count":10,"revenue":330.0}]},{"zip":"64086","city":"Lees Summit","state":"MO","revenue":325.0,"count":4,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64454","city":"Gower","state":"MO","revenue":315.0,"count":6,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0},{"name":"Surgery - Feline - Spay - Rescue","count":2,"revenue":70.0},{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":0.0}]},{"zip":"66030","city":"Gardner","state":"MO","revenue":310.0,"count":4,"topServices":[{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":70.0}]},{"zip":"64015","city":"Blue Springs","state":"MO","revenue":310.0,"count":3,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0},{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"64493","city":"Turney","state":"MO","revenue":305.0,"count":9,"topServices":[{"name":"Surgery - Feral with Ear tip","count":8,"revenue":245.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64016","city":"Buckner","state":"MO","revenue":305.0,"count":4,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64077","city":"Orrick","state":"MO","revenue":300.0,"count":7,"topServices":[{"name":"Surgery - Feline - Spay","count":5,"revenue":300.0},{"name":"SNCKC Surgery - Feline - Spay","count":2,"revenue":0.0}]},{"zip":"64057","city":"Independence","state":"MO","revenue":290.0,"count":5,"topServices":[{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0},{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0},{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":25.0}]},{"zip":"64490","city":"Stewartsville","state":"MO","revenue":275.0,"count":3,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine Cryptorchid - Single - NQ","count":1,"revenue":75.0},{"name":"Misc Surgery Fee","count":1,"revenue":25.0}]},{"zip":"64421","city":"Amazonia","state":"MO","revenue":270.0,"count":2,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"54157","city":"Kansas City","state":"MO","revenue":270.0,"count":2,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"64076","city":"Odessa","state":"MO","revenue":260.0,"count":5,"topServices":[{"name":"Surgery - Feline - Neuter","count":4,"revenue":200.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"67204","city":"Springdale","state":"","revenue":250.0,"count":2,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0},{"name":"Surgery - Canine Cryptorchid - Single - NQ","count":1,"revenue":75.0}]},{"zip":"63005","city":"Wildwood","state":"MO","revenue":245.0,"count":3,"topServices":[{"name":"Surgery - Canine - Neuter (1-49 lbs) - Rescue","count":2,"revenue":150.0},{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":1,"revenue":95.0}]},{"zip":"66619","city":"Topeka","state":"KS","revenue":240.0,"count":4,"topServices":[{"name":"Surgery - Feline - Spay","count":4,"revenue":240.0}]},{"zip":"64132","city":"Kansas City","state":"MO","revenue":225.0,"count":2,"topServices":[{"name":"Surgery - Canine - Spay - NQ","count":1,"revenue":175.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64088","city":"Sibley","state":"MO","revenue":220.0,"count":4,"topServices":[{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0}]},{"zip":"66062","city":"Olathe","state":"KS","revenue":210.0,"count":3,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64165","city":"Kansas City","state":"MO","revenue":210.0,"count":3,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64070","city":"Lone Jack","state":"MO","revenue":210.0,"count":6,"topServices":[{"name":"Surgery - Feral with Ear tip","count":6,"revenue":210.0}]},{"zip":"64021","city":"Belton","state":"MO","revenue":210.0,"count":6,"topServices":[{"name":"Surgery - Feral with Ear tip","count":6,"revenue":210.0}]},{"zip":"64018","city":"Camden Point","state":"MO","revenue":195.0,"count":3,"topServices":[{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0},{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":25.0}]},{"zip":"64139","city":"Kansas City","state":"MO","revenue":190.0,"count":2,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":2,"revenue":190.0}]},{"zip":"64702","city":"Drexel","state":"MO","revenue":180.0,"count":2,"topServices":[{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64071","city":"Platte City","state":"MO","revenue":180.0,"count":3,"topServices":[{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0}]},{"zip":"64120","city":"Kansas City","state":"MO","revenue":180.0,"count":3,"topServices":[{"name":"Surgery - Feline - Spay","count":3,"revenue":180.0}]},{"zip":"66047","city":"Lawrence","state":"KS","revenue":175.0,"count":1,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0}]},{"zip":"64067","city":"Lexington","state":"MO","revenue":175.0,"count":1,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0}]},{"zip":"66083","city":"Spring Hill","state":"KS","revenue":175.0,"count":6,"topServices":[{"name":"Surgery - Feline - Neuter - Rescue","count":5,"revenue":100.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"66201","city":"Kansas City","state":"KS","revenue":175.0,"count":5,"topServices":[{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0}]},{"zip":"64164","city":"Kansas City","state":"MO","revenue":175.0,"count":5,"topServices":[{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0}]},{"zip":"64649","city":"Kidder","state":"MO","revenue":175.0,"count":5,"topServices":[{"name":"Surgery - Feral with Ear tip","count":3,"revenue":105.0},{"name":"Surgery - Feline - Spay - Rescue","count":2,"revenue":70.0}]},{"zip":"64668","city":"Norborne","state":"MO","revenue":175.0,"count":5,"topServices":[{"name":"Surgery - Feral with Ear tip","count":5,"revenue":175.0}]},{"zip":"10916","city":"","state":"","revenue":175.0,"count":1,"topServices":[{"name":"Surgery - Canine - Neuter - NQ","count":1,"revenue":175.0}]},{"zip":"64512","city":"Parkville","state":"MO","revenue":170.0,"count":2,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64109","city":"Kansas City","state":"MO","revenue":170.0,"count":2,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0},{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64624","city":"Braymer","state":"MO","revenue":170.0,"count":3,"topServices":[{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0},{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"66213","city":"Overland Park","state":"KS","revenue":160.0,"count":5,"topServices":[{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0},{"name":"SNCKC Surgery - Feline - Neuter","count":2,"revenue":0.0}]},{"zip":"64102","city":"Kansas City","state":"MO","revenue":160.0,"count":3,"topServices":[{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0},{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64080","city":"Pleasant Hill","state":"MO","revenue":160.0,"count":6,"topServices":[{"name":"Surgery - Feline - Neuter - Rescue","count":5,"revenue":125.0},{"name":"Surgery - Feline - Spay - Rescue","count":1,"revenue":35.0}]},{"zip":"66219","city":"Lenexa","state":"KS","revenue":150.0,"count":2,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":2,"revenue":150.0}]},{"zip":"64507","city":"Saint Joseph","state":"MO","revenue":145.0,"count":2,"topServices":[{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0},{"name":"Misc Surgery Fee","count":1,"revenue":25.0}]},{"zip":"64027","city":"Excelsior Springs","state":"MO","revenue":120.0,"count":1,"topServices":[{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0}]},{"zip":"65102","city":"Jefferson City","state":"MO","revenue":120.0,"count":1,"topServices":[{"name":"Surgery - Canine - Neuter","count":1,"revenue":120.0}]},{"zip":"66418","city":"Kansas City","state":"MO","revenue":120.0,"count":1,"topServices":[{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"66025","city":"Eudora","state":"MO","revenue":120.0,"count":1,"topServices":[{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"64448","city":"Faucett","state":"MO","revenue":120.0,"count":2,"topServices":[{"name":"Surgery - Feline - Spay","count":2,"revenue":120.0}]},{"zip":"66113","city":"Edwardsville","state":"KS","revenue":120.0,"count":1,"topServices":[{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"66206","city":"Leawood","state":"KS","revenue":120.0,"count":1,"topServices":[{"name":"Surgery - Canine - Spay","count":1,"revenue":120.0}]},{"zip":"64025","city":"Excelsior Springs","state":"MO","revenue":120.0,"count":4,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":2,"revenue":70.0},{"name":"Surgery - Feline - Neuter - Rescue","count":2,"revenue":50.0}]},{"zip":"64177","city":"Plattsburg","state":"MO","revenue":105.0,"count":3,"topServices":[{"name":"Surgery - Feral with Ear tip","count":3,"revenue":105.0}]},{"zip":"66202","city":"Mission","state":"KS","revenue":100.0,"count":2,"topServices":[{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0}]},{"zip":"23975","city":"","state":"","revenue":100.0,"count":2,"topServices":[{"name":"Surgery - Feline - Neuter","count":2,"revenue":100.0}]},{"zip":"64141","city":"Kansas City","state":"MO","revenue":95.0,"count":1,"topServices":[{"name":"Surgery - Canine - Spay (1-49 lbs) - Rescue","count":1,"revenue":95.0}]},{"zip":"64637","city":"Cowgill","state":"MO","revenue":95.0,"count":3,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":2,"revenue":70.0},{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":25.0}]},{"zip":"66007","city":"Basehor","state":"KS","revenue":95.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"66748","city":"Leavenworth","state":"KS","revenue":95.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"64188","city":"Kansas City","state":"MO","revenue":95.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"64073","city":"Platte County","state":"MO","revenue":95.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay - NQ","count":1,"revenue":95.0}]},{"zip":"66211","city":"Overlandpark","state":"KS","revenue":75.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64097","city":"Wellington","state":"MO","revenue":75.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter - NQ","count":1,"revenue":75.0}]},{"zip":"64673","city":"Princeton","state":"MO","revenue":70.0,"count":2,"topServices":[{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0}]},{"zip":"64650","city":"Kingston","state":"MO","revenue":70.0,"count":2,"topServices":[{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0}]},{"zip":"65143","city":"Kansas City","state":"MO","revenue":70.0,"count":2,"topServices":[{"name":"Surgery - Feral with Ear tip","count":2,"revenue":70.0}]},{"zip":"64092","city":"Waldron","state":"MO","revenue":60.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"60000","city":"Kansas City","state":"MO","revenue":60.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"62051","city":"Columbia","state":"MO","revenue":60.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64101","city":"Kansas City","state":"MO","revenue":60.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"64640","city":"Gallatin","state":"MO","revenue":60.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay","count":1,"revenue":60.0}]},{"zip":"66018","city":"Desoto","state":"KS","revenue":50.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64661","city":"Mercer","state":"MO","revenue":50.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"64701","city":"Harrisonville","state":"MO","revenue":50.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"66607","city":"Topeka","state":"KS","revenue":50.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"66016","city":"Kansas City","state":"MO","revenue":50.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter","count":1,"revenue":50.0}]},{"zip":"66223","city":"Overland Park","state":"MO","revenue":40.0,"count":2,"topServices":[{"name":"Misc Surgery Fee","count":2,"revenue":40.0}]},{"zip":"64137","city":"Kansas City","state":"MO","revenue":35.0,"count":3,"topServices":[{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0},{"name":"SNCKC Surgery - Feline - Neuter","count":2,"revenue":0.0}]},{"zip":"54057","city":"Independence","state":"MO","revenue":35.0,"count":1,"topServices":[{"name":"Surgery - Feline - Spay - Rescue","count":1,"revenue":35.0}]},{"zip":"64167","city":"Kansas City","state":"MO","revenue":35.0,"count":1,"topServices":[{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0}]},{"zip":"66224","city":"Overland Park","state":"KS","revenue":35.0,"count":1,"topServices":[{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0}]},{"zip":"64034","city":"Greenwood","state":"MO","revenue":35.0,"count":1,"topServices":[{"name":"Surgery - Feral with Ear tip","count":1,"revenue":35.0}]},{"zip":"64108","city":"Kansas City","state":"MO","revenue":25.0,"count":1,"topServices":[{"name":"Surgery - Feline - Neuter - Rescue","count":1,"revenue":25.0}]},{"zip":"64083","city":"Raymore","state":"MO","revenue":0.0,"count":3,"topServices":[{"name":"SNCKC Surgery - Feline - Neuter","count":3,"revenue":0.0}]},{"zip":"64485","city":"Savannah","state":"MO","revenue":0.0,"count":3,"topServices":[{"name":"SNCKC Surgery - Feline - Spay","count":3,"revenue":0.0}]},{"zip":"65037","city":"Versailles","state":"MO","revenue":0.0,"count":1,"topServices":[{"name":"SNCKC Surgery - Canine - Spay","count":1,"revenue":0.0}]}],"cities":[{"city":"Kansas City","state":"MO","revenue":137646.5,"count":1808},{"city":"Gladstone","state":"MO","revenue":23762.0,"count":337},{"city":"Richmond","state":"MO","revenue":13045.0,"count":296},{"city":"Overland Park","state":"KS","revenue":12516.0,"count":350},{"city":"Liberty","state":"MO","revenue":11935.0,"count":157},{"city":"Kansas City","state":"KS","revenue":10316.22,"count":233},{"city":"Smithville","state":"MO","revenue":9805.0,"count":148},{"city":"Independence","state":"MO","revenue":9270.0,"count":131},{"city":"Parkville","state":"MO","revenue":7000.0,"count":102},{"city":"Rayville","state":"MO","revenue":4100.0,"count":120},{"city":"Excelsior Springs","state":"MO","revenue":3905.0,"count":53},{"city":"Kearney","state":"MO","revenue":3505.0,"count":41},{"city":"Platte City","state":"MO","revenue":3315.0,"count":60},{"city":"Napoleon","state":"MO","revenue":3035.0,"count":91},{"city":"Shawnee","state":"KS","revenue":2975.0,"count":36},{"city":"St. Joseph","state":"MO","revenue":2885.0,"count":88},{"city":"Plattsburg","state":"MO","revenue":2360.0,"count":29},{"city":"Raytown","state":"MO","revenue":2300.0,"count":48},{"city":"Holt","state":"MO","revenue":2155.0,"count":35},{"city":"Riverside","state":"MO","revenue":2060.0,"count":26},{"city":"Warrensburg","state":"MO","revenue":1820.0,"count":52},{"city":"Bonner Springs","state":"KS","revenue":1750.0,"count":38},{"city":"Lee'S Summit","state":"MO","revenue":1685.0,"count":45},{"city":"Lathrop","state":"MO","revenue":1625.0,"count":33},{"city":"Lenexa","state":"KS","revenue":1545.0,"count":28},{"city":"Lees Summit","state":"MO","revenue":1410.0,"count":15},{"city":"Pleasant Valley","state":"MO","revenue":1325.0,"count":16},{"city":"Atchinson","state":"KS","revenue":1295.0,"count":37},{"city":"Edgerton","state":"MO","revenue":1260.0,"count":20},{"city":"Blue Springs","state":"MO","revenue":1255.0,"count":10},{"city":"Grain Valley","state":"MO","revenue":1180.0,"count":23},{"city":"Nkc","state":"MO","revenue":1160.0,"count":15},{"city":"Lawson","state":"MO","revenue":1085.0,"count":21},{"city":"Trimble","state":"MO","revenue":995.0,"count":10},{"city":"Belton","state":"MO","revenue":695.0,"count":10},{"city":"Atchison","state":"KS","revenue":665.0,"count":9},{"city":"Dearborn","state":"MO","revenue":630.0,"count":8},{"city":"Fayetteville","state":"AR","revenue":610.0,"count":6},{"city":"Polo","state":"MO","revenue":580.0,"count":9},{"city":"Osawatomie","state":"KS","revenue":575.0,"count":18},{"city":"Lake Waukomis","state":"MO","revenue":535.0,"count":5},{"city":"Weatherby Lake","state":"MO","revenue":510.0,"count":4},{"city":"Olathe","state":"KS","revenue":500.0,"count":7},{"city":"Oak Grove","state":"MO","revenue":490.0,"count":6},{"city":"Weston","state":"MO","revenue":485.0,"count":6},{"city":"Peculiar","state":"MO","revenue":465.0,"count":7},{"city":"Karney","state":"MO","revenue":455.0,"count":3},{"city":"Sugar Creek","state":"MO","revenue":435.0,"count":6},{"city":"Grandview","state":"MO","revenue":425.0,"count":9},{"city":"Kansas  City","state":"MO","revenue":420.0,"count":4},{"city":"Stillwell","state":"KS","revenue":415.0,"count":9},{"city":"Tonganoxie","state":"MO","revenue":385.0,"count":7},{"city":"Cameron","state":"MO","revenue":385.0,"count":6},{"city":"Rogersville","state":"MO","revenue":360.0,"count":4},{"city":"Bucyrus","state":"KS","revenue":355.0,"count":10},{"city":"Smithvile","state":"MO","revenue":340.0,"count":4},{"city":"Ferrelview","state":"MO","revenue":330.0,"count":8},{"city":"Easton","state":"MO","revenue":330.0,"count":10},{"city":"Gower","state":"MO","revenue":315.0,"count":5},{"city":"Gardner","state":"KS","revenue":310.0,"count":4},{"city":"Turney","state":"MO","revenue":305.0,"count":9},{"city":"Claycomo","state":"MO","revenue":305.0,"count":7},{"city":"Buckner","state":"MO","revenue":305.0,"count":4},{"city":"Orrick","state":"MO","revenue":300.0,"count":7},{"city":"Houston Lake","state":"MO","revenue":295.0,"count":5},{"city":"Topeka","state":"KS","revenue":290.0,"count":5},{"city":"Stewartsville","state":"MO","revenue":275.0,"count":3},{"city":"Amazonia","state":"MO","revenue":270.0,"count":2},{"city":"Springdale","state":"","revenue":250.0,"count":2},{"city":"N. Kansas City","state":"MO","revenue":250.0,"count":4},{"city":"Wildwood","state":"MO","revenue":245.0,"count":3},{"city":"Edwardsville","state":"KS","revenue":240.0,"count":2},{"city":"Independance","state":"MO","revenue":240.0,"count":2},{"city":"Platte Valley","state":"MO","revenue":240.0,"count":2},{"city":"North Kansas City","state":"MO","revenue":225.0,"count":6},{"city":"Excelsior Springs","state":"","revenue":225.0,"count":2},{"city":"Sibley","state":"MO","revenue":220.0,"count":4},{"city":"Lone Jack","state":"MO","revenue":210.0,"count":6},{"city":"Lexexa","state":"KS","revenue":195.0,"count":4},{"city":"Drexel","state":"MO","revenue":180.0,"count":2},{"city":"Mayview","state":"MO","revenue":180.0,"count":3},{"city":"Tonganoxie","state":"KS","revenue":175.0,"count":1},{"city":"Surgar Creek","state":"MO","revenue":175.0,"count":1},{"city":"Kanss City","state":"MO","revenue":175.0,"count":1},{"city":"Lawrence","state":"KS","revenue":175.0,"count":1},{"city":"Lexington","state":"MO","revenue":175.0,"count":1},{"city":"13370 Prairie Creek Rd","state":"","revenue":175.0,"count":1},{"city":"Oakview","state":"MO","revenue":175.0,"count":1},{"city":"Kidder","state":"MO","revenue":175.0,"count":5},{"city":"Norbern","state":"MO","revenue":175.0,"count":5},{"city":"4706 Ballentine","state":"","revenue":175.0,"count":1},{"city":"Braymer","state":"MO","revenue":170.0,"count":3},{"city":"Pleasant Hill","state":"MO","revenue":160.0,"count":6},{"city":"Odessa","state":"MO","revenue":160.0,"count":3},{"city":"Leawood","state":"KS","revenue":155.0,"count":2},{"city":"700 Nw 80Th St","state":"","revenue":150.0,"count":2},{"city":"Fairway","state":"MO","revenue":150.0,"count":2},{"city":"Smithviller","state":"MO","revenue":150.0,"count":2},{"city":"St Joseph","state":"MO","revenue":145.0,"count":4},{"city":"Camden Point","state":"MO","revenue":145.0,"count":2},{"city":"Avondale","state":"MO","revenue":140.0,"count":4},{"city":"Bonner Springs","state":"MO","revenue":120.0,"count":1},{"city":"Jefferson City","state":"MO","revenue":120.0,"count":1},{"city":"Tracy","state":"MO","revenue":120.0,"count":1},{"city":"Roeland Park","state":"MO","revenue":120.0,"count":1},{"city":"Fawcett","state":"MO","revenue":120.0,"count":2},{"city":"Kansas","state":"MO","revenue":120.0,"count":2},{"city":"Lees Summit Dr","state":"MO","revenue":120.0,"count":1},{"city":"Mission","state":"KS","revenue":100.0,"count":2},{"city":"Spring Hill","state":"KS","revenue":100.0,"count":5},{"city":"Cowgill","state":"MO","revenue":95.0,"count":3},{"city":"Basehor","state":"KS","revenue":95.0,"count":1},{"city":"Leavenworth","state":"KS","revenue":95.0,"count":1},{"city":"Excel Springs","state":"MO","revenue":75.0,"count":1},{"city":"Springville","state":"KS","revenue":75.0,"count":1},{"city":"Wellington","state":"MO","revenue":75.0,"count":1},{"city":"Escelsior Springs","state":"MO","revenue":75.0,"count":1},{"city":"Kansas Cuity","state":"MO","revenue":75.0,"count":1},{"city":"Princeton","state":"MO","revenue":70.0,"count":2},{"city":"Kingston","state":"MO","revenue":70.0,"count":2},{"city":"Waldron","state":"MO","revenue":60.0,"count":1},{"city":"Sugar Creek`","state":"MO","revenue":60.0,"count":1},{"city":"Indepence","state":"MO","revenue":60.0,"count":1},{"city":"Olatha","state":"KS","revenue":60.0,"count":1},{"city":"Columbia","state":"MO","revenue":60.0,"count":1},{"city":"Gallatin","state":"MO","revenue":60.0,"count":1},{"city":"Desoto","state":"KS","revenue":50.0,"count":1},{"city":"Mercer","state":"MO","revenue":50.0,"count":1},{"city":"Harrrisonville","state":"MO","revenue":50.0,"count":1},{"city":"Merriam","state":"KS","revenue":50.0,"count":1},{"city":"Houson Lake","state":"MO","revenue":50.0,"count":1},{"city":"Northmoor","state":"MO","revenue":50.0,"count":1},{"city":"Camden  Point","state":"MO","revenue":50.0,"count":1},{"city":"Birmingham","state":"MO","revenue":35.0,"count":1},{"city":"Kansas City","state":"","revenue":35.0,"count":1},{"city":"7111 Sobbie Rd","state":"","revenue":35.0,"count":1},{"city":"North Kansa City","state":"MO","revenue":35.0,"count":1},{"city":"Greenwood","state":"MO","revenue":35.0,"count":1},{"city":"Raymore","state":"MO","revenue":0.0,"count":3},{"city":"Savannah","state":"MO","revenue":0.0,"count":3},{"city":"Dower","state":"MO","revenue":0.0,"count":1},{"city":"Gravois Mills","state":"MO","revenue":0.0,"count":1}],"states":[{"state":"MO","revenue":273798.5,"count":4101},{"state":"KS","revenue":35072.22,"count":807},{"state":"AR","revenue":610.0,"count":6}],"duplicates":[{"nameKey":"renee smith","records":[{"clientId":"H3BH6LT","name":"Renee Smith","zip":"64118","city":"Blue Springs","state":"MO","active":false},{"clientId":"KZYUQBI","name":"Renee Smith","zip":"64114","city":"Kansas City","state":"MO","active":false},{"clientId":"II2Y7UW","name":"Renee Smith","zip":"64163","city":"Ferrelview","state":"MO","active":false},{"clientId":"GJUXKD9","name":"Renee Smith","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"XVWFJOT","name":"Renee Smith","zip":"64118","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"david smith","records":[{"clientId":"YKELOY1","name":"David Smith","zip":"64086","city":"Smithville","state":"MO","active":false},{"clientId":"LMPUVAK","name":"David Smith","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"PW8E2OK","name":"David Smith","zip":"64118","city":"Kansas  City","state":"MO","active":false},{"clientId":"RZNU0O9","name":"David Smith","zip":"66109","city":"Kansas City","state":"KS","active":false}]},{"nameKey":"emily jackson","records":[{"clientId":"LHD2FXT","name":"Emily Jackson","zip":"64057","city":"Independence","state":"MO","active":false},{"clientId":"Z7YYPS2","name":"Emily Jackson","zip":"64060","city":"Kearney","state":"MO","active":false},{"clientId":"CFNSX6Z","name":"Emily Jackson","zip":"64079","city":"Platte City","state":"MO","active":false},{"clientId":"GEISP0J","name":"Emily Jackson","zip":"64119","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"heather thompson","records":[{"clientId":"AHVD5P4","name":"Heather Thompson","zip":"64151","city":"Kansas City","state":"MO","active":false},{"clientId":"EOI4DYN","name":"Heather Thompson","zip":"64465","city":"Lathrop","state":"MO","active":false},{"clientId":"YD4LJ0Z","name":"Heather Thompson","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"47ERUZA","name":"Heather Thompson","zip":"64465","city":"Lathrop","state":"MO","active":false}]},{"nameKey":"jennifer taylor","records":[{"clientId":"D8DLQTH","name":"Jennifer Taylor","zip":"64119","city":"Kansas City","state":"MO","active":true},{"clientId":"NFLNG9C","name":"Jennifer Taylor","zip":"64117","city":"Kansas City","state":"MO","active":false},{"clientId":"9LIJMR8","name":"Jennifer Taylor","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"3UL649J","name":"Jennifer Taylor","zip":"64150","city":"Riverside","state":"MO","active":false}]},{"nameKey":"kitty cat connection","records":[{"clientId":"LB4KLB2","name":"Kitty Cat Connection","zip":"64190","city":"Kansas City","state":"MO","active":false},{"clientId":"0UVODKS","name":"Kitty Cat Connection","zip":"64155","city":"Kansas City","state":"MO","active":false},{"clientId":"PVQBTBM","name":"Kitty Cat Connection","zip":"64155","city":"Kansas City","state":"MO","active":false},{"clientId":"AC05XJC","name":"Kitty Cat Connection","zip":"64155","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"ain animals in need","records":[{"clientId":"I02X5K4","name":"AIN Animals In Need","zip":"64151","city":"Riverside","state":"MO","active":false},{"clientId":"KVP9PBT","name":"AIN Animals In Need","zip":"64150","city":"Riverside","state":"MO","active":false},{"clientId":"MPYG0TU","name":"AIN Animals In Need","zip":"64151","city":"Riverside","state":"MO","active":false}]},{"nameKey":"amanda moore","records":[{"clientId":"LCLB4PV","name":"Amanda Moore","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"WKADQD2","name":"Amanda Moore","zip":"64156","city":"Kansas City","state":"MO","active":false},{"clientId":"QEHL5KB","name":"Amanda Moore","zip":"64118","city":"Gladstone","state":"MO","active":false}]},{"nameKey":"ashley williams","records":[{"clientId":"7BRN4KT","name":"Ashley Williams","zip":"64154","city":"Kansas City","state":"MO","active":false},{"clientId":"75V0LMG","name":"Ashley Williams","zip":"64117","city":"Kansas City","state":"MO","active":false},{"clientId":"P6TFQEL","name":"Ashley Williams","zip":"64062","city":"Lawson","state":"MO","active":false}]},{"nameKey":"brenda lee","records":[{"clientId":"RVPKM7L","name":"Brenda Lee","zip":"64089","city":"Smithville","state":"MO","active":false},{"clientId":"8K0C6C5","name":"Brenda Lee","zip":"64089","city":"Smithville","state":"MO","active":false},{"clientId":"4XHEJAK","name":"Brenda Lee","zip":"64089","city":"Smithville","state":"MO","active":false}]},{"nameKey":"carol davis","records":[{"clientId":"Q72UD80","name":"Carol Davis","zip":"66210","city":"Overland Park","state":"KS","active":false},{"clientId":"K85XR1C","name":"Carol Davis","zip":"66210","city":"Overland Park","state":"KS","active":false},{"clientId":"GDUWQQR","name":"Carol Davis","zip":"64151","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"danielle smith","records":[{"clientId":"CX7ZUOT","name":"Danielle Smith","zip":"64079","city":"Platte City","state":"MO","active":false},{"clientId":"FGL9CAE","name":"Danielle Smith","zip":"64179","city":"Platte City","state":"MO","active":false},{"clientId":"ZFPCSU2","name":"Danielle Smith","zip":"64118","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"deborah mizell","records":[{"clientId":"XCW4TM0","name":"Deborah Mizell","zip":"64116","city":"Kansas City","state":"MO","active":false},{"clientId":"88OUPYC","name":"Deborah Mizell","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"6XYSP21","name":"Deborah Mizell","zip":"64116","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"donna sorisso","records":[{"clientId":"FNVBKR0","name":"Donna Sorisso","zip":"64106","city":"Kansas City","state":"MO","active":false},{"clientId":"XOHNOTY","name":"Donna Sorisso","zip":"64106","city":"Kansas City","state":"MO","active":false},{"clientId":"240BWYL","name":"Donna Sorisso","zip":"64106","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"erica smith","records":[{"clientId":"AUIK5AD","name":"Erica Smith","zip":"66101","city":"Kansas City","state":"KS","active":true},{"clientId":"3VT9ZSC","name":"Erica Smith","zip":"64151","city":"Kansas City","state":"MO","active":false},{"clientId":"6BMTB3E","name":"Erica Smith","zip":"64157","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"erica williams","records":[{"clientId":"OPTFHGO","name":"Erica Williams","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"IZKTW86","name":"Erica Williams","zip":"64116","city":"North Kansas City","state":"MO","active":false},{"clientId":"27CBC70","name":"Erica Williams","zip":"64117","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"haley melte","records":[{"clientId":"G4FE53V","name":"Haley Melte","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"P2ZN6FO","name":"Haley Melte","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"JMZS7Z3","name":"Haley Melte","zip":"64118","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"janet taylor","records":[{"clientId":"VLL1EWR","name":"Janet Taylor","zip":"64116","city":"Kansas City","state":"MO","active":false},{"clientId":"N2CBSWR","name":"Janet Taylor","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"R08DO9W","name":"Janet Taylor","zip":"64117","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"kelly sullivan","records":[{"clientId":"66SI0AL","name":"Kelly Sullivan","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"CUHJ211","name":"Kelly Sullivan","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"9F6COUX","name":"Kelly Sullivan","zip":"64118","city":"Gladstone","state":"MO","active":false}]},{"nameKey":"larry taylor","records":[{"clientId":"F9M0WEG","name":"Larry Taylor","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"U1O0FAT","name":"Larry Taylor","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"3T0NGOW","name":"Larry Taylor","zip":"64118","city":"Gladstone","state":"MO","active":false}]},{"nameKey":"linda roberts","records":[{"clientId":"0GGSDJS","name":"Linda Roberts","zip":"64117","city":"Kansas City","state":"MO","active":false},{"clientId":"GEL50ON","name":"Linda Roberts","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"J7KF3GP","name":"Linda Roberts","zip":"64117","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"maria hernandez","records":[{"clientId":"L14MKEC","name":"Maria Hernandez","zip":"64068","city":"Liberty","state":"MO","active":true},{"clientId":"RXHQI36","name":"Maria Hernandez","zip":"66202","city":"Olathe","state":"KS","active":false},{"clientId":"EYAQ193","name":"Maria Hernandez","zip":"64118","city":"Gladstone","state":"MO","active":false}]},{"nameKey":"melissa fine","records":[{"clientId":"X3ER4D4","name":"Melissa Fine","zip":"65102","city":"Parkville","state":"MO","active":false},{"clientId":"JHS0Z4W","name":"Melissa Fine","zip":"65102","city":"Jefferson City","state":"MO","active":false},{"clientId":"79DJYWP","name":"Melissa Fine","zip":"64150","city":"Riverside","state":"MO","active":false}]},{"nameKey":"michelle williams","records":[{"clientId":"AVO1VJC","name":"Michelle Williams","zip":"64117","city":"Kansas City","state":"MO","active":false},{"clientId":"1WD4E8B","name":"Michelle Williams","zip":"64068","city":"Liberty","state":"MO","active":false},{"clientId":"0L7L5H8","name":"Michelle Williams","zip":"64064","city":"Lees Summit","state":"MO","active":false}]},{"nameKey":"michelle wilson","records":[{"clientId":"EOP1XPA","name":"Michelle Wilson","zip":"64154","city":"Kansas City","state":"MO","active":true},{"clientId":"8C7F5S6","name":"Michelle Wilson","zip":"64060","city":"Kearney","state":"MO","active":false},{"clientId":"P9SVR6K","name":"Michelle Wilson","zip":"64118","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"mike lopez","records":[{"clientId":"YLET97H","name":"Mike Lopez","zip":"64158","city":"Kansas City","state":"MO","active":false},{"clientId":"LTJBK8O","name":"Mike Lopez","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"NA4PVYS","name":"Mike Lopez","zip":"64158","city":"Kansas City","state":"MO","active":false}]},{"nameKey":"mike williams","records":[{"clientId":"NN3282S","name":"Mike Williams","zip":"64068","city":"Liberty","state":"MO","active":false},{"clientId":"W8HT581","name":"Mike Williams","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"4FE19V7","name":"Mike Williams","zip":"64118","city":"Gladstone","state":"MO","active":false}]},{"nameKey":"paula ruth","records":[{"clientId":"Z9GCNW1","name":"Paula Ruth","zip":"64118","city":"Gladstone","state":"MO","active":false},{"clientId":"H10QCLV","name":"Paula Ruth","zip":"64118","city":"Kansas City","state":"MO","active":false},{"clientId":"ZK1KUBY","name":"Paula Ruth","zip":"64150","city":"Riverside","state":"MO","active":false}]},{"nameKey":"phyllis turner","records":[{"clientId":"OK6UH7D","name":"Phyllis Turner","zip":"64465","city":"Lathrop","state":"MO","active":false},{"clientId":"Q314LIN","name":"Phyllis Turner","zip":"64133","city":"Raytown","state":"MO","active":false},{"clientId":"PT8XV6O","name":"Phyllis Turner","zip":"64133","city":"Raytown","state":"MO","active":false}]},{"nameKey":"rebecca smith","records":[{"clientId":"V1KUUX3","name":"Rebecca Smith","zip":"64120","city":"Kansas City","state":"MO","active":false},{"clientId":"U5V75LE","name":"Rebecca Smith","zip":"64632","city":"Cainville","state":"MO","active":false},{"clientId":"ZGS0SB8","name":"Rebecca Smith","zip":"64118","city":"Gladstone","state":"MO","active":false}]}]};
+const FUND_DATA = {"period":"Q1 2026 (Jan 1 \u2013 Mar 31)","summary":{"totalRows":1344,"totalNet":139474.99,"grantNet":840.0,"donationNet":1547.0,"subsidizedNet":2387.0,"subsidizedPct":1.71,"creditCard":{"gross_count":868,"gross_amount":93865.5,"net_count":853,"net_amount":92480.5,"canceled_count":6,"canceled_amount":1385.0,"refund_count":9,"refund_amount":0.0}},"paymentTypes":[{"name":"Visa","grossCount":617,"grossAmount":62946.0,"netCount":606,"netAmount":62026.0,"canceledCount":4,"canceledAmount":920.0,"refundCount":7,"refundAmount":0.0,"category":"Credit Card"},{"name":"Cash","grossCount":352,"grossAmount":30108.5,"netCount":348,"netAmount":29743.5,"canceledCount":3,"canceledAmount":365.0,"refundCount":1,"refundAmount":0.0,"category":"Cash"},{"name":"MasterCard","grossCount":223,"grossAmount":27259.0,"netCount":219,"netAmount":26794.0,"canceledCount":2,"canceledAmount":465.0,"refundCount":2,"refundAmount":0.0,"category":"Credit Card"},{"name":"Check","grossCount":33,"grossAmount":5720.99,"netCount":33,"netAmount":5720.99,"canceledCount":0,"canceledAmount":0.0,"refundCount":0,"refundAmount":0.0,"category":"Check"},{"name":"Other","grossCount":22,"grossAmount":5358.0,"netCount":6,"netAmount":5358.0,"canceledCount":2,"canceledAmount":0.0,"refundCount":14,"refundAmount":0.0,"category":"Other"},{"name":"Credit Balance","grossCount":39,"grossAmount":4007.0,"netCount":38,"netAmount":3785.0,"canceledCount":1,"canceledAmount":222.0,"refundCount":0,"refundAmount":0.0,"category":"Other"},{"name":"Discover","grossCount":19,"grossAmount":2158.0,"netCount":19,"netAmount":2158.0,"canceledCount":0,"canceledAmount":0.0,"refundCount":0,"refundAmount":0.0,"category":"Credit Card"},{"name":"Mr. Donation","grossCount":16,"grossAmount":1805.0,"netCount":15,"netAmount":1547.0,"canceledCount":1,"canceledAmount":258.0,"refundCount":0,"refundAmount":0.0,"category":"Donation"},{"name":"American Express","grossCount":9,"grossAmount":1502.5,"netCount":9,"netAmount":1502.5,"canceledCount":0,"canceledAmount":0.0,"refundCount":0,"refundAmount":0.0,"category":"Credit Card"},{"name":"MO.DEPT AG GRANT 2026","grossCount":14,"grossAmount":1015.0,"netCount":12,"netAmount":840.0,"canceledCount":2,"canceledAmount":175.0,"refundCount":0,"refundAmount":0.0,"category":"Grant"}],"monthly":{"Mr. Donation":[888.0,323.0,336.0],"MO.DEPT AG GRANT 2026":[140.0,280.0,420.0]},"cancelPairs":[{"paymentType":"Visa","invoiceId":"16282","client":"Atchison Alley Cat Alliance","canceled":[{"date":"2/21/26","amount":150.0}],"kept":[{"date":"2/21/26","amount":150.0}]},{"paymentType":"MasterCard","invoiceId":"16482","client":"Jill Volpi","canceled":[{"date":"3/5/26","amount":340.0}],"kept":[{"date":"3/5/26","amount":180.0},{"date":"3/5/26","amount":160.0}]},{"paymentType":"Mr. Donation","invoiceId":"16609","client":"Rose Runyan","canceled":[{"date":"3/12/26","amount":258.0}],"kept":[{"date":"3/12/26","amount":36.0}]},{"paymentType":"Visa","invoiceId":"16747","client":"Susan Mansfield","canceled":[{"date":"3/22/26","amount":106.0}],"kept":[{"date":"3/22/26","amount":106.0}]},{"paymentType":"Cash","invoiceId":"16808","client":"Susan Weisz","canceled":[{"date":"3/26/26","amount":140.0}],"kept":[{"date":"3/26/26","amount":70.0}]},{"paymentType":"MO.DEPT AG GRANT 2026","invoiceId":"16846","client":"Debbie Caudill","canceled":[{"date":"3/28/26","amount":105.0}],"kept":[{"date":"3/31/26","amount":70.0}]}],"mrDonation":[{"date":"1/10/26","clientId":"N99PJF8","client":"Gail Leathers","patients":"Bill, Dollar","invoice":"15670","amount":37.0,"type":"Payment","note":"","user":"Debra Stark"},{"date":"1/10/26","clientId":"J988WNC","client":"Debbie Kincaid","patients":"Sox","invoice":"15675","amount":7.0,"type":"Payment","note":"","user":"Debra Stark"},{"date":"1/13/26","clientId":"RG8WYGB","client":"Christopher Macan","patients":"Dolce","invoice":"15697","amount":129.0,"type":"Payment","note":"","user":"Debra Stark"},{"date":"1/21/26","clientId":"SOWT0LW","client":"Melana Beaty","patients":"Bubba","invoice":"15805","amount":37.0,"type":"Payment","note":"","user":"Debra Stark"},{"date":"1/22/26","clientId":"E0RJFAK","client":"Rebecca Gonzalez","patients":"Callie, Dasher, Marley, Toto","invoice":"15842","amount":438.0,"type":"Payment","note":"","user":"Goldie Arnold"},{"date":"1/26/26","clientId":"CBBLIMV","client":"Sara Sawyer","patients":"-","invoice":"-","amount":240.0,"type":"Payment","note":"","user":"Crystal Henderson"},{"date":"2/5/26","clientId":"O85U589","client":"Dawn Burnell","patients":"Cash, Mojo","invoice":"16019","amount":98.0,"type":"Payment","note":"","user":"Goldie Arnold"},{"date":"2/12/26","clientId":"L8TX0MR","client":"Jerry McCleery","patients":"-","invoice":"-","amount":98.0,"type":"Payment","note":"","user":"Goldie Arnold"},{"date":"2/13/26","clientId":"EOPFIA4","client":"Cari Walker","patients":"Enid, Mitts","invoice":"16158","amount":59.0,"type":"Payment","note":"Paid for female 2.13.26 Cari Walker. Abusive situation and in a shelter. Enid was the pg female,","user":"Goldie Arnold"},{"date":"2/17/26","clientId":"E4P0OYK","client":"Randall Arnold","patients":"Max, Sammy","invoice":"16204","amount":48.0,"type":"Payment","note":"Neuter for Sammy & Max","user":"Debra Stark"},{"date":"2/23/26","clientId":"9SSFX6T","client":"Angel Sanchez","patients":"-","invoice":"16305","amount":20.0,"type":"Payment","note":"","user":"Crystal Henderson"},{"date":"3/3/26","clientId":"ZVW1GAO","client":"Michael Fay","patients":"Shadow","invoice":"16433","amount":171.0,"type":"Payment","note":"Michael Fay - Dog Shadow 3/3/26","user":"Debra Stark"},{"date":"3/12/26","clientId":"EMYMBBW","client":"Rose Runyan","patients":"Momma Cat, Precious, Saturn","invoice":"16609","amount":258.0,"type":"Canceled","note":"","user":"Goldie Arnold"},{"date":"3/12/26","clientId":"EMYMBBW","client":"Rose Runyan","patients":"Momma Cat, Precious, Saturn","invoice":"16609","amount":36.0,"type":"Payment","note":"","user":"Goldie Arnold"},{"date":"3/16/26","clientId":"EE8Q8R7","client":"Bailey Sontag","patients":"Petunia, Porky","invoice":"16637","amount":21.0,"type":"Payment","note":"","user":"Maria Wulff"},{"date":"3/30/26","clientId":"L8TX0MR","client":"Jerry McCleery","patients":"Mama, Snoopy","invoice":"16859","amount":108.0,"type":"Payment","note":"","user":"Maria Wulff"}],"moGrant2026":[{"date":"1/21/26","clientId":"XUEQI5B","client":"Becky Webster","patients":"Feral 1, Feral 2, Feral 3, Feral 4","invoice":"15807","amount":140.0,"type":"Payment","note":"","user":"Goldie Arnold"},{"date":"2/2/26","clientId":"RZETCIK","client":"Crystal Leaman","patients":"Feral 1-26","invoice":"15971","amount":35.0,"type":"Payment","note":"","user":"Crystal Henderson"},{"date":"2/20/26","clientId":"BV35RAO","client":"Mardell Barber","patients":"Feral 13-26, Feral 14-26, Feral 15-26, Feral 16-26","invoice":"16267","amount":140.0,"type":"Payment","note":"","user":"Crystal Henderson"},{"date":"2/25/26","clientId":"22XR2KL","client":"Corrie Cox","patients":"Feral Cox 1-26, Feral Cox 2-26","invoice":"16332","amount":70.0,"type":"Payment","note":"","user":"Crystal Henderson"},{"date":"2/28/26","clientId":"5IR0AMP","client":"Amanda Payton","patients":"Feral Payton 2-26","invoice":"16410","amount":35.0,"type":"Payment","note":"Feral Payton 2-26","user":"Debra Stark"},{"date":"3/2/26","clientId":"05I655J","client":"Melissa Smith","patients":"Feral Smith 1-26","invoice":"16426","amount":35.0,"type":"Payment","note":"","user":"Crystal Henderson"},{"date":"3/5/26","clientId":"05I655J","client":"Melissa Smith","patients":"Feral Smith 2-26, Feral Smith 3-26, Feral Smith 4-26","invoice":"16487","amount":105.0,"type":"Payment","note":"","user":"Goldie Arnold"},{"date":"3/10/26","clientId":"05I655J","client":"Melissa Smith","patients":"Feral Smith 5-26, Feral Smith 6-26","invoice":"16574","amount":35.0,"type":"Payment","note":"","user":"Debra Stark"},{"date":"3/19/26","clientId":"JKF0QUX","client":"Debbie Caudill","patients":"Feral Caudill 3-26, Feral Caudill 4-26","invoice":"16702","amount":70.0,"type":"Payment","note":"","user":"Goldie Arnold"},{"date":"3/26/26","clientId":"QHVNKM4","client":"Susan Weisz","patients":"-","invoice":"-","amount":70.0,"type":"Canceled","note":"Susan Weisz -2 ferals 3.26.26","user":"Goldie Arnold"},{"date":"3/26/26","clientId":"GX6YX1Z","client":"Janet Hatch","patients":"Feral Hatch 1_26","invoice":"16810","amount":35.0,"type":"Payment","note":"Janet Hatch 1 feral 3/26/26","user":"Goldie Arnold"},{"date":"3/26/26","clientId":"QHVNKM4","client":"Susan Weisz","patients":"F Weisz 1_26, F Weisz 2-26, F Weisz 3-26, F Weisz 4-26","invoice":"16808","amount":70.0,"type":"Payment","note":"Weisz 2 ferals  3/26/26","user":"Goldie Arnold"},{"date":"3/28/26","clientId":"JKF0QUX","client":"Debbie Caudill","patients":"Feral Caudill 5-26, Feral Caudill 6-26","invoice":"16846","amount":105.0,"type":"Canceled","note":"","user":"Crystal Henderson"},{"date":"3/31/26","clientId":"JKF0QUX","client":"Debbie Caudill","patients":"Feral Caudill 5-26, Feral Caudill 6-26","invoice":"16846","amount":70.0,"type":"Payment","note":"For 2 ferals from 3/28/26","user":"Debra Stark"}]};
+
+function xMoney(n) { return '$' + Math.round(n).toLocaleString(); }
+function xMoneyShort(n) {
+  if (n >= 1000) return '$' + (n/1000).toFixed(1).replace(/\.0$/,'') + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+
+/* ─── GEOGRAPHY ─── */
+function initGeography() {
+  const s = GEO_DATA.summary;
+  document.getElementById('xGeoTotalClients').textContent = s.totalClients.toLocaleString();
+  document.getElementById('xGeoActiveClients').textContent = s.activeClients.toLocaleString();
+  document.getElementById('xGeoDormantClients').textContent = s.dormantClients.toLocaleString();
+  document.getElementById('xGeoZipsServed').textContent = s.distinctZipsServed.toLocaleString();
+  document.getElementById('xGeoDupGroups').textContent = s.duplicateGroups.toLocaleString();
+  document.getElementById('xGeoLinkedRev').textContent = xMoney(s.totalRevenue - s.unknownClientRevenue - s.noZipRevenue);
+
+  const activePct = (s.activeClients / s.totalClients * 100).toFixed(1);
+  document.getElementById('xGeoActiveDormant').textContent = `${activePct}% active`;
+  document.getElementById('xGeoDupRecords').textContent = `${s.duplicateRecords.toLocaleString()} client records`;
+  document.getElementById('xGeoMatchRate').textContent = `${s.unparsedAddresses} unparsed addresses`;
+  document.getElementById('xGeoLinkedSub').textContent = `${s.totalLineItems.toLocaleString()} line items joined`;
+
+  const stateBody = document.getElementById('xGeoStateBody');
+  const maxStateRev = Math.max(...GEO_DATA.states.map(r => r.revenue));
+  stateBody.innerHTML = GEO_DATA.states.map(r => `
+    <tr>
+      <td><strong>${r.state}</strong></td>
+      <td class="num">${r.count.toLocaleString()}</td>
+      <td class="num">
+        <span class="x-bar-wrap"><span class="x-bar" style="width:${(r.revenue/maxStateRev*100).toFixed(1)}%"></span></span>
+        ${xMoney(r.revenue)}
+      </td>
+    </tr>
+  `).join('');
+
+  xRenderZipTable(GEO_DATA.zips);
+
+  const cityBody = document.getElementById('xGeoCityBody');
+  cityBody.innerHTML = GEO_DATA.cities.slice(0, 60).map(r => `
+    <tr>
+      <td><strong>${r.city}</strong></td>
+      <td class="muted">${r.state || '?'}</td>
+      <td class="num">${r.count.toLocaleString()}</td>
+      <td class="num">${xMoney(r.revenue)}</td>
+    </tr>
+  `).join('');
+
+  const top = GEO_DATA.zips.slice(0, 20);
+  new Chart(document.getElementById('xGeoZipChart'), {
+    type: 'bar',
+    data: {
+      labels: top.map(r => r.zip + ' · ' + r.city),
+      datasets: [{
+        label: 'Revenue',
+        data: top.map(r => r.revenue),
+        backgroundColor: 'rgba(26,188,156,0.7)',
+        borderColor: 'rgba(26,188,156,1)',
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const r = top[ctx.dataIndex];
+              return [`Revenue: ${xMoney(r.revenue)}`, `Procedures: ${r.count.toLocaleString()}`];
+            }
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#8b949e', callback: v => xMoneyShort(v) }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#8b949e' }, grid: { display: false } }
+      }
+    }
+  });
+
+  const dupBox = document.getElementById('xGeoDupBox');
+  dupBox.innerHTML = GEO_DATA.duplicates.map(g => {
+    const rows = g.records.map(r =>
+      `<div class="x-dup-row"><span class="cid">${r.clientId}</span> · ${r.name} · ${r.zip || '----'} ${r.city || ''} ${r.state || ''} ${r.active ? '<span class="active-flag">● ACTIVE</span>' : ''}</div>`
+    ).join('');
+    return `<div class="x-dup-card">
+      <div class="x-dup-name">${g.records[0].name} <span style="font-weight:400;color:var(--muted);font-size:0.72rem;">(${g.records.length} records)</span></div>
+      ${rows}
+    </div>`;
+  }).join('');
+  document.getElementById('xGeoDupBadge').textContent = `Showing ${GEO_DATA.duplicates.length} of ${s.duplicateGroups}`;
+
+  document.getElementById('xGeoZipSearch').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) { xRenderZipTable(GEO_DATA.zips); return; }
+    const filt = GEO_DATA.zips.filter(r =>
+      r.zip.includes(q) || (r.city || '').toLowerCase().includes(q)
+    );
+    xRenderZipTable(filt);
+  });
+}
+
+function xRenderZipTable(rows) {
+  const body = document.getElementById('xGeoZipBody');
+  body.innerHTML = rows.map(r => `
+    <tr onclick="xSelectZip('${r.zip}', this)">
+      <td class="zip-cell">${r.zip}</td>
+      <td>${r.city || '<span class="muted">?</span>'}</td>
+      <td class="muted">${r.state || '?'}</td>
+      <td class="num">${r.count.toLocaleString()}</td>
+      <td class="num">${xMoney(r.revenue)}</td>
+    </tr>
+  `).join('');
+}
+
+function xSelectZip(zip, el) {
+  document.querySelectorAll('#xGeoZipBody tr').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  const z = GEO_DATA.zips.find(r => r.zip === zip);
+  if (!z) return;
+  document.getElementById('xGeoDetailTitle').textContent = `${z.zip} · ${z.city || ''}, ${z.state || ''}`;
+  document.getElementById('xGeoDetailSub').textContent = `${z.count.toLocaleString()} procedures · ${xMoney(z.revenue)} revenue · top 5 services`;
+  const box = document.getElementById('xGeoDetailBox');
+  box.classList.remove('x-detail-empty');
+  if (!z.topServices.length) {
+    box.innerHTML = '<div class="x-detail-empty">No services found.</div>';
+    return;
+  }
+  box.innerHTML = '<ul class="x-svc-list">' + z.topServices.map(s =>
+    `<li>
+      <span class="x-svc-name">${s.name}</span>
+      <span class="x-svc-count">${s.count}×</span>
+      <span class="x-svc-rev">${xMoney(s.revenue)}</span>
+    </li>`
+  ).join('') + '</ul>';
+}
+
+/* ─── FUNDING ─── */
+function initFunding() {
+  const s = FUND_DATA.summary;
+  document.getElementById('xFundPeriod').textContent = FUND_DATA.period;
+  document.getElementById('xFundTotalNet').textContent = xMoney(s.totalNet);
+  document.getElementById('xFundRowCount').textContent = s.totalRows.toLocaleString() + ' transactions';
+  document.getElementById('xFundGrantNet').textContent = xMoney(s.grantNet);
+  document.getElementById('xFundDonationNet').textContent = xMoney(s.donationNet);
+  document.getElementById('xFundSubsidPct').textContent = s.subsidizedPct.toFixed(2) + '%';
+  document.getElementById('xFundCCNet').textContent = xMoney(s.creditCard.net_amount);
+  document.getElementById('xFundCCSub').textContent = `${s.creditCard.net_count.toLocaleString()} transactions`;
+  document.getElementById('xFundPairs').textContent = FUND_DATA.cancelPairs.length;
+
+  const body = document.getElementById('xFundTypeBody');
+  const maxNet = Math.max(...FUND_DATA.paymentTypes.map(t => t.netAmount));
+  body.innerHTML = FUND_DATA.paymentTypes.map(t => {
+    const cat = (t.category || 'other').toLowerCase().replace(' ', '');
+    const pillClass = ({grant:'grant', donation:'donation', creditcard:'cc', cash:'cash', check:'check'})[cat] || 'other';
+    return `<tr>
+      <td><strong>${t.name}</strong></td>
+      <td><span class="x-pill ${pillClass}">${t.category}</span></td>
+      <td class="num">
+        <span class="x-bar-wrap"><span class="x-bar" style="width:${Math.max(2, (t.netAmount/maxNet*100)).toFixed(1)}%"></span></span>
+        ${xMoney(t.netAmount)}
+      </td>
+      <td class="num">${t.netCount.toLocaleString()}</td>
+      <td class="num muted">${t.canceledCount ? xMoney(t.canceledAmount) + ' (' + t.canceledCount + ')' : '—'}</td>
+      <td class="num muted">${t.refundCount ? xMoney(t.refundAmount) + ' (' + t.refundCount + ')' : '—'}</td>
+    </tr>`;
+  }).join('');
+
+  const COLORS = [
+    'rgba(76,154,255,0.8)','rgba(251,191,36,0.8)','rgba(167,139,250,0.8)','rgba(34,211,238,0.8)',
+    'rgba(74,222,128,0.8)','rgba(248,113,113,0.8)','rgba(251,146,60,0.8)','rgba(244,114,182,0.8)',
+    'rgba(139,148,158,0.7)','rgba(26,188,156,0.8)',
+  ];
+  const mixData = FUND_DATA.paymentTypes.filter(t => t.netAmount > 0);
+  new Chart(document.getElementById('xFundMixChart'), {
+    type: 'doughnut',
+    data: {
+      labels: mixData.map(t => t.name),
+      datasets: [{
+        data: mixData.map(t => t.netAmount),
+        backgroundColor: COLORS,
+        borderColor: '#0d1117',
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      cutout: '60%',
+      plugins: {
+        legend: { position: 'right', labels: { font: { size: 10 }, color: '#8b949e', boxWidth: 10 } },
+        tooltip: {
+          callbacks: { label: ctx => `${ctx.label}: ${xMoney(ctx.parsed)}` }
+        }
+      }
+    }
+  });
+
+  xRenderFundDetail('xFundGrantBody', FUND_DATA.moGrant2026);
+  xRenderFundDetail('xFundDonationBody', FUND_DATA.mrDonation);
+  document.getElementById('xFundGrantBadge').textContent = `${FUND_DATA.moGrant2026.length} transactions`;
+  document.getElementById('xFundDonationBadge').textContent = `${FUND_DATA.mrDonation.length} transactions`;
+
+  const fmtMonthly = (arr) => arr.map((v, i) => `${['Jan','Feb','Mar'][i]} ${xMoney(v)}`).join(' · ');
+  document.getElementById('xFundGrantMonthly').textContent = fmtMonthly(FUND_DATA.monthly['MO.DEPT AG GRANT 2026']);
+  document.getElementById('xFundDonationMonthly').textContent = fmtMonthly(FUND_DATA.monthly['Mr. Donation']);
+
+  const pairBox = document.getElementById('xFundPairBox');
+  if (!FUND_DATA.cancelPairs.length) {
+    pairBox.innerHTML = '<div class="muted" style="text-align:center;padding:20px;">No cancel/re-entry pairs detected.</div>';
+  } else {
+    pairBox.innerHTML = FUND_DATA.cancelPairs.map(p => {
+      const cancels = p.canceled.map(c => `${c.date} ${xMoney(c.amount)}`).join(', ');
+      const kept = p.kept.map(c => `${c.date} ${xMoney(c.amount)}`).join(', ');
+      return `<div class="x-pair">
+        <div class="x-pair-header">${p.client} — Invoice ${p.invoiceId} <span class="muted" style="font-weight:400;">· ${p.paymentType}</span></div>
+        <div class="x-pair-detail">
+          <span class="x-pill canceled">Canceled</span> ${cancels} &nbsp;→&nbsp;
+          <span class="x-pill payment">Kept</span> ${kept}
+        </div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function xRenderFundDetail(elId, rows) {
+  const body = document.getElementById(elId);
+  if (!rows.length) {
+    body.innerHTML = '<tr><td colspan="8" class="muted" style="text-align:center;">No transactions.</td></tr>';
+    return;
+  }
+  body.innerHTML = rows.map(r => {
+    const isCanceled = r.type === 'Canceled';
+    const pillCls = isCanceled ? 'canceled' : r.type === 'Refund' ? 'refund' : 'payment';
+    return `<tr class="${isCanceled ? 'canceled-row' : ''}">
+      <td class="mono">${r.date}</td>
+      <td>${r.client}</td>
+      <td class="muted">${r.patients && r.patients !== '-' ? r.patients : '—'}</td>
+      <td class="mono muted">${r.invoice && r.invoice !== '-' ? r.invoice : '—'}</td>
+      <td class="num"><strong>${xMoney(r.amount)}</strong></td>
+      <td><span class="x-pill ${pillCls}">${r.type}</span></td>
+      <td class="note">${r.note || ''}</td>
+      <td class="muted">${r.user || ''}</td>
+    </tr>`;
+  }).join('');
+}
+
+/* Both tabs lazy-init via switchTab; mark uninitialized so the dispatcher fires our init.
+   The existing dispatcher only knows the original tabs, so we run our init the first
+   time the tab is clicked by listening for the click ourselves. */
+(function wireExtras() {
+  const tabs = { geography: initGeography, funding: initFunding };
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    const m = (btn.getAttribute('onclick') || '').match(/switchTab\('([^']+)'/);
+    if (!m) return;
+    const name = m[1];
+    if (tabs[name]) {
+      btn.addEventListener('click', () => {
+        if (!window['__x_init_' + name]) {
+          window['__x_init_' + name] = true;
+          // The original switchTab dispatcher will throw because it doesn't know
+          // these tabs — but since it's wrapped in setTimeout, we can suppress
+          // by marking inited first.
+          try { inited[name] = true; } catch (e) {}
+          setTimeout(() => tabs[name](), 60);
+        }
+      });
+    }
+  });
+})();
+/* ═══ /EXTRAS JS (auto) ═══ */
 </script>
 </body>
 </html>
