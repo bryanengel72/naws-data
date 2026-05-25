@@ -2034,7 +2034,6 @@ function initGeography() {
       <td><strong>${r.state}</strong></td>
       <td class="num">${r.count.toLocaleString()}</td>
       <td class="num">
-        <span class="x-bar-wrap"><span class="x-bar" style="width:${(r.revenue/maxStateRev*100).toFixed(1)}%"></span></span>
         ${xMoney(r.revenue)}
       </td>
     </tr>
@@ -2165,7 +2164,6 @@ function initFunding() {
       <td><strong>${t.name}</strong></td>
       <td><span class="x-pill ${pillClass}">${t.category}</span></td>
       <td class="num">
-        <span class="x-bar-wrap"><span class="x-bar" style="width:${Math.max(2, (t.netAmount/maxNet*100)).toFixed(1)}%"></span></span>
         ${xMoney(t.netAmount)}
       </td>
       <td class="num">${t.netCount.toLocaleString()}</td>
