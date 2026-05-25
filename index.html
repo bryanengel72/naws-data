@@ -979,7 +979,7 @@ footer strong{color:var(--muted2)}
   </div>
 
   <!-- Key Findings -->
-  <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--purple)"></div><div class="sec-title">Key Findings</div><div class="sec-line"></div><div class="sec-badge">10 Signals Detected</div></div>
+  <div class="sec-hdr"><div class="sec-dot" style="--sd:var(--purple)"></div><div class="sec-title">Key Findings</div><div class="sec-line"></div><div class="sec-badge">11 Signals Detected</div></div>
   <div class="insight-grid">
 
     <div class="ic ic-crit">
@@ -1022,6 +1022,13 @@ footer strong{color:var(--muted2)}
       <div class="ic-title">Revenue Efficiency Preserved</div>
       <div class="ic-metric" style="color:var(--green)">$63.48 / surgery</div>
       <div class="ic-body">Revenue per procedure <strong>rose 0.6%</strong> ($63.07 → $63.48), confirming zero margin erosion. The revenue shortfall is <strong>100% volume-driven</strong> — not a pricing or operational efficiency problem. This gives NAWS full pricing flexibility to pursue optimizations.</div>
+    </div>
+
+    <div class="ic ic-warn">
+      <div class="ic-head"><div class="ic-icon">⚠️</div><span class="ic-type warn-badge">Data Quality</span></div>
+      <div class="ic-title">24 Refunds Recorded at $0 — Needs Review</div>
+      <div class="ic-metric" style="color:var(--amber)">24 transactions · $0 captured</div>
+      <div class="ic-body">The Q1 2026 Funding data shows <strong>24 refund transactions across all payment types totaling $0</strong> — Visa (7), Other (14), MasterCard (2), Cash (1). Either the refund dollar amounts were not entered in Shepherd, or these are void/adjustment entries that aren't actual money returned. If any represent real refunds, revenue may be overstated. <strong>Recommend pulling these transaction IDs in Shepherd and confirming whether funds were returned to clients.</strong></div>
     </div>
 
     <div class="ic ic-str">
