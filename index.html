@@ -1537,22 +1537,25 @@ footer strong{color:var(--muted2)}
     </div>
   </div>
 
-  <div class="x-section-header">
+  <div class="x-section-header" style="cursor:pointer;user-select:none;" onclick="toggleFundPairSection()" id="xFundPairHeader">
     <div class="x-section-dot" style="background:var(--orange,#fb923c);"></div>
     <div class="x-section-title">Cancel / Re-entry Pairs</div>
     <div class="x-section-line"></div>
     <div class="x-section-badge">Adjustments collapsed in net</div>
+    <span id="xFundPairChevron" style="margin-left:.75rem;font-size:.75rem;color:var(--muted);transition:transform .2s;display:inline-block;transform:rotate(-90deg);">▼</span>
   </div>
 
-  <div class="x-card">
-    <div class="x-card-sub" style="margin-bottom:1rem;">
-      These are <strong style="color:var(--muted2)">payment corrections</strong> — cases where a payment was entered in Shepherd, then canceled and re-entered (to fix an amount, split it, or correct a payment type). Nothing was lost; the money is accounted for correctly.
-      <div style="margin-top:.75rem;padding:.65rem .85rem;background:rgba(255,255,255,.04);border-left:3px solid var(--teal);border-radius:6px;font-size:.74rem;line-height:1.7;color:var(--muted2);">
-        <strong style="color:var(--teal)">Example:</strong> A $340 MasterCard payment was entered for one invoice, then canceled — and re-entered as two separate charges of $180 + $160. The canceled $340 is ignored in all totals; only the two kept payments count.
+  <div id="xFundPairSection" style="display:none;">
+    <div class="x-card">
+      <div class="x-card-sub" style="margin-bottom:1rem;">
+        These are <strong style="color:var(--muted2)">payment corrections</strong> — cases where a payment was entered in Shepherd, then canceled and re-entered (to fix an amount, split it, or correct a payment type). Nothing was lost; the money is accounted for correctly.
+        <div style="margin-top:.75rem;padding:.65rem .85rem;background:rgba(255,255,255,.04);border-left:3px solid var(--teal);border-radius:6px;font-size:.74rem;line-height:1.7;color:var(--muted2);">
+          <strong style="color:var(--teal)">Example:</strong> A $340 MasterCard payment was entered for one invoice, then canceled — and re-entered as two separate charges of $180 + $160. The canceled $340 is ignored in all totals; only the two kept payments count.
+        </div>
+        <div style="margin-top:.5rem;font-size:.72rem;color:var(--muted)">The revenue KPIs and totals on this dashboard already exclude all canceled rows — this list is here as an audit trail only.</div>
       </div>
-      <div style="margin-top:.5rem;font-size:.72rem;color:var(--muted)">The revenue KPIs and totals on this dashboard already exclude all canceled rows — this list is here as an audit trail only.</div>
+      <div id="xFundPairBox"></div>
     </div>
-    <div id="xFundPairBox"></div>
   </div>
 
 </main>
@@ -2069,6 +2072,14 @@ function xMoneyShort(n) {
 function toggleGeoDupSection() {
   const section = document.getElementById('xDupSection');
   const chevron = document.getElementById('xDupChevron');
+  const isHidden = section.style.display === 'none';
+  section.style.display = isHidden ? 'block' : 'none';
+  chevron.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(-90deg)';
+}
+
+function toggleFundPairSection() {
+  const section = document.getElementById('xFundPairSection');
+  const chevron = document.getElementById('xFundPairChevron');
   const isHidden = section.style.display === 'none';
   section.style.display = isHidden ? 'block' : 'none';
   chevron.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(-90deg)';
