@@ -61,7 +61,7 @@
     },
     {
       "zip": "64119",
-      "city": "Kansas City",
+      "city": "Gladstone",
       "state": "MO",
       "revenue": 18685.0,
       "count": 248,
@@ -4439,14 +4439,14 @@
     {
       "city": "Kansas City",
       "state": "MO",
-      "revenue": 137646.5,
-      "count": 1808
+      "revenue": 122341.5,
+      "count": 1603
     },
     {
       "city": "Gladstone",
       "state": "MO",
-      "revenue": 23762.0,
-      "count": 337
+      "revenue": 39442.0,
+      "count": 551
     },
     {
       "city": "Richmond",
@@ -4731,12 +4731,6 @@
       "count": 9
     },
     {
-      "city": "Kansas  City",
-      "state": "MO",
-      "revenue": 420.0,
-      "count": 4
-    },
-    {
       "city": "Stillwell",
       "state": "KS",
       "revenue": 415.0,
@@ -4765,6 +4759,12 @@
       "state": "KS",
       "revenue": 355.0,
       "count": 10
+    },
+    {
+      "city": "Kansas  City",
+      "state": "MO",
+      "revenue": 350.0,
+      "count": 2
     },
     {
       "city": "Smithvile",
@@ -4801,12 +4801,6 @@
       "state": "MO",
       "revenue": 305.0,
       "count": 9
-    },
-    {
-      "city": "Claycomo",
-      "state": "MO",
-      "revenue": 305.0,
-      "count": 7
     },
     {
       "city": "Buckner",
@@ -5420,7 +5414,7 @@
           "clientId": "GEISP0J",
           "name": "Emily Jackson",
           "zip": "64119",
-          "city": "Kansas City",
+          "city": "Gladstone",
           "state": "MO",
           "active": false
         }
@@ -5470,7 +5464,7 @@
           "clientId": "D8DLQTH",
           "name": "Jennifer Taylor",
           "zip": "64119",
-          "city": "Kansas City",
+          "city": "Gladstone",
           "state": "MO",
           "active": true
         },

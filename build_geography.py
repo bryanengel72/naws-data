@@ -62,6 +62,13 @@ CITY_ALIASES = {
     "kc.": "Kansas City",
 }
 
+# Zip codes that span city boundaries or where clients commonly write the wrong city.
+# These take precedence over whatever the address field says.
+ZIP_CITY_OVERRIDES: dict[str, str] = {
+    "64119": "Gladstone",  # Postal zip is Gladstone; clients frequently write Kansas City
+    # 64118 straddles Gladstone and Kansas City — let address city decide
+}
+
 def parse_money(s: str) -> float:
     if not s:
         return 0.0
@@ -139,6 +146,8 @@ with CLIENT_FILE.open(newline="", encoding="utf-8") as f:
         if not cid:
             continue
         zip5, city, state, _ = parse_address(addr)
+        if zip5 and zip5 in ZIP_CITY_OVERRIDES:
+            city = ZIP_CITY_OVERRIDES[zip5]
         clients[cid] = {
             "name": name,
             "zip": zip5 or "",
